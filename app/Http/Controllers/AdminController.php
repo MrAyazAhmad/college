@@ -28,6 +28,26 @@ class AdminController extends Controller
         // die();
         return view('admin.user.index',compact('users'));
     }
+    public function adduser()
+    {
+        /*$users = User::all();
+        // dd($users);
+        // die();*/
+        return view('admin.user.adduser');
+    }
+
+     public function createuser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            
+        ]);
+        $input = $request->all();
+        User::create($input);
+        return redirect('admin/allusers')->with('success','User created successfully.');
+    }
        public function allstudents()
     {
         $students = StudentRecord::all();

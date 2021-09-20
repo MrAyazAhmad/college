@@ -49,7 +49,10 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
 
 // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera'])->name('allusers');
-Route::delete('admin/userdelete/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
+Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
+Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
+
+Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);
 Route::get('admin/edit_user/{id}',[App\Http\Controllers\AdminController::class,'getUserById']);
 Route::post('admin/updateuser/{id}',[App\Http\Controllers\AdminController::class,'updateuser']);
 
