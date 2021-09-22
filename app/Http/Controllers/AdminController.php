@@ -26,7 +26,9 @@ class AdminController extends Controller
         $users = User::all();
         // dd($users);
         // die();
+       /* $users = User::orderBy('id')->get();*/
         return view('admin.user.index',compact('users'));
+       /* return view('admin.user.index',compact('users'));*/
     }
     public function adduser()
     {
@@ -34,6 +36,13 @@ class AdminController extends Controller
         // dd($users);
         // die();*/
         return view('admin.user.adduser');
+    }
+
+     public function deleteUser($id)
+    {
+        $contact = User::find($id);
+        $contact->delete();
+        return response()->json(['success'=>'Record has been deleted']);
     }
 
      public function createuser(Request $request)

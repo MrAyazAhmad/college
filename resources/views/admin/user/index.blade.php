@@ -13,7 +13,17 @@
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/metisMenu.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
 
@@ -100,7 +110,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach($users as $user)
-                                            <tr>
+                                            <tr id="cid{{$user->id}}" class="p-0">
                                                 <td>{{$user->name}}</td>
                                                 <td>{{$user->position}}</td>
                                                 @if($user->role==1)
@@ -120,7 +130,9 @@
                                                 <td><i class="fa fa-pencil" aria-hidden="true"><a href="edit_user/{{$user->id}}"></a></i></td>
                                                 <!-- <td><i class="fas fa-trash-alt"><a href="javascript:void(0)" onclick="userdelete({{$user->id}})"> </a></i></td> -->
                                                 <!-- <td><a href="userdelete/{{$user->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
-                                                <td>
+                                                <td><a href="javascript:void(0)" onclick="deleteUser({{$user->id}})" class="btn btn-danger">Delete</a></td>
+
+             <!--                                    <td>
                                                 <form id="delete-form" method="POST" action="userdelete/{{$user->id}}">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
@@ -129,7 +141,7 @@
       <input type="submit" class="btn btn-danger" value="Delete">
     </div>
   </form>
-</td>
+</td> -->
 
 
                                             </tr>
@@ -337,6 +349,57 @@
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/layout-sidebar-vertical.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
+
+
+
+
+
+
+      <script type="text/javascript">
+    function deleteUser(id) {
+        swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+             $.ajax({
+          url: 'deleteuser/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#cid'+id).remove();
+            swal({
+                title: "Success!",
+                text:  "Record has been deleted..",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            window.setTimeout(function(){ } ,3000);
+            location.reload();
+          }
+        });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    }
+</script>
 </body>
 
 </html>

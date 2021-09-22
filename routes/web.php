@@ -50,6 +50,9 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
 // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera'])->name('allusers');
 Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
+Route::delete('deleteuser/{id}',[AdminController::class,'deleteUser']);
+
+
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
 
 Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);
