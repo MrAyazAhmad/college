@@ -76,3 +76,9 @@ Route::get('libraryexport', [App\Http\Controllers\AdminController::class, 'libra
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class,'index']);
 Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
 
+
+
+Route::get('adduser', function(){
+
+    return view('admin.user.adduser');
+}) ;
