@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 
@@ -502,6 +502,4 @@
 </body>
 
 </html>
-=======
-<h3>hellow world</h3>
->>>>>>> 9bd885da7e1b55a868c715d30a0ef2aa2b46b7d5
+
