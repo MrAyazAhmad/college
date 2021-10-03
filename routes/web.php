@@ -16,6 +16,12 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('command', function () {
+    Artisan::call('key:generate');
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    dd("Done");
+});
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -67,8 +73,8 @@ Route::post('/studentrecord', [App\Http\Controllers\FeeVoucherOfficerController:
 Route::get('/admissionofficer', [App\Http\Controllers\AdmissionOfficerController::class, 'index'])->name('admissionofficer')->middleware('admissionofficer');
 Route::post('/studentrecordupload', [App\Http\Controllers\AdmissionOfficerController::class, 'studentrecordupload'])->name('studentrecordupload')->middleware('admissionofficer');
 
-Route::resource('feestructer', FeeStructerController::class);
-Route::resource('session', ClassSessionController::class);
+Route::get('view-feestructure', [App\Http\Controllers\AdminController::class, 'viewfeestructure']);
+Route::get('view-session',  [App\Http\Controllers\AdminController::class, 'viewsessions']);
 Route::post('admissionform', [App\Http\Controllers\StudentRecordController::class, 'store']);
 Route::get('admissionrespit/{id}', [App\Http\Controllers\StudentRecordController::class, 'wordExport']);
 Route::get('uploadrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'uploadrespit']);

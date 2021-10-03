@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Session;
+use App\Models\FeeStructer;
 use App\Models\StudentRecord;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -25,6 +27,20 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('admin.user.index',compact('users'));
+      
+    }
+
+     public function viewfeestructure()
+    {
+        $feestructures = FeeStructer::all();
+        return view('admin.feestructure.index',compact('feestructures'));
+      
+    }
+
+     public function viewsessions()
+    {
+        $sessions = Session::all();
+        return view('admin.sessions.index',compact('sessions'));
       
     }
     public function adduser()

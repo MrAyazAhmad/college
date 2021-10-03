@@ -25,14 +25,14 @@
                             </li>
                             <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Fee Structer</span></a>
                                 <ul class="mm-collapse">
-                                    <li class="item-name"><a href="{{url('feestructer')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">View All Class Fee Structer</span></a></li>
+                                    <li class="item-name"><a href="{{url('view-feestructure')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">View All Class Fee Structer</span></a></li>
                                     <li class="item-name"><a href="{{url('feestructer')}}/create"><i class="nav-icon i-Add-User"></i><span class="item-name">Add New Fee Structer</span></a></li>
                                     
                                 </ul>
                             </li>
                             <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Sessions</span></a>
                                 <ul class="mm-collapse">
-                                    <li class="item-name"><a href="{{url('session')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">View All Sessions</span></a></li>
+                                    <li class="item-name"><a href="{{url('view-session')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">View All Sessions</span></a></li>
                                     <li class="item-name"><a href="{{url('session')}}/create"><i class="nav-icon i-Add-User"></i><span class="item-name">Add New Sessions</span></a></li>
                                     
                                 </ul>
