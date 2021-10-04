@@ -24,27 +24,46 @@ class AdminController extends Controller
     public function allusera()
     {
         $users = User::all();
-        // dd($users);
-        // die();
         return view('admin.user.index',compact('users'));
+      
     }
-       public function allstudents()
+    public function adduser()
     {
-        $students = StudentRecord::all();
-        return view('admin.student.index',compact('students'));
+       
+        return view('admin.user.adduser');
     }
-     public function destroy( $id)
+
+     public function deleteUser($id)
     {
-         $user = User::find($id);
-        $user->delete();
-        return redirect('admin/allusers')->with('success','user delete successfully.');
+        $contact = User::find($id);
+        $contact->delete();
+        return redirect()->back()->with('Deleted','your record successfully.....');
     }
-      public function getUserById($id)
+
+
+    
+
+     public function createuser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            
+        ]);
+        $input = $request->all();
+        User::create($input);
+        return redirect('admin/allusers')->with('success','User created successfully.');
+    }
+
+       public function EditUser($id)
     {
         $user = User::find($id);
         return view('admin.user.edit',compact('user'));
     }
-    public function updateuser(Request $request)
+
+
+       public function updateuser(Request $request)
     {
 
         $request->validate([
@@ -63,6 +82,33 @@ class AdminController extends Controller
         $user->save();
         return redirect('admin/allusers')->with('success','user update successfully.');
     }
+
+
+       public function allstudents()
+    {
+        $students = StudentRecord::all();
+        return view('admin.student.index',compact('students'));
+    }
+     public function destroy( $id)
+    {
+         $user = User::find($id);
+        $user->delete();
+        return redirect('admin/allusers')->with('success','user delete successfully.');
+    }
+   
+/*         public function updateuser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            
+        ]);
+        $input = $request->all();
+        User::create($input);
+        return redirect('admin/allusers')->with('success','User updated successfully.');
+    }*/
+ 
     // public function export(){
     // $name='Cashbook'.date('M-d-Y_hia').'.xlsx';  
     // return Excel::download(new UsersExport, $name);

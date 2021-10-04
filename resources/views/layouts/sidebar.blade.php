@@ -11,15 +11,15 @@
                             </li>
                             <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Users</span></a>
                                 <ul class="mm-collapse">
-                                    <li class="item-name"><a href="../sessions/signin.html"><i class="nav-icon i-Checked-User"></i><span class="item-name">Add New</span></a></li>
-                                    <li class="item-name"><a href="{{route('allusers')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">View All</span></a></li>
+                                    <li class="item-name"><a href="{{route('adduser')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">Add New</span></a></li>
+                                    <li class="item-name"><a href="{{url('admin/allusers')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">View All</span></a></li>
                                     <li class="item-name"><a href="../sessions/forgot.html"><i class="nav-icon i-Find-User"></i><span class="item-name">Forgot</span></a></li>
                                 </ul>
                             </li>
                             <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Students</span></a>
                                 <ul class="mm-collapse">
                                     <li class="item-name"><a href="{{route('allstudents')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">All Student</span></a></li>
-                                    <li class="item-name"><a href="{{route('allusers')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">Admission Confirm Students</span></a></li>
+                                    <li class="item-name"><a href="{{url('admin/allusers')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">Admission Confirm Students</span></a></li>
                                     <li class="item-name"><a href="../sessions/forgot.html"><i class="nav-icon i-Find-User"></i><span class="item-name">Forgot</span></a></li>
                                 </ul>
                             </li>

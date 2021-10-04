@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+
+
+
+
+          <!DOCTYPE html>
 <html lang="en" dir="">
 
 <head>
@@ -62,7 +66,7 @@
                     <h1 class="mr-2">Admin</h1>
                     <ul>
                         <li><a href="">Dashboard</a></li>
-                        <li>Edit User</li>
+                        <li>Add Users</li>
                     </ul>
                 </div>
 
@@ -73,7 +77,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-3">Form Inputs</div>
-                            <form method="post" action="{{url('updateuser')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('createuser')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-3">
@@ -109,7 +113,7 @@
                                         
                                        
                                         <div class="col-md-12">
-                                            <button class="btn btn-primary">Update</button>
+                                            <button class="btn btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>

@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FeeStructerController;
 use App\Http\Controllers\ClassSessionController;
 use App\Http\Controllers\PDFController;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,10 +48,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 
 // Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
-Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera'])->name('allusers');
-Route::delete('admin/userdelete/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
-Route::get('admin/edit_user/{id}',[App\Http\Controllers\AdminController::class,'getUserById']);
-Route::post('admin/updateuser/{id}',[App\Http\Controllers\AdminController::class,'updateuser']);
+Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera']);
+Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
+Route::delete('admin/deleteuser/{id}',[AdminController::class,'deleteUser']);
+Route::get('admin/edit_user/{id}',[AdminController::class,'EditUser']);
+
+Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
+
+Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);
+
+Route::post('admin/updateuser/{id}',[App\Http\Controllers\AdminController::class,'updateuser'])->name('updateuser');
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
 Route::get('/superadmin', [App\Http\Controllers\SuperAdminController::class, 'index'])->name('superadmin')->middleware('superadmin');
@@ -75,3 +81,9 @@ Route::get('libraryexport', [App\Http\Controllers\AdminController::class, 'libra
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class,'index']);
 Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
 
+
+
+Route::get('adduser', function(){
+
+    return view('admin.user.adduser');
+}) ;
