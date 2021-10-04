@@ -89,23 +89,23 @@ button:hover {
             <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true" >
                 <ul class="navigation-left">
                     <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span></a>
-                        <div class="triangle"></div>
+                        <!-- <div class="triangle"></div> -->
                     </li>
                     
                         <div class="triangle"></div>
                     </li>
                 </ul>
             </div>
-            <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+         <!--    <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true"> -->
                 <!-- Submenu Dashboards-->
-                <ul class="childNav" data-parent="dashboard">
+         <!--        <ul class="childNav" data-parent="dashboard">
                     <li class="nav-item"><a href="dashboard1.html"><i class="nav-icon i-Clock-3"></i><span class="item-name">Version 1</span></a></li>
                     <li class="nav-item"><a href="dashboard2.html"><i class="nav-icon i-Clock-4"></i><span class="item-name">Version 2</span></a></li>
                     <li class="nav-item"><a href="dashboard3.html"><i class="nav-icon i-Over-Time"></i><span class="item-name">Version 3</span></a></li>
                     <li class="nav-item"><a href="dashboard4.html"><i class="nav-icon i-Clock"></i><span class="item-name">Version 4</span></a></li>
-                </ul>
+                </ul> -->
                 
-            </div>
+          <!--   </div> -->
             <div class="sidebar-overlay"></div>
         </div>
         <!-- =============== Left side End ================-->
@@ -130,6 +130,8 @@ button:hover {
                                   </div>
                                   <br>
                                 @endif
+
+
                     <div class="col-md-12">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -137,6 +139,9 @@ button:hover {
                                 <div class="card-title mb-3">Form Inputs</div>
                             <form id="regForm" method="post" action="{{url('admissionform')}}" enctype="multipart/form-data">
                                     @csrf
+                                    
+
+
 
                                   <div class="tab">
                                      <div class="row ">
@@ -145,14 +150,15 @@ button:hover {
 
                                            <div class="col-md-6 form-group mb-3">
                                             <label for="picker1">Select Class </label>
-                                            <select class="form-control" name="section_id">
+                                            <select class="form-control" name="section_name">
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->id}}">{{$c_section->class_name}} </option>
+                                                <option value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                   </div>
                               </div>
+
                                    <div class="tab">
                                      <div class="row ">
                                         <div class="col-md-3 form-group mb-3">
@@ -174,7 +180,7 @@ button:hover {
                                            </div>
                                            <div class="col-md-6 form-group mb-3">
                                             <label for="picker1">Select Session </label>
-                                            <select class="form-control" name="session_year">
+                                            <select class="form-control" name="section_id">
                                                 @foreach($class_section AS $c_section)
                                                 <option value="{{$c_section->id}}">({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endforeach
@@ -182,7 +188,7 @@ button:hover {
                                         </div>
                                   </div>
                               </div>
-                                  
+                           
                                 <!--   <div class="tab">Login Info:
                                     <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
                                     <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
@@ -190,70 +196,70 @@ button:hover {
                                   <div class="tab">
                                     <div class="row ">
                                            
-                                        <!-- <div class="col-md-6 form-group mb-3">
-                                            <label for="section_id">section_id</label>
-                                            <input class="form-control" id="section_id" name="section_id" type="text" placeholder="Enter your section_id" />
+                                        <!-- <div class="col-md-3 form-group mb-3">
+                                            <label for="section_name">section_name</label>
+                                            <input class="form-control" id="section_name" name="section_name" type="text" placeholder="Enter your section_name" />
                                         </div> -->
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="CNIC">CNIC</label>
                                             <input class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="canidate_name">canidate_name</label>
-                                            <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter canidate_name" />
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="canidate_name">Canidate Name</label>
+                                            <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Bame" />
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="dob">Date of birth</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="dob">Date Of Birth</label>
                                             <input class="form-control" id="dob" type="date" name="dob" placeholder="Enter dob" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="f_name">Father Name</label>
                                             <input class="form-control" id="f_name" type="Year" name="f_name" placeholder="Enter f_name" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="f_cnic">Father CNIC</label>
                                             <input class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="contact_number">Contact No.</label>
                                             <input class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="address">Address</label>
                                             <input class="form-control" id="address" type="Year" name="address" placeholder="Enter address" />
                                         </div>
-                                          <div class="col-md-6 form-group mb-3">
-                                            <label for="religion">religion</label>
+                                          <div class="col-md-3 form-group mb-3">
+                                            <label for="religion">Religion</label>
                                             <input class="form-control" id="religion" type="Year" name="religion" placeholder="Enter religion" />
                                         </div>
                                      
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="nationality">nationality</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="nationality">Nationality</label>
                                             <input class="form-control" id="nationality" type="Year" name="nationality" placeholder="Enter nationality" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="specialty">specialty</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="specialty">Specialty</label>
                                             <input class="form-control" id="specialty" type="Year" name="specialty" placeholder="Enter specialty" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="group">group</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="group">Select Group</label>
                                             <input class="form-control" id="group" type="Year" name="group" placeholder="Enter group" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="optional_subject_one">optional_subject_one</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="optional_subject_one">Optional Subject One</label>
                                             <input class="form-control" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="optional_subject_two">optional_subject_two</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="optional_subject_two">Optional Subject Two</label>
                                             <input class="form-control" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="optional_subject_three">optional_subject_three</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="optional_subject_three">Optional Subject Three</label>
                                             <input class="form-control" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="image_name">image_name</label>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="image_name">Upload Student Photo</label>
                                             <input class="form-control" id="image_name" type="file" name="image_name" placeholder="Enter image_name" />
                                         </div>
                                         
@@ -262,9 +268,112 @@ button:hover {
                                             <button class="btn btn-primary">Submit</button>
                                         </div> -->
                                     </div>
-                                    <input type="button" value="Print this page" onClick="window.print()">
 
+                                   
+
+                                </div>
+                                <div class="tab">
+                                <div class="row ">
+                                    <div class="col-md-3 form-group mb-3">
+                                        <h1>Matric</h1> </div>
+                                    <div class="row ">
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="nationality">Roll No</label>
+                                            <input class="form-control" id="roll_no" type="Year" name="roll_no" placeholder="Enter Roll No" /> </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="Year">Passing Year</label>
+                                            <input class="form-control" id="Year" type="Year" name="Passing_Year" placeholder="Enter Year" /> </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="group">Select Annual /Supp.</label>
+                                            <select class="form-control" name="exam_Type">
+                                                <option value="">Select One Opttion</option>
+
+                                                <option value="Annual">Annual</option>
+                                                <option value="2nd_Year">Supply</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="Marks_Obt">Marks Obtian</label>
+                                            <input class="form-control" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="totall_marks">Total Marks</label>
+                                            <input class="form-control" id="totall_marks" type="Year" name="totall_marks" placeholder="Enter Total Marks" /> </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="%age">%age</label>
+                                            <input class="form-control" id="results" type="text" name="percentage" readonly /> </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="insitute_name">Board /University</label>
+                                            <input class="form-control" id="insitute_name" type="Year" name="insitute_name" placeholder="Enter Board /University" /> </div>
                                     </div>
+                                    <div class="row ">
+                                        <div class="col-md-12 form-group mb-3">
+                                            <h1>Inter </h1> </div>
+                                        
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="nationality">Roll No</label>
+                                                <input class="form-control" id="Inter_Roll_No" type="Year" name="Inter_Roll_No" placeholder="Enter Roll No" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="Year">Passing Year</label>
+                                                <input class="form-control" id="Inter_Year" type="Year" name="Inter_Year" placeholder="Enter Year" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="group">Select Annual /Supp.</label>
+                                                <select class="form-control" name="Inter_Exam_Type">
+                                                    <option value="">Select One Opttion</option>
+                                                    <option value="Annual">Annual</option>
+                                                    <option value="Supply">Supply</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="Marks_Obt">Marks Obtian</label>
+                                                <input class="form-control" id="Inter_Marks_Obt" type="Year" name="Inter_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="totall_marks">Total Marks</label>
+                                                <input class="form-control" id="Inter_totall_marks" type="Year" name="Inter_totall_marks" placeholder="Enter Total Marks" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="%age">%age</label>
+                                                <input class="form-control" id="Inter_results" type="text" name="Inter_percentage" readonly /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="insitute_name">Board /University</label>
+                                                <input class="form-control" id="Inter_insitute_name" type="Year" name="Inter_insitute_name" placeholder="Enter Board /University" /> </div>
+                                       
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-12 form-group mb-3">
+                                            <h1>Bachelor </h1> </div>
+
+                                        
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="nationality">Roll No</label>
+                                                <input class="form-control" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="Year">Passing Year</label>
+                                                <input class="form-control" id="Bachelor_Year" type="Year" name="Bachelor_Year" placeholder="Enter Year" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="group">Select Annual /Supp.</label>
+                                                <select class="form-control" name="Bachelor_Exam_Type">
+                                                    <option value="">Select One Opttion</option>
+                                                    <option value="Annual">Annual</option>
+                                                    <option value="2nd_Year">Supply</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="Marks_Obt">Marks Obtian</label>
+                                                <input class="form-control" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="totall_marks">Total Marks</label>
+                                                <input class="form-control" id="Bachelor_totall_marks" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="%age">%age</label>
+                                                <input class="form-control" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="insitute_name">Board /University</label>
+                                                <input class="form-control" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
+                                        </div>
+                                 
+                                </div>
+                            </div>
+
+
                                       <div style="overflow:auto;">
                                         <div style="float:right;">
                                           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
@@ -273,12 +382,15 @@ button:hover {
 
                                         </div>
                                       </div>
+
+
                                       <!-- Circles which indicates the steps of the form: -->
                                       <div style="text-align:center;margin-top:40px;">
                                         <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
+                                        <!-- <span class="step"></span> -->
                                       </div>
                                 </form>
                             </div>
@@ -290,35 +402,35 @@ button:hover {
                                 <div class="card-title mb-3">Form Inputs Rounded</div>
                                 <form>
                                     <div class="row">
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="firstName2">First name</label>
                                             <input class="form-control form-control-rounded" id="firstName2" type="text" placeholder="Enter your first name" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="lastName2">Last name</label>
                                             <input class="form-control form-control-rounded" id="lastName2" type="text" placeholder="Enter your last name" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="exampleInputEmail2">Email address</label>
                                             <input class="form-control form-control-rounded" id="exampleInputEmail2" type="email" placeholder="Enter email" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="phone1">Phone</label>
                                             <input class="form-control form-control-rounded" id="phone1" placeholder="Enter phone" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="credit2">Cradit card number</label>
                                             <input class="form-control form-control-rounded" id="credit2" placeholder="Card" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="website2">Website</label>
                                             <input class="form-control form-control-rounded" id="website2" placeholder="Web address" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="picker3">Birth date</label>
                                             <input class="form-control form-control-rounded" id="picker3" placeholder="yyyy-mm-dd" name="dp" />
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3">
                                             <label for="picker1">Select</label>
                                             <select class="form-control form-control-rounded">
                                                 <option>Option 1</option>
@@ -503,6 +615,7 @@ button:hover {
     </div><!-- ============ Search UI Start ============= -->
  
     <!-- ============ Search UI End ============= -->
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -556,12 +669,7 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
+   
   }
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
@@ -579,6 +687,26 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
+
+
+$(function () {
+    $(document).on('change', '#totall_marks', function () { // input on change
+        var result = Math.round(parseFloat(parseInt($("#Marks_Obt").val(), 10) * 100) / parseInt($("#totall_marks").val(), 10));
+        $('#results').val(result + '%'); //shows value in "#rate"
+    })
+});
+$(function () {
+    $(document).on('change', '#Inter_totall_marks', function () { // input on change
+        var result = Math.round(parseFloat(parseInt($("#Inter_Marks_Obt").val(), 10) * 100) / parseInt($("#Inter_totall_marks").val(), 10));
+        $('#Inter_results').val(result + '%'); //shows value in "#rate"
+    })
+});
+$(function () {
+    $(document).on('change', '#Bachelor_totall_marks', function () { // input on change
+        var result = Math.round(parseFloat(parseInt($("#Bachelor_Marks_Obt").val(), 10) * 100) / parseInt($("#Bachelor_totall_marks").val(), 10));
+        $('#Bachelor_results').val(result + '%'); //shows value in "#rate"
+    })
+});
 </script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>

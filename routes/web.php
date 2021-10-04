@@ -34,7 +34,7 @@ Route::get('command', function () {
     dd("Done");
 });
 // Route::get('generate-pdf','PDFController@generatePDF');
-Route::get('/generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('/generate-pdf/{id}', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('generate-pdf');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -66,6 +66,8 @@ Route::resource('session', ClassSessionController::class);
 Route::post('admissionform', [App\Http\Controllers\StudentRecordController::class, 'store']);
 Route::get('admissionrespit/{id}', [App\Http\Controllers\StudentRecordController::class, 'wordExport']);
 Route::get('uploadrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'uploadrespit']);
+Route::get('printaplication/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'printaplication']);
+
 Route::post('postrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'postrespit']);
 // Route::get('/home', 'AcademicController@index')->name('home');
 Route::get('export', [App\Http\Controllers\AdminController::class, 'export'])->name('export')->middleware('admin');

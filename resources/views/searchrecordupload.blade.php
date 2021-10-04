@@ -87,6 +87,7 @@
                                                 <th>Group</th>
                                                 <th>Picture</th>
                                                 <th> Upload Challan</th>
+                                                <th> Print Apllication</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,6 +101,7 @@
                                                 <td>{{$user->group}}</td>
                                                 <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
                                                 <td><a href="{{ url('/uploadrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                                   <td><a href="{{ url('/printaplication/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
                                             </tr>
                                             @endforeach
                                             

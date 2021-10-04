@@ -23,12 +23,12 @@
 <h2>Student Record Card</h2>
 
 <div class="card">
-  <img src="{{URL::to('public')}}/image/canidatephoto/{{$images}}" alt="Avatar" style="width:100%">
+  <img src="{{URL::to('public')}}/image/canidatephoto/{{$image}}" alt="Avatar" style="width:100%">
   <div class="container">
     <h4><b>{{ $title }}</b></h4> 
     <p>Father Name:{{ $fname}}</p> 
     <p>Class:Fsc Part1</p> 
-    <p>Registration ID: GACA-0001</p> 
+    <p>Registration ID: GACA-{{$id}}</p> 
   </div>
 </div>
 
