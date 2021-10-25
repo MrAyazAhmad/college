@@ -56,7 +56,7 @@
                                             <label for="picker1">Select Status</label>
                                             <select class="form-control" name="status_id">
                                                 <option value="1">Active</option>
-                                                <option value="1">Deactive</option>
+                                                <option value="0">Deactive</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12">

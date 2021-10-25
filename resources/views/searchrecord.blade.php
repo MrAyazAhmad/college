@@ -13,6 +13,15 @@
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/metisMenu.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style type="text/css">
+        .table {
+            text-transform: uppercase;
+                font-size: 18px;
+                margin-left: 20%;
+                width: 60%;
+                font-weight: bolder;
+            }
+    </style>
 
 </head>
 
@@ -58,72 +67,187 @@
                     </ul>
                 </div>
                 <div class="separator-breadcrumb border-top"></div>
-              
+               <table class="table table-bordered">
+                <div class="container">
+    <thead>
+        <tr>
+        <th style="font-size: 50px;">Receipt No</th>
+        <th style="font-size: 50px;">{{$students->id}}</th>
+      </tr>
+    </thead>
+</div>
+</table>
                 <!-- end of row-->
-                <div class="row mb-4">
-                    <div class="col-md-12 mb-4">
-                        <div class="card text-left">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Students Not Admited</h4>
-                                <!-- <p>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> -->
-                                <div class="table-responsive">
-                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>CNIC</th>
-                                                <th>Name</th>
-                                                <th>Father Name</th>
-                                                <th>Date Of Birth</th>
-                                                <th>Contact Number</th>
-                                                <th>Group</th>
-                                                <th>Picture</th>
-                                                <th>Print Chalan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($students as $user)
-                                            <tr>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
-                                                <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
-                                                <td><a href="{{ url('/admissionrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
-                                            </tr>
-                                            @endforeach
-                                            
-                                        </tbody>
-                                   
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+               <table class="table table-bordered">
+                <div class="container">
+   
+    <thead>
+         <tr >
+        <th >Name</th>
+        <th >{{$students->canidate_name}}</th>
+      </tr>
+       <tr>
+        <th>Father Name</th>
+        <th>{{$students->f_name}}</th>
+      </tr>
+       <tr>
+        <th>CNIC</th>
+        <th>{{$students->CNIC}}</th>
+      </tr>
+      <tr>
+        <th>Class</th>
+        <th>{{$feestructure->Section->class_name}}</th>
+      </tr>
+      
+       <tr>
+        <th>Session</th>
+        <th>{{$feestructure->Section->start_year}} TO {{$feestructure->Section->end_year}}</th>
+      </tr>
+      <tr>
+        <th>Due Date</th>
+        <th>{{$feestructure->due_date}}</th>
+      </tr>
+      <tr>
+        <th>Bank Name</th>
+        <th>{{$feestructure->bank_name}}</th>
+      </tr>
+      <tr>
+        <th>Account Title</th>
+        <th>{{$feestructure->account_title}}</th>
+      </tr>
+      <tr>
+        <th>Account Number</th>
+        <th>{{$feestructure->account_number}}</th>
+      </tr>
+      
+
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+  <form method="post" action="{{url('studentfeevoucher')}}/{{$students->id}}" enctype="multipart/form-data">
+                                    @csrf
+        <input type="hidden" name="due_date" value="{{$feestructure->due_date}}">
+                                    
+        <input type="hidden" name="bank_name" value="{{$feestructure->bank_name}}">
+
+        <input type="hidden" name="account_title" value="{{$feestructure->account_title}}">
+
+        <input type="hidden" name="account_number" value="{{$feestructure->account_number}}">
+
+
+      <tr>
+        <td><label for="admission_fee">Admission Fee</label></td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->admission_fee}}" class="form-control" id="admission_fee" name="admission_fee" type="text" placeholder="Enter your Admission Fee" />
+        </td>
+      </tr>
+      <tr>
+        <td><label for="tution_fee">Tution Fee</label>
+                                           </td>
+        <td> <input class="form-control example"onblur="findTotal()" value="{{$feestructure->tution_fee}}" class="form-control" id="tution_fee" name="tution_fee" type="Year" placeholder="Enter Tution Fee" /></td>
+      </tr>
+      <tr>
+        <td><label for="genral_fund">Genral Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->genral_fund}}" class="form-control" id="genral_fund" type="Year" name="genral_fund" placeholder="Enter genral_fund" readonly="" /></td>
+      </tr>
+      
+
+      <tr>
+        <td><label for="medical_fund">Medical Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->medical_fund}}" class="form-control" id="medical_fund" type="Year" name="medical_fund" placeholder="Enter medical_fund" readonly=""/></td>
+      </tr>
+      <tr>
+        <td><label for="red_cross_fund">Red Cross Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->red_cross_fund}}" class="form-control" id="red_cross_fund" type="Year" name="red_cross_fund" placeholder="Enter red_cross_fund" readonly="" /></td>
+      </tr>
+      <tr>
+        <td><label for="welfare_fund">Welfare Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->welfare_fund}}" class="form-control" id="welfare_fund" type="Year" name="welfare_fund" placeholder="Enter welfare_fund" readonly="" /></td>
+      </tr>
+      
+      <tr>
+        <td><label for="magazine_fund">Magazine Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->magazine_fund}}" class="form-control" id="magazine_fund" type="Year" name="magazine_fund" placeholder="Enter magazine_fund" readonly=""/></td>
+      </tr>
+      <tr>
+        <td><label for="library_security">Library Security</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->library_security}}" class="form-control" id="library_security" type="Year" name="library_security" placeholder="Enter library_security" /></td>
+      </tr>
+      <tr>
+        <td><label for="affiliation_fund">Affiliation Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->affiliation_fund}}" class="form-control" id="affiliation_fund" type="Year" name="affiliation_fund" placeholder="Enter affiliation_fund" readonly=""/></td>
+      </tr>
+      <tr>
+        <td><label for="board_universty_registration_fee">Board universty registration Fee</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->board_universty_registration_fee}}" class="form-control" id="board_universty_registration_fee" type="Year" name="board_universty_registration_fee" placeholder="Enter board_universty_registration_fee" readonly="" /></td>
+      </tr>
+      <tr>
+        <td><label for="masjjid_fund">Masjjid Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->masjjid_fund}}" class="form-control" id="masjjid_fund" type="Year" name="masjjid_fund" placeholder="Enter masjjid_fund" /></td>
+      </tr>
+      <tr>
+        <td><label for="parking_fee">Parking Fee</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->parking_fee}}" class="form-control" name="parking_fee" type="Year" name="d" placeholder="Enter parking_fee" readonly="" /></td>
+      </tr>
+
+      <tr>
+        <td><label for="sports_fund">Sports Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->sports_fund}}" class="form-control" id="sports_fund" type="Year" name="sports_fund" placeholder="Enter sports_fund" readonly="" /></td>
+      </tr>
+       <tr>
+        <td><label for="id_card_fee">Id Card Fee</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->id_card_fee}}" class="form-control" id="id_card_fee" type="Year" name="id_card_fee" placeholder="Enter id_card_fee" readonly="" /></td>
+      </tr>
+      <tr>
+        <td> <label for="computer_fee">Computer Fee</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->computer_fee}}" class="form-control" id="computer_fee" type="Year" name="computer_fee" placeholder="Enter Computer Fee" readonly="" /></td>
+      </tr>
+           <tr>
+        <td><label for="exam_fund">Exam fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->exam_fund}}" class="form-control" id="exam_fund" type="Year" name="exam_fund" placeholder="Enter Exam Fund" readonly="" /></td>
+      </tr>    
+          <tr>
+        <td><label for="secience_fund">Secience Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->secience_fund}}" class="form-control" id="secience_fund" type="Year" name="secience_fund" placeholder="Enter Secience Fund" readonly="" /></td>
+      </tr>  
+      <tr>
+        <td><label for="fine_fund">Fine Fund</label>
+                                            </td>
+        <td><input class="form-control example"onblur="findTotal()" value="{{$feestructure->fine_fund}}" class="form-control" id="fine_fund" type="Year" name="fine_fund" placeholder="Enter Fine Fund" /></td>
+      </tr>
+       <tr>
+        <td><label for="total">Total</label>
+                                            </td>
+        <td><input value="{{$feestructure->total_fee}}" class="form-control" id="total" type="Year" name="total" placeholder="Enter Fine Fund<" /></td>
+      </tr>
+        <tr>
+        <td><label for="action">Action</label>
+                                            </td>
+        <td><button type="submit">Print Voucher</button></td>
+      </tr>
+  </form>
+      
+    </tbody>
+  </table>
+</div>
             </div>
-            <div class="sidebar-overlay open"></div><!-- Footer Start -->
-            <div class="flex-grow-1"></div>
-            <div class="app-footer">
-                <div class="row">
-                    <div class="col-md-9">
-                        <p><strong>Gull - Laravel + Bootstrap 4 admin template</strong></p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero quis beatae officia saepe perferendis voluptatum minima eveniet voluptates dolorum, temporibus nisi maxime nesciunt totam repudiandae commodi sequi dolor quibusdam
-                            <sunt></sunt>
-                        </p>
-                    </div>
-                </div>
-                <div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center">
-                    <a class="btn btn-primary text-white btn-rounded" href="https://themeforest.net/item/gull-bootstrap-laravel-admin-dashboard-template/23101970" target="_blank">Buy Gull HTML</a>
-                    <span class="flex-grow-1"></span>
-                    <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.png" alt="">
-                        <div>
-                            <p class="m-0">&copy; 2018 Gull HTML</p>
-                            <p class="m-0">All rights reserved</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- fotter end -->
         </div>
@@ -135,7 +259,7 @@
                 <i class="i-Close-Window text-22 text-muted"></i>
             </button>
         </div>
-        <input type="text" placeholder="Type here" class="search-input" autofocus>
+        <input class="form-control example"onblur="findTotal()" type="text" placeholder="Type here" class="search-input" autofocus>
         <div class="search-title">
             <span class="text-muted">Search results</span>
         </div>
@@ -257,6 +381,18 @@
         </div>
     </div>
     <!-- ============ Search UI End ============= -->
+            <script type="text/javascript">
+function findTotal(){
+    var arr = document.getElementsByClassName("example");
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            tot += parseInt(arr[i].value);
+    }
+    document.getElementById('total').value = tot;
+}
+
+    </script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>

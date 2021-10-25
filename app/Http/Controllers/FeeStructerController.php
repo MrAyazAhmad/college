@@ -54,16 +54,22 @@ class FeeStructerController extends Controller
         $feeStructer->affiliation_fund = $request->affiliation_fund;
         $feeStructer->board_universty_registration_fee = $request->board_universty_registration_fee;
         $feeStructer->secience_fund = $request->secience_fund;
-        $feeStructer->absence_fine = $request->absence_fine;
+        $feeStructer->masjjid_fund = $request->masjjid_fund;
         $feeStructer->fine_fund = $request->fine_fund;
         $feeStructer->parking_fee = $request->parking_fee;
         $feeStructer->sports_fund = $request->sports_fund;
         $feeStructer->id_card_fee = $request->id_card_fee;
         $feeStructer->computer_fee = $request->computer_fee;
         $feeStructer->exam_fund = $request->exam_fund;
+        $feeStructer->total_fee = $request->total;
+        $feeStructer->bank_name = $request->bank_name;
+        $feeStructer->account_title = $request->account_title;
+        $feeStructer->account_number = $request->account_number;
+        $feeStructer->due_date = $request->due_date;
         // dd($feeStructer);
         // die();
         $feeStructer->save();
+         return redirect('view-feestructure')->with('success','User created successfully.');
     }
 
     /**

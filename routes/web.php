@@ -57,24 +57,36 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
 Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera']);
 Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
 Route::delete('admin/deleteuser/{id}',[AdminController::class,'deleteUser']);
+Route::post('deletefeestructure/{id}',[AdminController::class,'DeleteFeestructure']);
+Route::get('view-session',  [App\Http\Controllers\AdminController::class, 'viewsessions']);
+Route::get('create-session',  [App\Http\Controllers\AdminController::class, 'CreateSession']);
+Route::post('session-store',  [App\Http\Controllers\AdminController::class, 'StoreSession']);
+Route::delete('deletesession/{id}',[AdminController::class,'DeleteSession']);
 Route::get('admin/edit_user/{id}',[AdminController::class,'EditUser']);
+Route::get('admin/edit_session/{id}',[AdminController::class,'EditSession']);
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
 
 Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);
 
 Route::post('admin/updateuser/{id}',[App\Http\Controllers\AdminController::class,'updateuser'])->name('updateuser');
+Route::post('admin/session_update/{id}',[App\Http\Controllers\AdminController::class,'SessionUpdate'])->name('SessionUpdate');
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
 Route::get('/superadmin', [App\Http\Controllers\SuperAdminController::class, 'index'])->name('superadmin')->middleware('superadmin');
 Route::get('/deo', [App\Http\Controllers\DeoController::class, 'index'])->name('deo')->middleware('deo');
 Route::get('/feevoucherofficer', [App\Http\Controllers\FeeVoucherOfficerController::class, 'index'])->name('feevoucherofficer')->middleware('feevoucherofficer');
 Route::post('/studentrecord', [App\Http\Controllers\FeeVoucherOfficerController::class, 'studentrecord'])->name('studentrecord')->middleware('feevoucherofficer');
+Route::post('/studentfeevoucher/{id}', [App\Http\Controllers\FeeVoucherOfficerController::class, 'studentfeevoucher'])->name('studentfeevoucher')->middleware('feevoucherofficer');
 Route::get('/admissionofficer', [App\Http\Controllers\AdmissionOfficerController::class, 'index'])->name('admissionofficer')->middleware('admissionofficer');
 Route::post('/studentrecordupload', [App\Http\Controllers\AdmissionOfficerController::class, 'studentrecordupload'])->name('studentrecordupload')->middleware('admissionofficer');
 
 Route::get('view-feestructure', [App\Http\Controllers\AdminController::class, 'viewfeestructure']);
-Route::get('view-session',  [App\Http\Controllers\AdminController::class, 'viewsessions']);
+Route::get('edit_feestructure/{id}', [App\Http\Controllers\AdminController::class, 'EditFeestructure']);
+Route::post('update_feestructure/{id}', [App\Http\Controllers\AdminController::class, 'UpdateFeestructure']);
+Route::get('addfeestructure', [App\Http\Controllers\FeeStructerController::class, 'create']);
+Route::post('feestructer', [App\Http\Controllers\FeeStructerController::class, 'store']);
+
 Route::post('admissionform', [App\Http\Controllers\StudentRecordController::class, 'store']);
 Route::get('admissionrespit/{id}', [App\Http\Controllers\StudentRecordController::class, 'wordExport']);
 Route::get('uploadrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'uploadrespit']);

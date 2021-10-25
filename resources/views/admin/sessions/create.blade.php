@@ -12,60 +12,17 @@
 </head>
 
 <body class="text-left">
-    <div class="app-admin-wrap layout-sidebar-large">
-        <div class="main-header">
-            <div class="logo">
-                <img src="{{URL::to('public')}}/dist-assets/images/logo.png" alt="">
-            </div>
-            <div class="menu-toggle">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-           
-            <div style="margin: auto"></div>
-            <div class="header-part-right">
-                    <!-- Full screen toggle--><i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
-                    <!-- Grid menu Dropdown-->
-                    <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <div class="menu-icon-grid"><a href="#"><i class="i-Checked-User"></i> Logout</a><a href="#"><i class="i-Ambulance"></i>Change Password</a></div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <div class="side-content-wrap">
-            <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true" >
-                <ul class="navigation-left">
-                    <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span></a>
-                        <div class="triangle"></div>
-                    </li>
-                    
-                        <div class="triangle"></div>
-                    </li>
-                </ul>
-            </div>
-            <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
-                <!-- Submenu Dashboards-->
-                <ul class="childNav" data-parent="dashboard">
-                    <li class="nav-item"><a href="dashboard1.html"><i class="nav-icon i-Clock-3"></i><span class="item-name">Version 1</span></a></li>
-                    <li class="nav-item"><a href="dashboard2.html"><i class="nav-icon i-Clock-4"></i><span class="item-name">Version 2</span></a></li>
-                    <li class="nav-item"><a href="dashboard3.html"><i class="nav-icon i-Over-Time"></i><span class="item-name">Version 3</span></a></li>
-                    <li class="nav-item"><a href="dashboard4.html"><i class="nav-icon i-Clock"></i><span class="item-name">Version 4</span></a></li>
-                </ul>
-                
-            </div>
-            <div class="sidebar-overlay"></div>
-        </div>
+            @include('layouts/adminsidebar')
+    
         <!-- =============== Left side End ================-->
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <!-- ============ Body content start ============= -->
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1>Student Info</h1>
+                    <h1>Class Section </h1>
                     <ul>
                         <li><a href="href">Form</a></li>
-                        <li>Upload Challan</li>
+                        <li>Class Section</li>
                     </ul>
                 </div>
                 <div class="separator-breadcrumb border-top"></div>
@@ -74,42 +31,31 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-3">Form Inputs</div>
-                            <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('session-store')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="CNIC">CNIC</label>
-                                            <input class="form-control" id="CNIC" name="CNIC" type="text" value="{{$studentinfo->CNIC}}" readonly="" />
+                                            <label for="firstName1">Class Name</label>
+                                            <input class="form-control" id="class_name" name="class_name" type="text" placeholder="Enter your class name" />
+                                        </div>
+                                    
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="start_year">Start Year</label>
+                                            <input class="form-control" id="start_year" name="start_year" type="Year" placeholder="Enter Start Year" />
+                                            <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="canidate_name">Canidate Name</label>
-                                            <input class="form-control" id="canidate_name" name="canidate_name" type="text" value="{{$studentinfo->canidate_name}}" readonly=""/>
-                                            
-                                        </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="dob">Date of birth</label>
-                                            <input class="form-control" id="dob" type="date" name="dob" value="{{$studentinfo->dob}}" readonly=""/>
-                                        </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="f_name">Father Name</label>
-                                            <input class="form-control" id="f_name" type="Year" name="f_name" value="{{$studentinfo->f_name}}" readonly="" />
-                                        </div>
-                                       
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="group">group</label>
-                                            <input class="form-control" id="group" type="Year" name="group" value="{{$studentinfo->group}}" readonly="" />
+                                            <label for="end_year">End Year</label>
+                                            <input class="form-control" id="end_year" type="Year" name="end_year" placeholder="Enter end year" />
                                         </div>
                                         
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="challan_file">Challan File</label>
-                                            <input class="form-control" id="challan_file" type="file" name="challan_file" placeholder="Upload Challan File" />
+                                            <label for="picker1">Select Status</label>
+                                            <select class="form-control" name="status_id">
+                                                <option value="1">Active</option>
+                                                <option value="0">Deactive</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6 form-group mb-3">
-                                            <label for="submissiondate">Fee Submission Date</label>
-                                            <input class="form-control" id="submissiondate" type="date" name="submissiondate" />
-                                        </div>
-                                        
-                                     
                                         <div class="col-md-12">
                                             <button class="btn btn-primary">Submit</button>
                                         </div>

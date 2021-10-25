@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Form Basic | Gull Admin Template</title>
+    <title>Deo | Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
@@ -16,6 +16,29 @@
 .tab {
   display: none;
 }
+select.form-control{
+        height: 51px;
+}
+input.form-control{
+    font-size: 18px;
+    font-weight: bold;
+        height: 51px;
+        text-transform: capitalize;
+}
+option{
+    font-size: 18px;
+    font-weight: bold
+}
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+.form-group label {
+    font-size: 18px;
+    color: #70657b;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
 
 button {
   background-color: #04AA6D;
@@ -25,6 +48,9 @@ button {
   font-size: 17px;
   font-family: Raleway;
   cursor: pointer;
+}
+.inter{
+    display: none;
 }
 
 button:hover {
@@ -54,6 +80,31 @@ button:hover {
 /* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #04AA6D;
+}
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+.fsc {
+    display: none;
+}
+.hg {
+    display: none;
+}
+.hgc {
+    display: none;
+}
+.gc {
+    display: none;
+}
+.gs {
+    display: none;
+}
+.ics {
+    display: none;
 }
 </style>
 </head>
@@ -88,7 +139,10 @@ button:hover {
         <div class="side-content-wrap">
             <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true" >
                 <ul class="navigation-left">
-                    <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span></a>
+                    <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text" style="font-weight: bold;"><i>DEO</i></span></a>
+                        <!-- <div class="triangle"></div> -->
+                    </li>
+                     <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Checked-User"></i><span class="nav-text">{{ auth()->user()->name }}</span></a>
                         <!-- <div class="triangle"></div> -->
                     </li>
                     
@@ -96,16 +150,7 @@ button:hover {
                     </li>
                 </ul>
             </div>
-         <!--    <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true"> -->
-                <!-- Submenu Dashboards-->
-         <!--        <ul class="childNav" data-parent="dashboard">
-                    <li class="nav-item"><a href="dashboard1.html"><i class="nav-icon i-Clock-3"></i><span class="item-name">Version 1</span></a></li>
-                    <li class="nav-item"><a href="dashboard2.html"><i class="nav-icon i-Clock-4"></i><span class="item-name">Version 2</span></a></li>
-                    <li class="nav-item"><a href="dashboard3.html"><i class="nav-icon i-Over-Time"></i><span class="item-name">Version 3</span></a></li>
-                    <li class="nav-item"><a href="dashboard4.html"><i class="nav-icon i-Clock"></i><span class="item-name">Version 4</span></a></li>
-                </ul> -->
-                
-          <!--   </div> -->
+      
             <div class="sidebar-overlay"></div>
         </div>
         <!-- =============== Left side End ================-->
@@ -113,10 +158,10 @@ button:hover {
             <!-- ============ Body content start ============= -->
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1>Student Info</h1>
+                    <h1 style="    font-weight: bold; font-size: 56px;">DATA ENTERY OPERATOR</h1>
                     <ul>
-                        <li><a href="href">Form</a></li>
                         <li>Student Info</li>
+                        <li><a href="href">Form</a></li>
                     </ul>
                 </div>
                 <div class="separator-breadcrumb border-top"></div>
@@ -130,55 +175,84 @@ button:hover {
                                   </div>
                                   <br>
                                 @endif
+                                <div class="col-md-1"></div>
 
 
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                         <div class="card mb-4">
                             <div class="card-body">
 
-                                <div class="card-title mb-3">Form Inputs</div>
+                            <div class="card-title mb-3">Form Inputs</div>
                             <form id="regForm" method="post" action="{{url('admissionform')}}" enctype="multipart/form-data">
                                     @csrf
-                                    
-
-
-
-                                  <div class="tab">
+                                    <div class="tab">
                                      <div class="row ">
-                                           <div class="col-md-3 form-group mb-3">
-                                           </div>
+                                     <div class="col-md-4 form-group mb-3"></div>
 
-                                           <div class="col-md-6 form-group mb-3">
+                                           <div class="col-md-4 form-group mb-3">
+                                            <label for="picker1">Admission Applied For Class</label>
+                                            <select class="form-control" name="Applied" id="Applied">
+                                                
+                                                <option value="">Select </option>
+                                                <option value="Intermediate">Intermediate </option>
+                                                <option value="Bachelor">Bachelor </option>
+                                                <option value="BS(ENG)">BS(ENG)</option>
+                                               
+                                            </select>
+                                        </div>
+                                         <div class="col-md-4 form-group mb-3"></div>
+                                    </div>
+                                     <div class="row ">
+                                         <div class="col-md-4 form-group mb-3"></div>
+
+
+                                           <div id="div1" style="display: none;" class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Class </label>
-                                            <select class="form-control" name="section_name">
+                                            <select class="form-control" name="section_name" id="section_name">
+                                                <option value="">Select </option>
+
                                                 @foreach($class_section AS $c_section)
                                                 <option value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                  </div>
-                              </div>
+                                         <div class="col-md-4 form-group mb-3"></div>
 
-                                   <div class="tab">
+                                    </div>
+
                                      <div class="row ">
-                                        <div class="col-md-3 form-group mb-3">
-                                           </div>
-                                           <div class="col-md-6 form-group mb-3">
-                                            <label for="picker1">Select Year </label>
-                                            <select class="form-control" name="class_year">
-                                                <option value="1st_Year">1st Year</option>
-                                                <option value="2nd_Year">2nd Year</option>
-                                                <option value="3rd_Year">3rd Year</option>
-                                                <option value="4th_Year">4th Year</option>
+                                     <div class="col-md-4 form-group mb-3"></div>
+
+
+                                                <div id="div2" style="display: none;"  class="col-md-4 form-group mb-3">
+                                            <label for="picker1">Select Year/ Semster </label>
+                                            <select class="form-control" name="class_year" id="class_year">
+                                                <option value="">Select</option>
+                                                
+                                                <option class="inter" value="1st_Year">1st Year</option>
+                                                <option class="inter" value="2nd_Year">2nd Year</option>
+                                                
+                                                
+                                                <option class="bch" value="3rd_Year">3rd Year</option>
+                                                <option class="bch" value="4th_Year">4th Year</option>
+                                            
+                                           
+                                                 <option class="master" value="1st">1st Semster</option>
+                                                <option class="master" value="2nd_Semster">2nd Semster</option>
+                                                <option class="master" value="3rd_Semster">3rd Semster</option>
+                                                <option class="master" value="4th_Semster">4th Semster</option>
+                                            
                                             </select>
                                         </div>
-                                  </div>
-                              </div>
-                                   <div class="tab">
+                                     <div class="col-md-4 form-group mb-3"></div>
+
+                                    </div>
+
                                      <div class="row ">
-                                        <div class="col-md-3 form-group mb-3">
-                                           </div>
-                                           <div class="col-md-6 form-group mb-3">
+                                     <div class="col-md-4 form-group mb-3"></div>
+
+
+                                           <div id="div3" style="display: none;"  class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Session </label>
                                             <select class="form-control" name="section_id">
                                                 @foreach($class_section AS $c_section)
@@ -186,27 +260,29 @@ button:hover {
                                                 @endforeach
                                             </select>
                                         </div>
-                                  </div>
-                              </div>
+                                    </div>
+                                     <div class="col-md-4 form-group mb-3"></div>
+
+                              </div>                                  
+
+
+
+                                
+
+                              
                            
-                                <!--   <div class="tab">Login Info:
-                                    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-                                    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-                                  </div> -->
+                              
                                   <div class="tab">
                                     <div class="row ">
                                            
-                                        <!-- <div class="col-md-3 form-group mb-3">
-                                            <label for="section_name">section_name</label>
-                                            <input class="form-control" id="section_name" name="section_name" type="text" placeholder="Enter your section_name" />
-                                        </div> -->
+                                       
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="CNIC">CNIC</label>
-                                            <input class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" />
+                                            <input class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" maxlength="13"/>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="canidate_name">Canidate Name</label>
-                                            <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Bame" />
+                                            <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Name" />
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
@@ -219,11 +295,11 @@ button:hover {
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_cnic">Father CNIC</label>
-                                            <input class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" />
+                                            <input class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="contact_number">Contact No.</label>
-                                            <input class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" />
+                                            <input class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" maxlength="11" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="address">Address</label>
@@ -231,20 +307,80 @@ button:hover {
                                         </div>
                                           <div class="col-md-3 form-group mb-3">
                                             <label for="religion">Religion</label>
-                                            <input class="form-control" id="religion" type="Year" name="religion" placeholder="Enter religion" />
+                                             <select class="form-control" name="religion">
+                                                <option value="">Select</option>
+                                                <option value="Muslim">Muslim</option>
+                                                <option value="Non-Muslim">Non-Muslim</option>
+                                            </select>
                                         </div>
                                      
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="nationality">Nationality</label>
-                                            <input class="form-control" id="nationality" type="Year" name="nationality" placeholder="Enter nationality" />
+                                             <select class="form-control" name="nationality">
+                                                <option value="">Select</option>
+                                                <option value="Pakistani">Pakistani</option>
+                                                <option value="Other">Other</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="specialty">Specialty</label>
-                                            <input class="form-control" id="specialty" type="Year" name="specialty" placeholder="Enter specialty" />
+                                             <select class="form-control" name="specialty">
+                                                <option value="">Select</option>
+                                                <option value="None">None</option>
+                                                <option value="Disabled">Disabled</option>
+                                                <option value="Blind">Blind</option>
+                                                <option value="Board Employee Child">Board Employee Child</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 form-group mb-3">
+                                            <label for="covid">COVID Vaccination:</label>
+                                             <select class="form-control" name="covid">
+                                                <option value="">Select</option>
+                                                <option value="Single Dose ">Single Dose </option>
+                                                <option value="Double Dose">Double Dose  </option>
+                                                <option value="None">None </option> 
+                                            </select>
+                                        </div>
+                                           <div class="col-md-3 form-group mb-3">
+                                            <label for="bgroup">Blood Group</label>
+                                            <input class="form-control" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Group</label>
-                                            <input class="form-control" id="group" type="Year" name="group" placeholder="Enter group" />
+                                               <select class="form-control" id="group" name="group">
+                                                <option value="Null">Select</option>
+                                                <option class="fsc" value="Pre-Medical">Pre-Medical</option>
+                                                <option class="fsc" value="pre-engineering">Pre-Engineering  </option>
+                                                <optgroup class="gs" label="General Science Group">
+                                                <option class="gs" value="Group1">Group1</option>
+                                                <option class="gs" value="Group2">Group2</option> 
+                                                </optgroup>
+                                                <optgroup class="ics" label="General Science Group (ICS)"> 
+                                                <option class="ics" value="Group1i">Group1</option>
+                                                <option class="ics" value="Group2i">Group2</option> 
+                                                <option class="ics" value="Group3i">Group3</option> 
+                                                </optgroup> 
+                                                <optgroup class="hgc" label="Humanities Group With Computer"> 
+                                                <option class="hgc" value="Grouphc1">Group1</option> 
+                                                <option class="hgc" value="Grouphc2">Group2</option> 
+                                                </optgroup>
+                                                <optgroup class="hg" label="Humanities Group"> 
+                                                <option class="hg" value="Grouphg1">Group1</option>
+                                                <option class="hg" value="Grouphg2">Group2</option>
+                                                <option class="hg" value="Grouphg3">Group3</option>
+                                                <option class="hg" value="Grouphg4">Group4</option>
+                                                <option class="hg" value="Grouphg5">Group5</option>
+                                                <option class="hg" value="Grouphg6">Group6</option>
+                                                <option class="hg" value="Grouphg7">Group7</option>
+                                                <option class="hg" value="Grouphg8">Group8</option>
+                                                <option class="hg" value="Grouphg9">Group9</option>
+                                                <option class="hg" value="Grouphg10">Group10</option>
+                                                <option class="hg" value="Grouphg11">Group11</option>
+                                                <option class="hg" value="Grouphg12">Group12</option>
+
+
+                                            </optgroup>
+                                            </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_one">Optional Subject One</label>
@@ -264,9 +400,7 @@ button:hover {
                                         </div>
                                         
                                      
-                                       <!--  <div class="col-md-12">
-                                            <button class="btn btn-primary">Submit</button>
-                                        </div> -->
+                                    
                                     </div>
 
                                    
@@ -278,18 +412,30 @@ button:hover {
                                         <h1>Matric</h1> </div>
                                     <div class="row ">
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="nationality">Roll No</label>
-                                            <input class="form-control" id="roll_no" type="Year" name="roll_no" placeholder="Enter Roll No" /> </div>
+                                            <label for="rollno">Roll No</label>
+                                            <input class="form-control" id="roll_no" type="text" name="roll_no" placeholder="Enter Roll No" /> 
+                                        </div>
+                                          
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="Year">Passing Year</label>
-                                            <input class="form-control" id="Year" type="Year" name="Passing_Year" placeholder="Enter Year" /> </div>
+                                            
+                                            <select class="form-control" name="Passing_Year">
+                                                <option value="">Select</option>
+
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                            </select> 
+                                        </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Annual /Supp.</label>
                                             <select class="form-control" name="exam_Type">
                                                 <option value="">Select One Opttion</option>
 
                                                 <option value="Annual">Annual</option>
-                                                <option value="2nd_Year">Supply</option>
+                                                <option value="Supply">Supply</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
@@ -297,24 +443,50 @@ button:hover {
                                             <input class="form-control" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="totall_marks">Total Marks</label>
-                                            <input class="form-control" id="totall_marks" type="Year" name="totall_marks" placeholder="Enter Total Marks" /> </div>
+                                            <input class="form-control" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" /> </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="%age">%age</label>
                                             <input class="form-control" id="results" type="text" name="percentage" readonly /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                            <label for="grade">Grade</label>
+                                            <input class="form-control" name="grade" id="grade" type="text"   /> </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="insitute_name">Board /University</label>
-                                            <input class="form-control" id="insitute_name" type="Year" name="insitute_name" placeholder="Enter Board /University" /> </div>
-                                    </div>
-                                    <div class="row ">
+                                            <label for="insitute_name">Board /University</label>     
+                                             <select class="form-control" name="insitute_name">
+                                                    <option value="">Select</option>
+
+                                                    <option value="BISE Sahiwal">BISE Sahiwal</option>
+                                                    <option value="BISE Bahawalpur">BISE Bahawalpur</option>
+                                                    <option value="BISE DG Khan">BISE DG Khan</option>
+                                                    <option value="BISE Faisalabad">BISE Faisalabad</option>
+                                                    <option value="BISE Gujranwala">BISE Gujranwala</option>
+                                                    <option value="BISE Lahore">BISE Lahore</option>
+                                                    <option value="BISE Multan">BISE Multan</option>
+                                                    <option value="BISE Rawalpindi">BISE Rawalpindi</option>
+                                                    <option value="BISE Sargodha">BISE Sargodha</option>
+                                                </select>
+                                            </div>
+                                     </div>
+                                </div>
+                                    <div class="row " id="interdiv" style="display: none;">
                                         <div class="col-md-12 form-group mb-3">
                                             <h1>Inter </h1> </div>
                                         
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="nationality">Roll No</label>
+                                                <label for="rollno">Roll No</label>
                                                 <input class="form-control" id="Inter_Roll_No" type="Year" name="Inter_Roll_No" placeholder="Enter Roll No" /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Year">Passing Year</label>
-                                                <input class="form-control" id="Inter_Year" type="Year" name="Inter_Year" placeholder="Enter Year" /> </div>
+                                                 <select class="form-control" name="Inter_Year">
+                                                <option value="">Select</option>
+
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                            </select> 
+                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="group">Select Annual /Supp.</label>
                                                 <select class="form-control" name="Inter_Exam_Type">
@@ -328,32 +500,56 @@ button:hover {
                                                 <input class="form-control" id="Inter_Marks_Obt" type="Year" name="Inter_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="totall_marks">Total Marks</label>
-                                                <input class="form-control" id="Inter_totall_marks" type="Year" name="Inter_totall_marks" placeholder="Enter Total Marks" /> </div>
+                                                <input class="form-control" id="Inter_totall_marks" value="1100" type="text" name="Inter_totall_marks" placeholder="Enter Total Marks" readonly="" /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="%age">%age</label>
                                                 <input class="form-control" id="Inter_results" type="text" name="Inter_percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
+                                                <label for="Inter_grade">Grade</label>
+                                                <input class="form-control" name="Inter_grade" id="Inter_grade" type="text"   /> 
+                                            </div>
+                                            <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University</label>
-                                                <input class="form-control" id="Inter_insitute_name" type="Year" name="Inter_insitute_name" placeholder="Enter Board /University" /> </div>
+                                                  <select class="form-control" name="Inter_insitute_name">
+                                                    <option value="">Select</option>
+
+                                                    <option value="BISE Sahiwal">BISE Sahiwal</option>
+                                                    <option value="BISE Bahawalpur">BISE Bahawalpur</option>
+                                                    <option value="BISE DG Khan">BISE DG Khan</option>
+                                                    <option value="BISE Faisalabad">BISE Faisalabad</option>
+                                                    <option value="BISE Gujranwala">BISE Gujranwala</option>
+                                                    <option value="BISE Lahore">BISE Lahore</option>
+                                                    <option value="BISE Multan">BISE Multan</option>
+                                                    <option value="BISE Rawalpindi">BISE Rawalpindi</option>
+                                                    <option value="BISE Sargodha">BISE Sargodha</option>
+                                                </select></div>
                                        
                                     </div>
-                                    <div class="row ">
+                                    <div class="row " id="Bachelordiv" style="display: none;">
                                         <div class="col-md-12 form-group mb-3">
                                             <h1>Bachelor </h1> </div>
 
                                         
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="nationality">Roll No</label>
+                                                <label for="rollno">Roll No</label>
                                                 <input class="form-control" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Year">Passing Year</label>
-                                                <input class="form-control" id="Bachelor_Year" type="Year" name="Bachelor_Year" placeholder="Enter Year" /> </div>
+                                                <label for="Year">Passing Year</label>                       
+                                             <select class="form-control" name="Bachelor_Year">
+                                                <option value="">Select</option>
+
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                            </select> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="group">Select Annual /Supp.</label>
                                                 <select class="form-control" name="Bachelor_Exam_Type">
                                                     <option value="">Select One Opttion</option>
                                                     <option value="Annual">Annual</option>
-                                                    <option value="2nd_Year">Supply</option>
+                                                    <option value="Supply">Supply</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
@@ -361,17 +557,21 @@ button:hover {
                                                 <input class="form-control" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="totall_marks">Total Marks</label>
-                                                <input class="form-control" id="Bachelor_totall_marks" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
+                                                <input class="form-control" id="Bachelor_totall_marks" value="800" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="%age">%age</label>
                                                 <input class="form-control" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
+                                            <div class="col-md-3 form-group mb-3">
+                                                <label for="Bachelor_grade">Grade</label>
+                                                <input class="form-control" name="Bachelor_grade" id="Bachelor_grade" type="text"  /> 
+                                            </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University</label>
                                                 <input class="form-control" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
                                         </div>
                                  
                                 </div>
-                            </div>
+                                
 
 
                                       <div style="overflow:auto;">
@@ -389,7 +589,8 @@ button:hover {
                                         <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
-                                        <span class="step"></span>
+                                       <!--  <span class="step"></span>
+                                        <span class="step"></span> -->
                                         <!-- <span class="step"></span> -->
                                       </div>
                                 </form>
@@ -661,6 +862,7 @@ function nextPrev(n) {
   showTab(currentTab);
 }
 
+
 function validateForm() {
   // This function deals with validation of the form fields
   var x, y, i, valid = true;
@@ -669,7 +871,12 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-   
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
   }
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
@@ -690,22 +897,274 @@ function fixStepIndicator(n) {
 
 
 $(function () {
-    $(document).on('change', '#totall_marks', function () { // input on change
+    $(document).on('change', '#Marks_Obt', function () { // input on change
         var result = Math.round(parseFloat(parseInt($("#Marks_Obt").val(), 10) * 100) / parseInt($("#totall_marks").val(), 10));
         $('#results').val(result + '%'); //shows value in "#rate"
     })
 });
 $(function () {
-    $(document).on('change', '#Inter_totall_marks', function () { // input on change
+    $(document).on('change', '#Inter_Marks_Obt', function () { // input on change
         var result = Math.round(parseFloat(parseInt($("#Inter_Marks_Obt").val(), 10) * 100) / parseInt($("#Inter_totall_marks").val(), 10));
         $('#Inter_results').val(result + '%'); //shows value in "#rate"
     })
 });
 $(function () {
-    $(document).on('change', '#Bachelor_totall_marks', function () { // input on change
+    $(document).on('change', '#Bachelor_Marks_Obt', function () { // input on change
         var result = Math.round(parseFloat(parseInt($("#Bachelor_Marks_Obt").val(), 10) * 100) / parseInt($("#Bachelor_totall_marks").val(), 10));
         $('#Bachelor_results').val(result + '%'); //shows value in "#rate"
     })
+});
+</script>
+<script> 
+$(document).ready(function(){
+    $('#section_name').on('change', function() {
+        $("#div1").show(); 
+        $("#div2").show(); 
+            });
+});
+$(document).ready(function(){
+    $('#class_year').on('change', function() {
+        $("#div1").show(); 
+        $("#div2").show(); 
+        $("#div3").show(); 
+            });
+});
+$(document).ready(function(){
+    $('#section_name').on('change', function() {
+        $("#div1").show();
+       
+
+      if ( this.value == 'FSC')
+      {
+          $(".fsc").show();
+          $(".ics").hide();
+          $(".hgc").hide();
+          $(".hg").hide();
+
+
+      }
+       if ( this.value == 'ICS')
+      {
+          $(".ics").show();
+          $(".fsc").hide();
+          $(".hgc").hide();
+          $(".hg").hide();
+      }
+       if ( this.value == 'FA')
+      {
+          $(".hg").show();
+           $(".ics").hide();
+          $(".fsc").hide();
+          $(".hgc").hide();
+      } 
+      if ( this.value == 'F.A IT')
+      {
+          $(".hgc").show();
+          $(".hg").hide();
+           $(".ics").hide();
+          $(".fsc").hide();
+      }
+  });
+});
+$(document).ready(function(){
+    $('#Applied').on('change', function() {
+        $("#div1").show();
+       
+
+      if ( this.value == 'Bachelor')
+      {
+        $("#interdiv").show();
+        $(".inter").hide();
+        $("#Bachelordiv").hide();
+        $(".bch").show();
+        $(".master").hide();
+
+      }
+      if ( this.value == 'BS(ENG)')
+      {
+        $("#interdiv").show();
+        $("#Bachelordiv").show();
+         $(".inter").hide();
+        $(".bch").hide();
+        $(".master").show();
+
+      }
+      if ( this.value == 'Intermediate')
+      {
+        $("#interdiv").hide();
+        $("#Bachelordiv").hide();
+        $(".inter").show();
+        $(".bch").hide();
+        $(".master").hide();
+
+
+      }
+       if ( this.value == '')
+      {
+        $("#div1").hide();
+        $("#div2").hide();
+        $("#div3").hide();
+
+      }
+    });
+});
+$(document).ready(function(){
+    $('#group').on('change', function() {
+      if ( this.value == 'Pre-Medical')
+      {
+        document.getElementById("optional_subject_one").value = "Phyics";
+        document.getElementById("optional_subject_two").value = "Chemistery";
+        document.getElementById("optional_subject_three").value = "Biology";
+
+      }
+      if ( this.value == 'pre-engineering')
+      {
+        document.getElementById("optional_subject_one").value = "Phyics";
+        document.getElementById("optional_subject_two").value = "Chemistery";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      }
+      if ( this.value == 'Group1')
+      {
+        document.getElementById("optional_subject_one").value = "Phyics";
+        document.getElementById("optional_subject_two").value = "Statistics";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      } 
+      if ( this.value == 'Group2')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Statistics";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      }
+       if ( this.value == 'Group1i')
+      {
+        document.getElementById("optional_subject_one").value = "Phyics";
+        document.getElementById("optional_subject_two").value = "Computer";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      }
+         if ( this.value == 'Group2i')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Computer";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      }
+         if ( this.value == 'Group3i')
+      {
+        document.getElementById("optional_subject_one").value = "Statistics";
+        document.getElementById("optional_subject_two").value = "Computer";
+        document.getElementById("optional_subject_three").value = "Mathematics";
+
+      }
+         if ( this.value == 'Grouphc1')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Computer";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+         if ( this.value == 'Grouphc2')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Computer";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+       if ( this.value == 'Grouphg1')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Islamiyat";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg2')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Islamiyat";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+        if ( this.value == 'Grouphg3')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Arabic";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg4')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "Arabic";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+        if ( this.value == 'Grouphg5')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "History";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg6')
+      {
+        document.getElementById("optional_subject_one").value = "Economics";
+        document.getElementById("optional_subject_two").value = "History";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+       if ( this.value == 'Grouphg7')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "Islamiyat";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg8')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "Islamiyat";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+        if ( this.value == 'Grouphg9')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "Arabic";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg10')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "Arabic";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+       if ( this.value == 'Grouphg11')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "History";
+        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+
+      }
+         if ( this.value == 'Grouphg12')
+      {
+        document.getElementById("optional_subject_one").value = "Civics";
+        document.getElementById("optional_subject_two").value = "History";
+        document.getElementById("optional_subject_three").value = "Education";
+
+      }
+         if ( this.value == 'Null')
+      {
+        document.getElementById("optional_subject_one").value = "";
+        document.getElementById("optional_subject_two").value = "";
+        document.getElementById("optional_subject_three").value = "";
+
+      }
+    });
 });
 </script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>

@@ -47,74 +47,99 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <!-- <div class="col-md-6 form-group mb-3">
-                                            <label for="section_id">section_id</label>
-                                            <input class="form-control" id="section_id" name="section_id" type="text" placeholder="Enter your section_id" />
-                                        </div> -->
+                                      
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="admission_fee">admission_fee</label>
-                                            <input class="form-control" id="admission_fee" name="admission_fee" type="text" placeholder="Enter your Admission Fee" />
+                                            <label for="admission_fee">Admission Fee</label>
+                                            <input class="form-control example"onblur="findTotal()" id="admission_fee" name="admission_fee" type="text" placeholder="Enter your Admission Fee" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="tution_fee">Tution Fee</label>
-                                            <input class="form-control" id="tution_fee" name="tution_fee" type="Year" placeholder="Enter Tution Fee" />
+                                            <input class="form-control example"onblur="findTotal()" id="tution_fee" name="tution_fee" type="Year" placeholder="Enter Tution Fee" />
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="genral_fund">Genral Fund</label>
-                                            <input class="form-control" id="genral_fund" type="Year" name="genral_fund" placeholder="Enter genral_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="genral_fund" type="Year" name="genral_fund" placeholder="Enter Genral Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="medical_fund">Medical Fund</label>
-                                            <input class="form-control" id="medical_fund" type="Year" name="medical_fund" placeholder="Enter medical_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="medical_fund" type="Year" name="medical_fund" placeholder="Enter Medical Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="red_cross_fund">Red Cross Fund</label>
-                                            <input class="form-control" id="red_cross_fund" type="Year" name="red_cross_fund" placeholder="Enter red_cross_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="red_cross_fund" type="Year" name="red_cross_fund" placeholder="Enter Red Cross Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="welfare_fund">Welfare Fund</label>
-                                            <input class="form-control" id="welfare_fund" type="Year" name="welfare_fund" placeholder="Enter welfare_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="welfare_fund" type="Year" name="welfare_fund" placeholder="Enter Welfare Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="magazine_fund">Magazine Fund</label>
-                                            <input class="form-control" id="magazine_fund" type="Year" name="magazine_fund" placeholder="Enter magazine_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="magazine_fund" type="Year" name="magazine_fund" placeholder="Enter Magazine Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="library_security">library_security Fund</label>
-                                            <input class="form-control" id="library_security" type="Year" name="library_security" placeholder="Enter library_security" />
+                                            <label for="library_security">Library Security Fund</label>
+                                            <input class="form-control example"onblur="findTotal()" id="library_security" type="Year" name="library_security" placeholder="Enter Library Security" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="affiliation_fund">Affiliation Fund</label>
-                                            <input class="form-control" id="affiliation_fund" type="Year" name="affiliation_fund" placeholder="Enter affiliation_fund" />
+                                            <input class="form-control example"onblur="findTotal()" id="affiliation_fund" type="Year" name="affiliation_fund" placeholder="Enter Affiliation Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="board_universty_registration_fee">board_universty_registration_fee</label>
-                                            <input class="form-control" id="board_universty_registration_fee" type="Year" name="board_universty_registration_fee" placeholder="Enter board_universty_registration_fee" />
+                                            <label for="board_universty_registration_fee">Board/Universty Fegistration Fee</label>
+                                            <input class="form-control example"onblur="findTotal()" id="board_universty_registration_fee" type="Year" name="board_universty_registration_fee" placeholder="Enter Board/Universty Fegistration Fee" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="absence_fine">absence_fine</label>
-                                            <input class="form-control" id="absence_fine" type="Year" name="absence_fine" placeholder="Enter absence_fine" />
+                                            <label for="masjjid_fund">Masjjid Fund</label>
+                                            <input class="form-control example"onblur="findTotal()" id="masjjid_fund" type="Year" name="masjjid_fund" placeholder="Enter Masjjid Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="parking_fee">parking_fee</label>
-                                            <input class="form-control" id="parking_fee" type="Year" name="parking_fee" placeholder="Enter parking_fee" />
+                                            <label for="parking_fee">Parking Fee</label>
+                                            <input class="form-control example"onblur="findTotal()" id="parking_fee" type="Year" name="parking_fee" placeholder="Enter Parking Fee" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="sports_fund">sports_fund</label>
-                                            <input class="form-control" id="sports_fund" type="Year" name="sports_fund" placeholder="Enter sports_fund" />
+                                            <label for="sports_fund">Sports Fund</label>
+                                            <input class="form-control example"onblur="findTotal()" id="sports_fund" type="Year" name="sports_fund" placeholder="Enter Sports Fund" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="id_card_fee">id_card_fee</label>
-                                            <input class="form-control" id="id_card_fee" type="Year" name="id_card_fee" placeholder="Enter id_card_fee" />
+                                            <label for="id_card_fee">Id Card Fee</label>
+                                            <input class="form-control example"onblur="findTotal()" id="id_card_fee" type="Year" name="id_card_fee" placeholder="Enter Id Card Fee" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="computer_fee">computer_fee</label>
-                                            <input class="form-control" id="computer_fee" type="Year" name="computer_fee" placeholder="Enter computer_fee" />
+                                            <label for="computer_fee">Computer Fee</label>
+                                            <input class="form-control example"onblur="findTotal()" id="computer_fee" type="Year" name="computer_fee" placeholder="Enter Computer Fee" />
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
-                                            <label for="exam_fund">exam_fund</label>
-                                            <input class="form-control" id="exam_fund" type="Year" name="exam_fund" placeholder="Enter exam_fund" />
+                                            <label for="exam_fund">Exam Fund</label>
+                                            <input class="form-control example"onblur="findTotal()" id="exam_fund" type="Year" name="exam_fund" placeholder="Enter Exam Fund" />
+                                        </div>   
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="secience_fund">Secience Fund</label>
+                                            <input class="form-control example"onblur="findTotal()" id="secience_fund" type="text" name="secience_fund" placeholder="Enter secience_fund" />
+                                        </div>
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="fine_fund">Fine fund</label>
+                                            <input  class="form-control example"onblur="findTotal()" id="fine_fund" type="text" name="fine_fund" placeholder="Enter fine_fund" />
+                                        </div>
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="total">Total Fee</label>
+                                            <input class="form-control" id="total" type="text" name="total" readonly="" />
+                                        </div>
+                                             <div class="col-md-6 form-group mb-3">
+                                            <label for="    bank_name"> Bank Name</label>
+                                            <input  class="form-control "  type="text" name=" bank_name" placeholder="Enter Bank Name" />
+                                        </div>
+                                         <div class="col-md-6 form-group mb-3">
+                                            <label for="    account_title"> Account Title</label>
+                                            <input  class="form-control "  type="text" name=" account_title" placeholder="Enter Account Title" />
+                                        </div>
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="account_number"> Account Title</label>
+                                            <input class="form-control "  type="text" name="account_number" placeholder="Enter Account Number" />
+                                        </div>
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="due_date">Due Date</label>
+                                            <input class="form-control "  type="date" name="due_date" placeholder="Enter Due Date" />
                                         </div>
                                         
                                      
@@ -345,6 +370,18 @@
     </div><!-- ============ Search UI Start ============= -->
  
     <!-- ============ Search UI End ============= -->
+        <script type="text/javascript">
+function findTotal(){
+    var arr = document.getElementsByClassName("example");
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            tot += parseInt(arr[i].value);
+    }
+    document.getElementById('total').value = tot;
+}
+
+    </script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>

@@ -72,7 +72,7 @@
                     <h1 class="mr-2">Admin</h1>
                     <ul>
                         <li><a href="">Dashboard</a></li>
-                        <li>Sessions</li>
+                        <li>Users</li>
                     </ul>
                 </div>
 
@@ -85,7 +85,7 @@
                         <div class="card text-left">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-3">All Session</h4>
+                                <h4 class="card-title mb-3">All Users</h4>
                                 @if (\Session::has('success'))
                                 <br>
                                   <div class="alert alert-success d-inline ml-6 mr-6">
@@ -110,16 +110,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($sessions as $session)
+                                           @foreach($sessions as $session)
                                             <tr id="cid{{$session->id}}" class="p-0">
                                                 <td>{{$session->class_name}}</td>
                                                 <td>{{$session->session_name}}</td>
                                                 <td>{{$session->start_year}}</td>
                                                 <td>{{$session->end_year}}</td>
-                                                <td>{{$session->status_id}}</td>
-                                                @if($session->role==1)
+                                                @if($session->status_id==1)
                                                 <td>Active</td>
-                                                @elseif($session->role==0)
+                                                @elseif($session->status_id==0)
                                                 <td>De Active</td>
                                                
                                                 @else
@@ -127,7 +126,7 @@
                                                 @endif
                                                 
                                                 <td> 
-                                                <form id="myForm" method="get" action="edit_session/{{$session->id}}">
+                                                <form id="myFormnew" method="get" action="admin/edit_session/{{$session->id}}">
     {{ csrf_field() }}
    
 
@@ -135,24 +134,30 @@
       <input type="submit"  id="btn-edit" class="btn btn-primary" value="Edit">
     </div>
   </form></td>
-                                                <!-- <td><i class="fas fa-trash-alt"><a href="javascript:void(0)" onclick="userdelete({{$user->id}})"> </a></i></td> -->
-                                                <!-- <td><a href="userdelete/{{$user->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
-
-                                                <td>
-                                                <form id="myForm" method="POST" action="deletesession/{{$session->id}}">
+          <td> 
+                                                <form id="myForm" method="post" action="deletesession/{{$session->id}}">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
+   
 
     <div class="form-group">
-      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+      <input type="submit"  id="btn-" class="btn btn-danger" value="Delete">
     </div>
-  </form>
+  </form></td>
+                                               
+
+                                     
+
+
+                                            </tr>
+                                            @endforeach
+
   <script>
 
 
 
 
-$(document).on('click', '#btn-submit', function(e) {
+$(document).on('click', '#btn-delete', function(e) {
   var form = this;
 
   e.preventDefault(); // <--- prevent form from submitting
@@ -184,11 +189,7 @@ $(document).on('click', '#btn-submit', function(e) {
 
 
   </script>
-</td>
 
-
-                                            </tr>
-                                            @endforeach
                                             
                                         </tbody>
                                         <tfoot>
@@ -363,12 +364,12 @@ $(document).on('click', '#btn-submit', function(e) {
         </div>
     </div>
      <script>
-      function userdelete(id)
+      function deletesession(id)
        {
         if (confirm("Do you really want to delete this record?")) 
         {
           $.ajax({
-          url: 'userdelete/'+id,
+          url: 'deletesession/'+id,
           type:"DELETE",
           data:{
             _token:$("input[name=_token]").val()
@@ -400,7 +401,7 @@ $(document).on('click', '#btn-submit', function(e) {
 
 
       <script type="text/javascript">
-    function deleteUser(id) {
+    function deletesession(id) {
         swal({
             title: "Delete?",
             text: "Please ensure and then confirm!",
@@ -416,7 +417,7 @@ $(document).on('click', '#btn-submit', function(e) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
              $.ajax({
-          url: 'deleteuser/'+id,
+          url: 'deletesession/'+id,
           type:"DELETE",
           data:{
             _token:$("input[name=_token]").val()

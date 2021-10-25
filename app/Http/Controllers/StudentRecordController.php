@@ -58,6 +58,7 @@ class StudentRecordController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         //  $request->validate([
         //     'fee_id' => 'required',
         //     'CNIC' => 'required',
@@ -83,6 +84,8 @@ class StudentRecordController extends Controller
         $classsession = Class_session::where('id', $request->section_id)->first();
         $studentinfo->fee_id =$feestructer->id;
         $studentinfo->CNIC = $request->CNIC;
+        $studentinfo->Applied = $request->Applied;
+        $studentinfo->class_year = $request->class_year;
         $studentinfo->canidate_name = $request->canidate_name;
         $studentinfo->dob = $request->dob;
         $studentinfo->f_name = $request->f_name;
@@ -92,6 +95,8 @@ class StudentRecordController extends Controller
         $studentinfo->religion = $request->religion;
         $studentinfo->nationality = $request->nationality;
         $studentinfo->specialty = $request->specialty;
+        $studentinfo->covid = $request->covid;
+        $studentinfo->bgroup = $request->bgroup;
         $studentinfo->group = $request->group;
         $studentinfo->optional_subject_one = $request->optional_subject_one;
         $studentinfo->optional_subject_two = $request->optional_subject_two;
@@ -103,6 +108,8 @@ class StudentRecordController extends Controller
             $input['image_name'] = 
         $studentinfo->image_name = "$canidateImage";
 
+        }else{
+           $studentinfo->image_name="avatar.jpg"; 
         }
         $studentinfo->save();
         if($request->roll_no & $request->insitute_name){
@@ -124,6 +131,7 @@ class StudentRecordController extends Controller
         $matric_academic->total_marks = $request->totall_marks;
         $matric_academic->percentage = $request->percentage;
         $matric_academic->insitute_name = $request->insitute_name;
+        $matric_academic->grade = $request->grade;
         $matric_academic->save();
         // die();
         
@@ -150,6 +158,8 @@ class StudentRecordController extends Controller
         $Inter_academic->total_marks = $request->Inter_totall_marks;
         $Inter_academic->percentage = $request->Inter_percentage;
         $Inter_academic->insitute_name = $request->Inter_insitute_name;
+        $matric_academic->grade = $request->Inter_grade;
+        // dd($matric_academic);       
         $Inter_academic->save();
         // die();
 
@@ -174,11 +184,13 @@ class StudentRecordController extends Controller
         $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
         $Bachelor_academic->percentage = $request->Bachelor_percentage;
         $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
+        $matric_academic->grade = $request->Bachelor_grade;
         $Bachelor_academic->save();
    
 
         }
         return redirect()->route('generate-pdf', [$studentinfo->id]);
+         return Redirect::back()->with('msg', 'The Message');
 
         // $data = ['title' => $studentinfo->canidate_name,'fname' => $studentinfo->f_name ,'image' => $studentinfo->image_name ,'id' => $studentinfo->id,'class_name' => $classsession->class_name];
         // $pdf = PDF::loadView('myPDF', $data);
@@ -241,20 +253,42 @@ class StudentRecordController extends Controller
     }
     public function wordExport($student_id){
 
-        $studentinfo =  StudentRecord::find($student_id);        
+        $studentinfo =  StudentRecord::find($student_id);
+        $feestructer =  FeeStructer::find($studentinfo->fee_id);
+        // dd($feestructer);        
         $studentinfo->challan_print = 1;    
         $studentinfo->save();    
         $class_section = Class_session::find($studentinfo->section_id);
-        $wordFile=new TemplateProcessor('word/Fee Voucher struck off.docx');
+        $wordFile=new TemplateProcessor('word/Fee Voucher.docx');
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);
         $wordFile->setValue('f_name',$studentinfo->f_name);
+        $wordFile->setValue('id',$studentinfo->id);
         $wordFile->setValue('class',$class_section->class_name);
         $session=$class_section->start_year." ".$class_section->end_year;
         $wordFile->setValue('session',$session);
         $date= date('d-M-Y');
         $wordFile->setValue('date',$date);
         $fileName=$studentinfo->canidate_name.'_'.$studentinfo->CNIC;
+        $wordFile->setValue('admission_fee',$feestructer->admission_fee);
+        $wordFile->setValue('tution_fee',$feestructer->tution_fee);
+        $wordFile->setValue('genral_fund',$feestructer->genral_fund);
+        $wordFile->setValue('medical_fund',$feestructer->medical_fund);
+        $wordFile->setValue('red_cross_fund',$feestructer->red_cross_fund);
+        $wordFile->setValue('welfare_fund',$feestructer->welfare_fund);
+        $wordFile->setValue('magazine_fund',$feestructer->magazine_fund);
+        $wordFile->setValue('library_security',$feestructer->library_security);
+        $wordFile->setValue('affiliation_fund',$feestructer->affiliation_fund);
+        $wordFile->setValue('burf',$feestructer->board_universty_registration_fee);
+        $wordFile->setValue('secience_fund',$feestructer->secience_fund);
+        $wordFile->setValue('masjjid_fund',$feestructer->masjjid_fund);
+        $wordFile->setValue('fine_fund',$feestructer->fine_fund);
+        $wordFile->setValue('parking_fee',$feestructer->parking_fee);
+        $wordFile->setValue('sports_fund',$feestructer->sports_fund);
+        $wordFile->setValue('id_card_fee',$feestructer->id_card_fee);
+        $wordFile->setValue('computer_fee',$feestructer->computer_fee);
+        $wordFile->setValue('exam_fund',$feestructer->exam_fund);
+        $wordFile->setValue('total_fee',$feestructer->total_fee);
         $wordFile->saveAs($fileName.'.docx');
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
         return redirect('feevoucherofficer')->with('success','challan created successfully.');
