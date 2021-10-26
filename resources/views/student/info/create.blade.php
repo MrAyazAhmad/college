@@ -113,7 +113,7 @@ input {
     <div class="app-admin-wrap layout-sidebar-large">
         <div class="main-header">
             <div class="logo">
-                <img src="{{URL::to('public')}}/dist-assets/images/logo.png" alt="">
+                <img src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
             </div>
             <div class="menu-toggle">
                 <div></div>
@@ -791,21 +791,14 @@ input {
             </div><!-- Footer Start -->
             <div class="flex-grow-1"></div>
             <div class="app-footer">
-                <div class="row">
-                    <div class="col-md-9">
-                        <p><strong>Gull - Laravel + Bootstrap 4 admin template</strong></p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero quis beatae officia saepe perferendis voluptatum minima eveniet voluptates dolorum, temporibus nisi maxime nesciunt totam repudiandae commodi sequi dolor quibusdam
-                            <sunt></sunt>
-                        </p>
-                    </div>
-                </div>
+               <p><strong>&#169;2021 All Rights Reserved By GPCA.</strong></p>
                 <div class="footer-bottom border-top pt-3 d-flex flex-column flex-sm-row align-items-center">
-                    <a class="btn btn-primary text-white btn-rounded" href="https://themeforest.net/item/gull-bootstrap-laravel-admin-dashboard-template/23101970" target="_blank">Buy Gull HTML</a>
+                    
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.png" alt="">
+                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
                         <div>
-                            <p class="m-0">&copy; 2018 Gull HTML</p>
+                            <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>
                         </div>
                     </div>
@@ -867,17 +860,8 @@ function validateForm() {
   // This function deals with validation of the form fields
   var x, y, i, valid = true;
   x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
-    // If a field is empty...
-    if (y[i].value == "") {
-      // add an "invalid" class to the field:
-      y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
-    }
-  }
+  
+  
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -940,6 +924,7 @@ $(document).ready(function(){
           $(".ics").hide();
           $(".hgc").hide();
           $(".hg").hide();
+          $(".gs").hide();
 
 
       }
@@ -949,6 +934,7 @@ $(document).ready(function(){
           $(".fsc").hide();
           $(".hgc").hide();
           $(".hg").hide();
+          $(".gs").hide();
       }
        if ( this.value == 'FA')
       {
@@ -956,10 +942,20 @@ $(document).ready(function(){
            $(".ics").hide();
           $(".fsc").hide();
           $(".hgc").hide();
+          $(".gs").hide();
       } 
       if ( this.value == 'F.A IT')
       {
           $(".hgc").show();
+          $(".hg").hide();
+           $(".ics").hide();
+          $(".fsc").hide();
+          $(".gs").hide();
+      } 
+       if ( this.value == 'GSc')
+      {
+          $(".gs").show();
+          $(".hgc").hide();
           $(".hg").hide();
            $(".ics").hide();
           $(".fsc").hide();

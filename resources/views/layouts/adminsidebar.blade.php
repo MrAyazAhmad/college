@@ -1,7 +1,7 @@
 <div class="app-admin-wrap layout-sidebar-large">
         <div class="main-header">
             <div class="logo">
-                <img src="{{URL::to('public')}}/dist-assets/images/logo.png" alt="">
+                <img src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
             </div>
             <div class="menu-toggle">
                 <div></div>

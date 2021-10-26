@@ -8,6 +8,7 @@ use App\Models\FeeStructer;
 use App\Models\StudentFeeRecord;
 use App\Models\Class_session;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Auth;
 
 class FeeVoucherOfficerController extends Controller
 {
@@ -28,7 +29,13 @@ class FeeVoucherOfficerController extends Controller
     }
        public function studentfeevoucher(Request $request ,$id )
     {
-       $feeStructer = New StudentFeeRecord();
+       $feeStructer =  StudentFeeRecord::where('std_id',$id)->get()->first();
+       if(isset($feeStructer)){
+         $feeStructer =  StudentFeeRecord::find($feeStructer->id);
+       }else{
+          $feeStructer = New  StudentFeeRecord();
+
+       }
         $feeStructer->std_id  = $id;
         $feeStructer->admission_fee = $request->admission_fee;
         $feeStructer->tution_fee = $request->tution_fee;
@@ -62,7 +69,9 @@ class FeeVoucherOfficerController extends Controller
        $studentinfo =  StudentRecord::find($id);
              
         // $studentinfo->challan_print = 1;    
-        // $studentinfo->save();    
+        // $studentinfo->save();  
+        $user = Auth::user()->name;
+
         $class_section = Class_session::find($studentinfo->section_id);
         $wordFile=new TemplateProcessor('word/Fee Voucher.docx');
         $name= $studentinfo->canidate_name;
@@ -98,6 +107,7 @@ class FeeVoucherOfficerController extends Controller
         $wordFile->setValue('account_title',$feeStructer->account_title);
         $wordFile->setValue('account_number',$feeStructer->account_number);
         $wordFile->setValue('due_date',$feeStructer->due_date);
+        $wordFile->setValue('user',$user);
         $wordFile->saveAs($fileName.'.docx');
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
         return redirect('feevoucherofficer')->with('success','challan created successfully.');

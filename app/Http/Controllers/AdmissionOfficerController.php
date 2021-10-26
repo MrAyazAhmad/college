@@ -7,10 +7,13 @@ use App\Models\StudentRecord;
 use App\Models\Class_session;
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Models\Bachelor_Academic;
+use App\Models\StudentTRoll;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
+use App\Models\StudentFeeRecord;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 use PDF;
 
 use Carbon\Carbon;
@@ -35,6 +38,26 @@ class AdmissionOfficerController extends Controller
 
 
         $studentinfo =  StudentRecord::find($student_id);
+        $studentinfofee =  StudentFeeRecord::where('std_id',$student_id)->first();
+        $studentroll =  StudentTRoll::where('std_id',$studentinfofee->std_id)->first();
+        if(isset($studentroll)){
+
+        $studentroll =  StudentTRoll::find($studentroll->id);
+
+        }else{
+        $studentroll = New StudentTRoll();
+
+        }
+         $studentroll->std_id = $studentinfo->id;
+        $studentroll->std_feei = $studentinfofee->id;
+        $studentroll->save();
+        $studentinfo->roll_no= $studentroll->id;
+        $studentinfo->save();
+        $user = Auth::user()->name;
+        
+
+      
+
         $studentinfo->submissiondate = $request->submissiondate;
          if ($challan_file = $request->file('challan_file')) {
             $destinationPath = 'public/image/challan_file/';
@@ -49,12 +72,12 @@ class AdmissionOfficerController extends Controller
       $studentbachelorcinfo =  Bachelor_Academic::where('stu_id',$student_id)->first();
       
         $class_section = Class_session::find($studentinfo->section_id);
-      // dd($class_section);
+     
 
-        // dd($class_section->class_name);
         $wordFile=new TemplateProcessor('word/AdmissionForm .docx');
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);
+        $wordFile->setValue('user',$user);
         $wordFile->setValue('cnic',$studentinfo->CNIC);
         $wordFile->setValue('dob',$studentinfo->dob);
         $wordFile->setValue('fname',$studentinfo->f_name);
@@ -75,6 +98,10 @@ class AdmissionOfficerController extends Controller
         $wordFile->setImageValue('ticketimage',array('path' =>public_path().'/image/canidatephoto/'.$studentinfo->image_name, 'width' => 140, 'height' => 140, 'ratio' => true));
         $wordFile->setValue('updated_at',$studentinfo->updated_at);
         $wordFile->setValue('roll_no',$studentinfo->roll_no);
+        $wordFile->setValue('newid',$studentinfo->id);
+
+        $wordFile->setValue('submissiondate',$request->submissiondate);
+
         if(isset($studentmatricinfo)){
         $wordFile->setValue('rollno',$studentmatricinfo->roll_no);
         $wordFile->setValue('passing_year',$studentmatricinfo->passing_year);
@@ -84,6 +111,7 @@ class AdmissionOfficerController extends Controller
         $wordFile->setValue('percentage',$studentmatricinfo->percentage);
         $wordFile->setValue('grade',$studentmatricinfo->grade);
         $wordFile->setValue('insitute_name',$studentmatricinfo->insitute_name);
+
         } else{
          $wordFile->setValue('rollno','');
 
@@ -176,22 +204,11 @@ class AdmissionOfficerController extends Controller
         $wordFile->setValue('date',$date);
         $fileName=$studentinfo->canidate_name.'_'.$studentinfo->CNIC;
         $wordFile->saveAs($fileName.'.docx');
-        //  $domPdfPath = base_path('vendor/dompdf/dompdf');
-        // \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
-        // \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
-         
-        // //Load word file
-        // $Content = \PhpOffice\PhpWord\IOFactory::load(public_path($fileName.'.docx')); 
- 
-        // //Save it into PDF
-        // $PDFWriter = \PhpOffice\PhpWord\IOFactory::createWriter($Content,'PDF');
-        // $PDFWriter->save(public_path('new-result.pdf')); 
-        // echo 'File has been successfully converted';
-        // die();
+      
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
 
         }    
-        return redirect::to('printaplication'.'/'.$student_id);
+        return redirect::to('admissionofficer')->with('message', 'please upload challan image and selecte date!');;
 
 
     }
