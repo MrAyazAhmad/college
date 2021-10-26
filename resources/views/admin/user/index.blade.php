@@ -37,10 +37,7 @@
 <body class="text-left">
     <div class="app-admin-wrap layout-sidebar-vertical sidebar-full">
         <div class="sidebar-panel bg-white">
-            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg
-        <th>Account Title</th>
-        <th>{{$feestructure->account_title}}</th>
-      </tr>" alt="alt" />
+            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="alt" />
                 <!--  <span class=" item-name text-20 text-primary font-weight-700">GULL</span> -->
                 <div class="sidebar-compact-switch ml-auto"><span></span></div>
             </div>
@@ -219,10 +216,7 @@ $(document).on('click', '#btn-submit', function(e) {
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg
-        <th>Account Title</th>
-        <th>{{$feestructure->account_title}}</th>
-      </tr>" alt="">
+                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>
@@ -235,10 +229,7 @@ $(document).on('click', '#btn-submit', function(e) {
     </div><!-- ============ Search UI Start ============= -->
     <div class="search-ui">
         <div class="search-header">
-            <img src="{{URL::to('public')}}/dist-assets/images/logo.jpg
-        <th>Account Title</th>
-        <th>{{$feestructure->account_title}}</th>
-      </tr>" alt="" class="logo">
+            <img src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="" class="logo">
             <button class="search-close btn btn-icon bg-transparent float-right mt-2">
                 <i class="i-Close-Window text-22 text-muted"></i>
             </button>
