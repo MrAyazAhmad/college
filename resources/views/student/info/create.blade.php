@@ -287,7 +287,7 @@ input {
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="dob">Date Of Birth</label>
-                                            <input class="form-control" id="dob" type="date" name="dob" placeholder="Enter dob" />
+                                            <input class="form-control" id="dob" type="tel" maxlength="10" name="dob" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_name">Father Name</label>
@@ -1162,6 +1162,20 @@ $(document).ready(function(){
       }
     });
 });
+</script>
+<script>
+function DDMMYYYY(value, event) {
+  let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
+
+  const dayOrMonth = (index) => index % 2 === 1 && index < 4;
+
+  // on delete key.  
+  if (!event.data) {
+    return value;
+  }
+
+  return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
+}
 </script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
