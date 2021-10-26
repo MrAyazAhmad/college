@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
 use App\Exports\LibraryRecordExport;
+use Hash;
 
 
 class AdminController extends Controller
@@ -95,7 +96,7 @@ class AdminController extends Controller
         $user= New User();
         $user->name =$request->name;
         $user->email =$request->email;
-        $user->password =$request->password;
+        $user->password =Hash::make($request['password']);
         $user->position= $request->position;
         $user->role =$request->role_id;
         $user->state =$request->status;

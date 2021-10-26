@@ -256,7 +256,7 @@ input {
                                             <label for="picker1">Select Session </label>
                                             <select class="form-control" name="section_id">
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->id}}">({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                <option value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endforeach
                                             </select>
                                         </div>
