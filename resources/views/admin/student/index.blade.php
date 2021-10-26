@@ -92,7 +92,65 @@
                                                 <td>{{$user->contact_number}}</td>
                                                 <td>{{$user->group}}</td>
                                                 <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
-                                                <td><a href="{{ url('/admissionrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                                <td><a href="{{ url('/admissionrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td><td> 
+                                                <form id="myForm" method="get" action="edit_user/{{$user->id}}">
+    {{ csrf_field() }}
+   
+
+    <div class="form-group">
+      <input type="submit"  id="btn-edit" class="btn btn-primary" value="Edit">
+    </div>
+  </form></td>
+                                                <!-- <td><i class="fas fa-trash-alt"><a href="javascript:void(0)" onclick="userdelete({{$user->id}})"> </a></i></td> -->
+                                                <!-- <td><a href="userdelete/{{$user->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
+
+                                                <td>
+                                                <form id="myForm" method="POST" action="deleteuser/{{$user->id}}">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
+
+    <div class="form-group">
+      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+    </div>
+  </form>
+  <script>
+
+
+
+
+$(document).on('click', '#btn-submit', function(e) {
+  var form = this;
+
+  e.preventDefault(); // <--- prevent form from submitting
+
+  swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: [
+        'No, cancel it!',
+        'Yes, I am sure!'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        swal({
+          title: 'Deleted!',
+          text: 'User Is Deleted  successfully!',
+          icon: 'success'
+        }).then(function() {
+          $('#myForm').submit(); // <--- submit form programmatically
+        });
+      } else {
+        swal("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    })
+});
+
+
+
+  </script>
+</td>
                                             </tr>
                                             @endforeach
                                             

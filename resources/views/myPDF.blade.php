@@ -20,6 +20,24 @@
 </head>
 <body>
 
+<h2>For Candidate</h2>
+<h2>Student Record Card</h2>
+
+<div class="card">
+  <img src="{{URL::to('public')}}/image/canidatephoto/{{$image}}" alt="Avatar" style="width:100%">
+  <div class="container">
+    <h4><b>{{ $title }}</b></h4> 
+    <p>Father Name:{{ $fname}}</p> 
+    <p>Class: {{ $classname}}</p> 
+    <p>Registration ID: GC/{{ $classname}}/{{$id}}</p> 
+    <p>Printed By: {{$user}}</p> 
+  </div>
+</div>
+
+</body>
+<body>
+
+<h2>For Office Use</h2>
 <h2>Student Record Card</h2>
 
 <div class="card">
