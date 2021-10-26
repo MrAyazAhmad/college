@@ -140,7 +140,7 @@
                                                 <!-- <td><a href="userdelete/{{$user->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
 
                                                 <td>
-                                                <form id="myForm" method="POST" action="deleteuser/{{$user->id}}">
+                                                <form id="myForm{{$user->id}}" method="POST" action="deleteuser/{{$user->id}}">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
 
@@ -174,7 +174,7 @@ $(document).on('click', '#btn-submit', function(e) {
           text: 'User Is Deleted  successfully!',
           icon: 'success'
         }).then(function() {
-          $('#myForm').submit(); // <--- submit form programmatically
+          $('#myForm{{$user->id}}').submit(); // <--- submit form programmatically
         });
       } else {
         swal("Cancelled", "Your imaginary file is safe :)", "error");

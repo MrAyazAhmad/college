@@ -92,7 +92,16 @@ class AdminController extends Controller
             
         ]);
         $input = $request->all();
-        User::create($input);
+        $user= New User();
+        $user->name =$request->name;
+        $user->email =$request->email;
+        $user->password =$request->password;
+        $user->position= $request->position;
+        $user->role =$request->role_id;
+        $user->state =$request->status;
+        $user->created_at =$request->s_date;
+        $user->save();
+
         return redirect('admin/allusers')->with('success','User created successfully.');
     }
 
