@@ -27,8 +27,9 @@
   <div class="container">
     <h4><b>{{ $title }}</b></h4> 
     <p>Father Name:{{ $fname}}</p> 
-    <p>Class:Fsc Part1</p> 
-    <p>Registration ID: GACA-{{$id}}</p> 
+    <p>Class: {{ $classname}}</p> 
+    <p>Registration ID: GC/{{ $classname}}/{{$id}}</p> 
+    <p>Printed By: {{$user}}</p> 
   </div>
 </div>
 
