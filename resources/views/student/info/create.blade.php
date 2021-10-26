@@ -396,7 +396,7 @@ input {
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="image_name">Upload Student Photo</label>
-                                            <input class="form-control" id="image_name" type="file" name="image_name" placeholder="Enter image_name" />
+                                            <input class="form-control" id="image_name"  type="file" name="image_name" placeholder="Enter image_name" />
                                         </div>
                                         
                                      
