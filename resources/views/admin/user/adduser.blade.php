@@ -93,7 +93,7 @@
                                             <input class="form-control" id="email" name="email" type="email" placeholder="Enter Email" />
                                         </div>
                                          <div class="col-md-6 form-group mb-3">
-                                            <label for="session_name">Position</label>
+                                            <label for="session_name">Password</label>
                                             <input class="form-control" id="password" name="password" type="password" placeholder="Enter password" />
                                         </div>
                                        <div class="col-md-6 form-group mb-3">
@@ -107,8 +107,16 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
+                                            <label for="picker1">Select Status</label>
+                                            <select class="form-control" name="status">
+                                                <option value="1">Active</option>
+                                                <option value="0">Deactive</option>
+                                            
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 form-group mb-3">
                                             <label for="end_year">Start Date</label>
-                                            <input class="form-control" id="s_date" type="Year" name="s_date" placeholder="Enter joining date" />
+                                            <input class="form-control" id="s_date" type="date" name="s_date" placeholder="Enter joining date" />
                                         </div>
                                         
                                        
