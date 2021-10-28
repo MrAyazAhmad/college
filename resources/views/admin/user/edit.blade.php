@@ -106,6 +106,10 @@
                                             <label for="email">Email</label>
                                             <input class="form-control" id="email" type="email" value="{{$user->email}}" name="email" placeholder="Enter User Email" />
                                         </div>
+                                           <div class="col-md-6 form-group mb-3">
+                                            <label for="password">Change Password</label>
+                                            <input class="form-control" id="password" type="password" value="{{$user->password}}" name="password" placeholder="Enter User Email" />
+                                        </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="role"> Select User Role</label>
                                              <select name="role" id="role" class="form-control" required>
