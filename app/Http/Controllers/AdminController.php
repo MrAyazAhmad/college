@@ -171,6 +171,7 @@ class AdminController extends Controller
         $user->position = $request->position;
         $user->email = $request->email;
         $user->role = $request->role;
+        $user->password = Hash::make($request['password']);
         $user->status_id = $request->status_id;
         $user->save();
         return redirect('admin/allusers')->with('success','user update successfully.');

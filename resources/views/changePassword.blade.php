@@ -42,7 +42,7 @@
                                 <input class="form-control form-control-rounded" name="new_confirm_password" id="new_confirm_password" type="password">
                             </div>
                            
-                            <button type="submit" class="btn btn-primary btn-block btn-rounded mt-3">Sign Up</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-rounded mt-3">Submit</button>
                         </form>
                     </div>
                 </div>
