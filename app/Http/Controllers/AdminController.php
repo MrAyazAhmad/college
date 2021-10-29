@@ -10,7 +10,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
 use App\Exports\LibraryRecordExport;
 use Hash;
-
+use App\Models\Bachelor_Academic;
+use App\Models\Inter_Academic;
+use App\Models\Matric_Academic;
+use File;
 
 class AdminController extends Controller
 {
@@ -69,8 +72,13 @@ class AdminController extends Controller
        public function deletsudent($id)
     {
         $student = StudentRecord::find($id);
+         $image_path = 'public/image/canidatephoto/'.$student->image_name;
+              if (File::exists($image_path)) {
+                //File::delete($image_path);
+                    unlink($image_path);
+                }
         $student->delete();
-return response()->json(['success'=>'Record has been deleted']);
+        return redirect()->back()->with('success','your record successfully.....');
     } 
     public function DeleteFeestructure($id)
     {
@@ -118,6 +126,143 @@ return response()->json(['success'=>'Record has been deleted']);
         // dd($user);
         return view('admin.user.edit',compact('user'));
     }  
+        public function EditStudent(Request $request)
+    {
+        $user = StudentRecord::find($request->id);
+        $class_section = Class_session::all();
+        $bacholer=Bachelor_Academic::where('stu_id',$user->id)->first();
+        $inter=  Inter_Academic::where('stu_id',$user->id)->first();
+        $matric= Matric_Academic::where('stu_id',$user->id)->first();
+
+        // dd($user);
+        return view('admin.student.edit',compact('user','class_section','bacholer','inter','matric'));
+    }  
+      public function UpdateForm(Request $request)
+    {
+        $user = StudentRecord::find($request->id);
+        // dd($user);
+         $user->section_id = $request->section_id;
+        $feestructer = FeeStructer::where('section_id', $request->section_id)->first();
+        $classsession = Class_session::where('id', $request->section_id)->first();
+        $user->fee_id =$feestructer->id;
+        $user->CNIC = $request->CNIC;
+        $user->Applied = $request->Applied;
+        $user->class_year = $request->class_year;
+        $user->canidate_name = $request->canidate_name;
+        $user->dob = $request->dob;
+        $user->f_name = $request->f_name;
+        $user->f_cnic = $request->f_cnic;
+        $user->contact_number = $request->contact_number;
+        $user->address = $request->address;
+        $user->religion = $request->religion;
+        $user->nationality = $request->nationality;
+        $user->specialty = $request->specialty;
+        $user->covid = $request->covid;
+        $user->bgroup = $request->bgroup;
+        $user->group = $request->group;
+        $user->optional_subject_one = $request->optional_subject_one;
+        $user->optional_subject_two = $request->optional_subject_two;
+        $user->optional_subject_three = $request->optional_subject_three;
+            if ($image_name = $request->file('image_name')) {
+               
+            $destinationPath = 'public/image/canidatephoto/';
+            $image_path = 'public/image/canidatephoto/'.$user->image_name;
+              if (File::exists($image_path)) {
+                //File::delete($image_path);
+                    unlink($image_path);
+                }
+            $canidateImage = date('YmdHis') . $request->canidate_name ."." . $image_name->getClientOriginalExtension();
+            $image_name->move($destinationPath, $canidateImage);
+            $input['image_name'] = 
+        $user->image_name = "$canidateImage";
+
+        }else{
+           $user->image_name="avatar.jpg"; 
+        }
+        $user->save();
+        $class_section = Class_session::all();
+        if($request->roll_no & $request->insitute_name){
+        //      $request->validate([
+        //     'roll_no' => 'required',
+        //     'Passing_Year' => 'required',
+        //     'exam_Type' => 'required',
+        //     'Marks_Obt' => 'required',
+        //     'totall_marks' => 'required',
+        //     'percentage' => 'required',
+        //     'insitute_name' => 'required',
+        // ]);
+        $matric_academic= Matric_Academic::where('stu_id',$user->id)->first();
+        $matric_academic->stu_id =$user->id;
+        $matric_academic->roll_no =$request->roll_no;
+        $matric_academic->passing_year = $request->Passing_Year;
+        $matric_academic->exam_Type = $request->exam_Type;
+        $matric_academic->marks_obtian = $request->Marks_Obt;
+        $matric_academic->total_marks = $request->totall_marks;
+        $matric_academic->percentage = $request->percentage;
+        $matric_academic->insitute_name = $request->insitute_name;
+        $matric_academic->grade = $request->grade;
+        $matric_academic->save();
+        // die();
+        
+
+
+        }
+        if($request->Inter_Roll_No & $request->Inter_insitute_name){
+        //      $request->validate([
+        //     'Inter_Roll_No' => 'required',
+        //     'Inter_Year' => 'required',
+        //     'Inter_Exam_Type' => 'required',
+        //     'class_year' => 'required',
+        //     'Inter_Marks_Obt' => 'required',
+        //     'Inter_totall_marks' => 'required',
+        //     'Inter_percentage' => 'required',
+        //     'Inter_insitute_name' => 'required',
+        $Inter_academic=  Inter_Academic::where('stu_id',$user->id)->first();     
+        $Inter_academic->stu_id =$user->id;
+        $Inter_academic->roll_no =$request->Inter_Roll_No;
+        $Inter_academic->passing_year = $request->Inter_Year;
+        $Inter_academic->exam_type = $request->Inter_Exam_Type;
+        $Inter_academic->marks_obtian = $request->Inter_Marks_Obt;
+        $Inter_academic->total_marks = $request->Inter_totall_marks;
+        $Inter_academic->percentage = $request->Inter_percentage;
+        $Inter_academic->insitute_name = $request->Inter_insitute_name;
+        $matric_academic->grade = $request->Inter_grade;
+        // dd($matric_academic);       
+        $Inter_academic->save();
+        // die();
+
+        }
+        if($request->Bachelor_Roll_No & $request->Bachelor_insitute_name){
+        //     $request->validate([
+        //     'Bachelor_Roll_No' => 'required',
+        //     'Bachelor_Year' => 'required',
+        //     'Bachelor_Exam_Type' => 'required',
+        //     'class_year' => 'required',
+        //     'Bachelor_Marks_Obt' => 'required',
+        //     'Bachelor_totall_marks' => 'required',
+        //     'Bachelor_percentage' => 'required',
+        //     'Bachelor_insitute_name' => 'required',
+        // ]); 
+        $Bachelor_academic=Bachelor_Academic::where('stu_id',$user->id)->first();
+
+        $Bachelor_academic->stu_id =$user->id;
+        $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
+        $Bachelor_academic->Passing_Year = $request->Bachelor_Year;
+        $Bachelor_academic->exam_type = $request->Bachelor_Exam_Type;
+        $Bachelor_academic->marks_obtian = $request->Bachelor_Marks_Obt;
+        $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
+        $Bachelor_academic->percentage = $request->Bachelor_percentage;
+        $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
+        $matric_academic->grade = $request->Bachelor_grade;
+        $Bachelor_academic->save();
+   
+
+        }
+        return redirect()->route('generate-pdf', [$user->id]);
+
+        // dd($user);
+       
+    } 
        public function EditFeestructure($id)
     {
         $feestructure = FeeStructer::find($id);
