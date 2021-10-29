@@ -65,6 +65,12 @@ class AdminController extends Controller
         $contact = User::find($id);
         $contact->delete();
         return redirect()->back()->with('Deleted','your record successfully.....');
+    }  
+       public function deletsudent($id)
+    {
+        $student = StudentRecord::find($id);
+        $student->delete();
+return response()->json(['success'=>'Record has been deleted']);
     } 
     public function DeleteFeestructure($id)
     {

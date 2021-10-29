@@ -13,6 +13,16 @@
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/metisMenu.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -84,7 +94,8 @@
                                         </thead>
                                         <tbody>
                                             @foreach($students as $user)
-                                            <tr>
+                                            <tr id="sid{{$user->id}}" class="p-0">
+
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -101,56 +112,11 @@
       <input type="submit"  id="btn-edit" class="btn btn-primary" value="Edit">
     </div>
   </form></td>
-                                                <!-- <td><i class="fas fa-trash-alt"><a href="javascript:void(0)" onclick="userdelete({{$user->id}})"> </a></i></td> -->
-                                                <!-- <td><a href="userdelete/{{$user->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
+                                           
 
-                                                <td>
-                                                <form id="myForm" method="POST" action="deleteuser/{{$user->id}}">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
-
-    <div class="form-group">
-      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
-    </div>
-  </form>
-  <script>
-
-
-
-
-$(document).on('click', '#btn-submit', function(e) {
-  var form = this;
-
-  e.preventDefault(); // <--- prevent form from submitting
-
-  swal({
-      title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
-      icon: "warning",
-      buttons: [
-        'No, cancel it!',
-        'Yes, I am sure!'
-      ],
-      dangerMode: true,
-    }).then(function(isConfirm) {
-      if (isConfirm) {
-        swal({
-          title: 'Deleted!',
-          text: 'User Is Deleted  successfully!',
-          icon: 'success'
-        }).then(function() {
-          $('#myForm').submit(); // <--- submit form programmatically
-        });
-      } else {
-        swal("Cancelled", "Your imaginary file is safe :)", "error");
-      }
-    })
-});
-
-
-
-  </script>
-</td>
+                                               
+                                              <td><a href="javascript:void(0)" onclick="deleteStudent({{$user->id}})" class="btn btn-danger">Delete</a></td>
+                                              
                                             </tr>
                                             @endforeach
                                             
@@ -322,6 +288,52 @@ $(document).on('click', '#btn-submit', function(e) {
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/layout-sidebar-vertical.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
+
+ <script type="text/javascript">
+    function deleteStudent(id) {
+        swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+          $.ajax({
+          url: 'deletestudent/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#sid'+id).remove();
+            swal({
+                title: "Success!",
+                text:  "Record has been deleted..",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            window.setTimeout(function(){ } ,3000);
+            location.reload();
+          }
+        });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    }
+</script>
 </body>
 
 </html>

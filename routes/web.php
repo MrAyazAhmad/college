@@ -57,6 +57,7 @@ Route::get('admin/home', [App\Http\Controllers\AdminController::class, 'index'])
 Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allusera']);
 Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
 Route::delete('admin/deleteuser/{id}',[AdminController::class,'deleteUser']);
+Route::delete('admin/deletestudent/{id}',[AdminController::class,'deletsudent']);
 Route::post('deletefeestructure/{id}',[AdminController::class,'DeleteFeestructure']);
 Route::get('view-session',  [App\Http\Controllers\AdminController::class, 'viewsessions']);
 Route::get('create-session',  [App\Http\Controllers\AdminController::class, 'CreateSession']);
