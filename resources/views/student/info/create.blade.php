@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js" integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" integrity="sha512-YDChav1pUAodyH1Ja7PIpEDUOoFROpZi5Lb7pY8+9+kU8UTr3J8SI8QO7SRuf4qdDKb5OI0xSt4Vk1wiYjBXgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
 
 
@@ -25,6 +31,14 @@ input.form-control{
         height: 51px;
         text-transform: capitalize;
 }
+.has-error .form-control {
+    border-color: #ff6162;
+}
+
+.has-error label,
+.has-error .help-block {
+    color: #ff6162;
+}
 option{
     font-size: 18px;
     font-weight: bold
@@ -32,12 +46,26 @@ option{
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
+
 }
 .form-group label {
     font-size: 18px;
     color: #70657b;
     margin-bottom: 4px;
     font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: 400;
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.form-control.error {
+    border-color: red;
+    padding: .375rem .75rem;
 }
 
 button {
@@ -106,8 +134,40 @@ input {
 .ics {
     display: none;
 }
+.required {
+    color: red;
+}
 </style>
+
 </head>
+
+                    
+@if (\Session::has('success'))
+     <script>
+                                        Swal.fire ({
+                                            title: "Thanks! ",
+                                            confirmButtonClass: "btn-success",
+                                            text: "student added...",
+                                          
+                                            icon: "success",
+                                        });
+                                    </script>
+            @endif
+
+  @if(\Session::has('errors'))
+     
+    <script>
+
+        Swal.fire({
+            icon: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+ 
+        });
+    </script>
+@endif
+
+
 
 <body class="text-left">
     <div class="app-admin-wrap layout-sidebar-large">
@@ -166,7 +226,7 @@ input {
                 </div>
                 <div class="separator-breadcrumb border-top"></div>
                 <div class="row">
-                     @if (\Session::has('success'))
+                  <!--    @if (\Session::has('success'))
                                 <br>
                                   <div class="alert alert-success d-inline ml-6 mr-6">
                                     
@@ -174,7 +234,7 @@ input {
                                     
                                   </div>
                                   <br>
-                                @endif
+                                @endif -->
                                 <div class="col-md-1"></div>
 
 
@@ -184,14 +244,26 @@ input {
 
                             <div class="card-title mb-3">Form Inputs</div>
                             <form id="regForm" method="post" action="{{url('admissionform')}}" enctype="multipart/form-data">
+<!-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif -->
                                     @csrf
+          
                                     <div class="tab">
                                      <div class="row ">
                                      <div class="col-md-4 form-group mb-3"></div>
 
-                                           <div class="col-md-4 form-group mb-3">
-                                            <label for="picker1">Admission Applied For Class</label>
-                                            <select class="form-control" name="Applied" id="Applied">
+                                           <div class="col-md-4 form-group mb-3 ">
+                                            <label for="picker1">Admission Applied For Class<span class="required">*</span></label>
+
+                                          
+                                            <select class="form-control " name="Applied" id="Applied">
                                                 
                                                 <option value="">Select </option>
                                                 <option value="Intermediate">Intermediate </option>
@@ -199,6 +271,11 @@ input {
                                                 <option value="BS(ENG)">BS(ENG)</option>
                                                
                                             </select>
+                                             <!-- Error -->
+                                              @if ($errors->has('Applied'))
+                                    <span class="text-danger">{{ $errors->first('Applied') }}</span>
+                                @endif
+                                           
                                         </div>
                                          <div class="col-md-4 form-group mb-3"></div>
                                     </div>
@@ -207,7 +284,7 @@ input {
 
 
                                            <div id="div1" style="display: none;" class="col-md-4 form-group mb-3">
-                                            <label for="picker1">Select Class </label>
+                                            <label for="picker1">Select Class <span class="required">*</span></label>
                                             <select class="form-control" name="section_name" id="section_name">
                                                 <option value="">Select </option>
 
@@ -225,7 +302,7 @@ input {
 
 
                                                 <div id="div2" style="display: none;"  class="col-md-4 form-group mb-3">
-                                            <label for="picker1">Select Year/ Semster </label>
+                                            <label for="picker1">Select Year/ Semster <span class="required">*</span></label>
                                             <select class="form-control" name="class_year" id="class_year">
                                                 <option value="">Select</option>
                                                 
@@ -253,7 +330,7 @@ input {
 
 
                                            <div id="div3" style="display: none;"  class="col-md-4 form-group mb-3">
-                                            <label for="picker1">Select Session </label>
+                                            <label for="picker1">Select Session <span class="required">*</span></label>
                                             <select class="form-control" name="section_id">
                                                 @foreach($class_section AS $c_section)
                                                 <option value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
@@ -277,36 +354,36 @@ input {
                                            
                                        
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="CNIC">CNIC</label>
+                                            <label for="CNIC">CNIC <span class="required">*</span></label>
                                             <input class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" maxlength="13"/>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="canidate_name">Canidate Name</label>
+                                            <label for="canidate_name">Canidate Name <span class="required">*</span></label>
                                             <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Name" />
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="dob">Date Of Birth</label>
+                                            <label for="dob">Date Of Birth <span class="required">*</span></label>
                                             <input class="form-control" id="dob" type="tel" maxlength="10" name="dob" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="f_name">Father Name</label>
+                                            <label for="f_name">Father Name <span class="required">*</span></label>
                                             <input class="form-control" id="f_name" type="Year" name="f_name" placeholder="Enter f_name" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="f_cnic">Father CNIC</label>
+                                            <label for="f_cnic">Father CNIC <span class="required">*</span></label>
                                             <input class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="contact_number">Contact No.</label>
+                                            <label for="contact_number">Contact No.<span class="required">*</span></label>
                                             <input class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" maxlength="11" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="address">Address</label>
+                                            <label for="address">Address<span class="required">*</span></label>
                                             <input class="form-control" id="address" type="Year" name="address" placeholder="Enter address" />
                                         </div>
                                           <div class="col-md-3 form-group mb-3">
-                                            <label for="religion">Religion</label>
+                                            <label for="religion">Religion<span class="required">*</span></label>
                                              <select class="form-control" name="religion">
                                                 <option value="">Select</option>
                                                 <option value="Muslim">Muslim</option>
@@ -315,7 +392,7 @@ input {
                                         </div>
                                      
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="nationality">Nationality</label>
+                                            <label for="nationality">Nationality<span class="required">*</span></label>
                                              <select class="form-control" name="nationality">
                                                 <option value="">Select</option>
                                                 <option value="Pakistani">Pakistani</option>
@@ -323,7 +400,7 @@ input {
                                             </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="specialty">Specialty</label>
+                                            <label for="specialty">Specialty<span class="required">*</span></label>
                                              <select class="form-control" name="specialty">
                                                 <option value="">Select</option>
                                                 <option value="None">None</option>
@@ -333,7 +410,7 @@ input {
                                             </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="covid">COVID Vaccination:</label>
+                                            <label for="covid">COVID Vaccination:<span class="required">*</span></label>
                                              <select class="form-control" name="covid">
                                                 <option value="">Select</option>
                                                 <option value="Single Dose ">Single Dose </option>
@@ -342,11 +419,11 @@ input {
                                             </select>
                                         </div>
                                            <div class="col-md-3 form-group mb-3">
-                                            <label for="bgroup">Blood Group</label>
+                                            <label for="bgroup">Blood Group<span class="required">*</span></label>
                                             <input class="form-control" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="group">Select Group</label>
+                                            <label for="group">Select Group<span class="required">*</span></label>
                                                <select class="form-control" id="group" name="group">
                                                 <option value="Null">Select</option>
                                                 <option class="fsc" value="Pre-Medical">Pre-Medical</option>
@@ -383,19 +460,19 @@ input {
                                             </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_one">Optional Subject One</label>
+                                            <label for="optional_subject_one">Optional Subject One<span class="required">*</span></label>
                                             <input class="form-control" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_two">Optional Subject Two</label>
+                                            <label for="optional_subject_two">Optional Subject Two<span class="required">*</span></label>
                                             <input class="form-control" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_three">Optional Subject Three</label>
+                                            <label for="optional_subject_three">Optional Subject Three<span class="required">*</span></label>
                                             <input class="form-control" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="image_name">Upload Student Photo</label>
+                                            <label for="image_name">Upload Student Photo<span class="required">*</span></label>
                                             <input class="form-control" id="image_name"  type="file" name="image_name" placeholder="Enter image_name" />
                                         </div>
                                         
@@ -412,12 +489,12 @@ input {
                                         <h1>Matric</h1> </div>
                                     <div class="row ">
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="rollno">Roll No</label>
+                                            <label for="rollno">Roll No<span class="required">*</span></label>
                                             <input class="form-control" id="roll_no" type="text" name="roll_no" placeholder="Enter Roll No" /> 
                                         </div>
                                           
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="Year">Passing Year</label>
+                                            <label for="Year">Passing Year<span class="required">*</span></label>
                                             
                                             <select class="form-control" name="Passing_Year">
                                                 <option value="">Select</option>
@@ -430,7 +507,7 @@ input {
                                             </select> 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="group">Select Annual /Supp.</label>
+                                            <label for="group">Select Annual /Supp.<span class="required">*</span></label>
                                             <select class="form-control" name="exam_Type">
                                                 <option value="">Select One Opttion</option>
 
@@ -439,19 +516,19 @@ input {
                                             </select>
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="Marks_Obt">Marks Obtian</label>
+                                            <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
                                             <input class="form-control" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="totall_marks">Total Marks</label>
+                                            <label for="totall_marks">Total Marks<span class="required">*</span></label>
                                             <input class="form-control" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" /> </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="%age">%age</label>
+                                            <label for="%age">%age<span class="required">*</span></label>
                                             <input class="form-control" id="results" type="text" name="percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                            <label for="grade">Grade</label>
+                                            <label for="grade">Grade<span class="required">*</span></label>
                                             <input class="form-control" name="grade" id="grade" type="text"   /> </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="insitute_name">Board /University</label>     
+                                            <label for="insitute_name">Board /University<span class="required">*</span></label>     
                                              <select class="form-control" name="insitute_name">
                                                     <option value="">Select</option>
 
@@ -473,10 +550,10 @@ input {
                                             <h1>Inter </h1> </div>
                                         
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="rollno">Roll No</label>
+                                                <label for="rollno">Roll No<span class="required">*</span></label>
                                                 <input class="form-control" id="Inter_Roll_No" type="Year" name="Inter_Roll_No" placeholder="Enter Roll No" /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Year">Passing Year</label>
+                                                <label for="Year">Passing Year<span class="required">*</span></label>
                                                  <select class="form-control" name="Inter_Year">
                                                 <option value="">Select</option>
 
@@ -488,7 +565,7 @@ input {
                                             </select> 
                                              </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="group">Select Annual /Supp.</label>
+                                                <label for="group">Select Annual /Supp.<span class="required">*</span></label>
                                                 <select class="form-control" name="Inter_Exam_Type">
                                                     <option value="">Select One Opttion</option>
                                                     <option value="Annual">Annual</option>
@@ -496,20 +573,20 @@ input {
                                                 </select>
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Marks_Obt">Marks Obtian</label>
+                                                <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
                                                 <input class="form-control" id="Inter_Marks_Obt" type="Year" name="Inter_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="totall_marks">Total Marks</label>
+                                                <label for="totall_marks">Total Marks<span class="required">*</span></label>
                                                 <input class="form-control" id="Inter_totall_marks" value="1100" type="text" name="Inter_totall_marks" placeholder="Enter Total Marks" readonly="" /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="%age">%age</label>
+                                                <label for="%age">%age<span class="required">*</span></label>
                                                 <input class="form-control" id="Inter_results" type="text" name="Inter_percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Inter_grade">Grade</label>
+                                                <label for="Inter_grade">Grade<span class="required">*</span></label>
                                                 <input class="form-control" name="Inter_grade" id="Inter_grade" type="text"   /> 
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="insitute_name">Board /University</label>
+                                                <label for="insitute_name">Board /University<span class="required">*</span></label>
                                                   <select class="form-control" name="Inter_insitute_name">
                                                     <option value="">Select</option>
 
@@ -531,10 +608,10 @@ input {
 
                                         
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="rollno">Roll No</label>
+                                                <label for="rollno">Roll No<span class="required">*</span></label>
                                                 <input class="form-control" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Year">Passing Year</label>                       
+                                                <label for="Year">Passing Year<span class="required">*</span></label>                       
                                              <select class="form-control" name="Bachelor_Year">
                                                 <option value="">Select</option>
 
@@ -545,7 +622,7 @@ input {
                                                 <option value="2021">2021</option>
                                             </select> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="group">Select Annual /Supp.</label>
+                                                <label for="group">Select Annual /Supp.<span class="required">*</span></label>
                                                 <select class="form-control" name="Bachelor_Exam_Type">
                                                     <option value="">Select One Opttion</option>
                                                     <option value="Annual">Annual</option>
@@ -553,20 +630,20 @@ input {
                                                 </select>
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Marks_Obt">Marks Obtian</label>
+                                                <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
                                                 <input class="form-control" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="totall_marks">Total Marks</label>
+                                                <label for="totall_marks">Total Marks<span class="required">*</span></label>
                                                 <input class="form-control" id="Bachelor_totall_marks" value="800" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="%age">%age</label>
+                                                <label for="%age">%age<span class="required">*</span></label>
                                                 <input class="form-control" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="Bachelor_grade">Grade</label>
+                                                <label for="Bachelor_grade">Grade<span class="required">*</span></label>
                                                 <input class="form-control" name="Bachelor_grade" id="Bachelor_grade" type="text"  /> 
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
-                                                <label for="insitute_name">Board /University</label>
+                                                <label for="insitute_name">Board /University<span class="required">*</span></label>
                                                 <input class="form-control" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
                                         </div>
                                  

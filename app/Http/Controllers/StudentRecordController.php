@@ -9,6 +9,7 @@ use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
 use Illuminate\Http\Request;
+use Validator;
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Exports\StudentRecordExport1;
 use Maatwebsite\Excel\Facades\Excel;
@@ -59,24 +60,30 @@ class StudentRecordController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        //  $request->validate([
-        //     'fee_id' => 'required',
-        //     'CNIC' => 'required',
-        //     'canidate_name' => 'required',
-        //     'dob' => 'required',
-        //     'f_name' => 'required',
-        //     'f_cnic' => 'required',
-        //     'contact_number' => 'required',
-        //     'address' => 'required',
-        //     'religion' => 'required',
-        //     'nationality' => 'required',
-        //     'specialty' => 'required',
-        //     'group' => 'required',
-        //     'optional_subject_one' => 'required',
-        //     'optional_subject_two' => 'required',
-        //     'optional_subject_three' => 'required',
-        //     'image_name' => 'required',
-        // ]); 
+        $request->validate([
+            'fee_id' => 'required',
+            'CNIC' => 'required',
+            'canidate_name' => 'required',
+            'dob' => 'required',
+            'f_name' => 'required',
+            'f_cnic' => 'required',
+            'contact_number' => 'required',
+            'address' => 'required',
+            'religion' => 'required',
+            'nationality' => 'required',
+            'specialty' => 'required',
+            'group' => 'required',
+            'optional_subject_one' => 'required',
+            'optional_subject_two' => 'required',
+            'optional_subject_three' => 'required',
+            'image_name' => 'required',
+            'Applied' =>'required',
+        ]); 
+
+
+ /*       $validator = Validator::make($input, $rules, $message = [
+    'required' => 'The :attribute field is requiredddddddddddd.',
+]);*/
 
         $studentinfo = New StudentRecord();
         $studentinfo->section_id = $request->section_id;
@@ -189,8 +196,9 @@ class StudentRecordController extends Controller
    
 
         }
-        return redirect()->route('generate-pdf', [$studentinfo->id]);
-         return Redirect::back()->with('msg', 'The Message');
+        return redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
+
+         return Redirect::back()->with('errors', 'The Message');
 
         // $data = ['title' => $studentinfo->canidate_name,'fname' => $studentinfo->f_name ,'image' => $studentinfo->image_name ,'id' => $studentinfo->id,'class_name' => $classsession->class_name];
         // $pdf = PDF::loadView('myPDF', $data);
