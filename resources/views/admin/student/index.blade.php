@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Datatables | GACB</title>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Datatables |GACA Software Poratl</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.css" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/perfect-scrollbar.css" rel="stylesheet" />
@@ -13,7 +16,14 @@
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/metisMenu.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
@@ -67,6 +77,10 @@
                         <li>Version 1</li>
                     </ul>
                 </div>
+
+
+
+
                 <div class="separator-breadcrumb border-top"></div>
               
                 <!-- end of row-->
@@ -88,6 +102,7 @@
                                                 <th>Group</th>
                                                 <th>Picture</th>
                                                 <th>Print Chalan</th>
+                                                <th>Print Receipt</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -103,8 +118,13 @@
                                                 <td>{{$user->contact_number}}</td>
                                                 <td>{{$user->group}}</td>
                                                 <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
-                                                <td><a href="{{ url('/admissionrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td><td> 
-                                                <form id="myForm" method="get" action="edit_user/{{$user->id}}">
+                                                <td><a href="{{ url('/admissionrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                                 <td><a href="{{ url('/generate-pdf/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                             
+
+                                                <td>
+
+                                                <form id="myForm" method="get" action="edit_student/{{$user->id}}">
     {{ csrf_field() }}
    
 
@@ -115,8 +135,55 @@
                                            
 
                                                
-                                              <td><a href="javascript:void(0)" onclick="deleteStudent({{$user->id}})" class="btn btn-danger">Delete</a></td>
-                                              
+                                             <td>
+                                                <form id="myForm{{$user->id}}" method="POST" action="deletestudent/{{$user->id}}">
+    {{ csrf_field() }}
+    {{ method_field('DELETE') }}
+
+    <div class="form-group">
+      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+    </div>
+  </form>
+  <script>
+
+
+
+
+$(document).on('click', '#btn-submit', function(e) {
+  var form = this;
+
+  e.preventDefault(); // <--- prevent form from submitting
+
+  swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: [
+        'No, cancel it!',
+        'Yes, I am sure!'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        swal({
+          title: 'Deleted!',
+          text: 'User Is Deleted  successfully!',
+          icon: 'success'
+        }).then(function() {
+          $('#myForm{{$user->id}}').submit(); // <--- submit form programmatically
+        });
+      } else {
+        swal("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    })
+});
+
+
+
+  </script>
+</td>
+
+
                                             </tr>
                                             @endforeach
                                             
@@ -276,6 +343,25 @@
         </div>
     </div>
     <!-- ============ Search UI End ============= -->
+     <script>
+      function userdelete(id)
+       {
+        if (confirm("Do you really want to delete this record?")) 
+        {
+          $.ajax({
+          url: 'userdelete/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#tid'+id).remove();
+          }
+        });
+        }
+      }
+    </script>
+    <!-- ============ Search UI End ============= -->
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -289,8 +375,13 @@
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
 
- <script type="text/javascript">
-    function deleteStudent(id) {
+
+
+
+
+
+      <script type="text/javascript">
+    function deleteUser(id) {
         swal({
             title: "Delete?",
             text: "Please ensure and then confirm!",
@@ -305,14 +396,14 @@
             if (e.value === true) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-          $.ajax({
-          url: 'deletestudent/'+id,
+             $.ajax({
+          url: 'deleteuser/'+id,
           type:"DELETE",
           data:{
             _token:$("input[name=_token]").val()
           },
           success:function(response){
-            $('#sid'+id).remove();
+            $('#cid'+id).remove();
             swal({
                 title: "Success!",
                 text:  "Record has been deleted..",
