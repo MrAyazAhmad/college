@@ -13,12 +13,10 @@ use Validator;
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Exports\StudentRecordExport1;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Input;
 use PDF;
 use Redirect;
 
-
-
-use Illuminate\Support\Facades\Hash;
 
 use Carbon\Carbon;
 
@@ -61,10 +59,10 @@ class StudentRecordController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'fee_id' => 'required',
             'CNIC' => 'required',
             'canidate_name' => 'required',
             'dob' => 'required',
+            'covid' => 'required',
             'f_name' => 'required',
             'f_cnic' => 'required',
             'contact_number' => 'required',
@@ -76,8 +74,10 @@ class StudentRecordController extends Controller
             'optional_subject_one' => 'required',
             'optional_subject_two' => 'required',
             'optional_subject_three' => 'required',
-            'image_name' => 'required',
             'Applied' =>'required',
+            'section_name' =>'required',
+            'class_year' =>'required',
+            'section_id' =>'required',
         ]); 
 
 
@@ -116,19 +116,23 @@ class StudentRecordController extends Controller
         $studentinfo->image_name = "$canidateImage";
 
         }else{
-           $studentinfo->image_name="avatar.jpg"; 
+           $studentinfo->image_name="avatar.jpg";
+       
+           File::copy(public_path('image/canidatephoto/avatar/avatar.jpg'), public_path('image/canidatephoto/avatar.jpg')); 
         }
         $studentinfo->save();
-        if($request->roll_no & $request->insitute_name){
-        //      $request->validate([
-        //     'roll_no' => 'required',
-        //     'Passing_Year' => 'required',
-        //     'exam_Type' => 'required',
-        //     'Marks_Obt' => 'required',
-        //     'totall_marks' => 'required',
-        //     'percentage' => 'required',
-        //     'insitute_name' => 'required',
-        // ]);
+
+        if($request->roll_no){
+            // dd('done');
+             $request->validate([
+            'roll_no' => 'required',
+            'Passing_Year' => 'required',
+            'exam_Type' => 'required',
+            'Marks_Obt' => 'required',
+            'totall_marks' => 'required',
+            'percentage' => 'required',
+            'insitute_name' => 'required',
+        ]);
         $matric_academic = New Matric_Academic();
         $matric_academic->stu_id =$studentinfo->id;
         $matric_academic->roll_no =$request->roll_no;
@@ -145,17 +149,18 @@ class StudentRecordController extends Controller
 
 
         }
-         if($request->Inter_Roll_No & $request->Inter_insitute_name){
-        //      $request->validate([
-        //     'Inter_Roll_No' => 'required',
-        //     'Inter_Year' => 'required',
-        //     'Inter_Exam_Type' => 'required',
-        //     'class_year' => 'required',
-        //     'Inter_Marks_Obt' => 'required',
-        //     'Inter_totall_marks' => 'required',
-        //     'Inter_percentage' => 'required',
-        //     'Inter_insitute_name' => 'required',
-        // ]); 
+
+         if($request->Inter_Roll_No || $request->Inter_insitute_name){
+             $request->validate([
+            'Inter_Roll_No' => 'required',
+            'Inter_Year' => 'required',
+            'Inter_Exam_Type' => 'required',
+            'class_year' => 'required',
+            'Inter_Marks_Obt' => 'required',
+            'Inter_totall_marks' => 'required',
+            'Inter_percentage' => 'required',
+            'Inter_insitute_name' => 'required',
+        ]); 
         $Inter_academic = New Inter_Academic();
         $Inter_academic->stu_id =$studentinfo->id;
         $Inter_academic->roll_no =$request->Inter_Roll_No;
@@ -171,17 +176,17 @@ class StudentRecordController extends Controller
         // die();
 
         }
-         if($request->Bachelor_Roll_No & $request->Bachelor_insitute_name){
-        //     $request->validate([
-        //     'Bachelor_Roll_No' => 'required',
-        //     'Bachelor_Year' => 'required',
-        //     'Bachelor_Exam_Type' => 'required',
-        //     'class_year' => 'required',
-        //     'Bachelor_Marks_Obt' => 'required',
-        //     'Bachelor_totall_marks' => 'required',
-        //     'Bachelor_percentage' => 'required',
-        //     'Bachelor_insitute_name' => 'required',
-        // ]); 
+         if($request->Bachelor_Roll_No || $request->Bachelor_insitute_name){
+            $request->validate([
+            'Bachelor_Roll_No' => 'required',
+            'Bachelor_Year' => 'required',
+            'Bachelor_Exam_Type' => 'required',
+            'class_year' => 'required',
+            'Bachelor_Marks_Obt' => 'required',
+            'Bachelor_totall_marks' => 'required',
+            'Bachelor_percentage' => 'required',
+            'Bachelor_insitute_name' => 'required',
+        ]); 
         $Bachelor_academic = New Bachelor_Academic();
         $Bachelor_academic->stu_id =$studentinfo->id;
         $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
@@ -196,6 +201,7 @@ class StudentRecordController extends Controller
    
 
         }
+
         return redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
 
          return Redirect::back()->with('errors', 'The Message');

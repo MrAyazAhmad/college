@@ -292,6 +292,9 @@ input {
                                                 <option value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
                                                 @endforeach
                                             </select>
+                                            @if ($errors->has('section_name'))
+                                                <span class="text-danger">{{ $errors->first('section_name') }}</span>
+                                            @endif
                                         </div>
                                          <div class="col-md-4 form-group mb-3"></div>
 
@@ -320,6 +323,9 @@ input {
                                                 <option class="master" value="4th_Semster">4th Semster</option>
                                             
                                             </select>
+                                             @if ($errors->has('class_year'))
+                                                <span class="text-danger">{{ $errors->first('class_year') }}</span>
+                                            @endif
                                         </div>
                                      <div class="col-md-4 form-group mb-3"></div>
 
@@ -332,10 +338,15 @@ input {
                                            <div id="div3" style="display: none;"  class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Session <span class="required">*</span></label>
                                             <select class="form-control" name="section_id">
+                                                <option value="">Select</option>
+
                                                 @foreach($class_section AS $c_section)
                                                 <option value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endforeach
                                             </select>
+                                             @if ($errors->has('section_id'))
+                                                <span class="text-danger">{{ $errors->first('section_id') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                      <div class="col-md-4 form-group mb-3"></div>
@@ -355,32 +366,53 @@ input {
                                        
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="CNIC">CNIC <span class="required">*</span></label>
-                                            <input class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" maxlength="13"/>
+                                            <input value="{{old('CNIC')}}" class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" maxlength="13"/>
+                                             @if ($errors->has('CNIC'))
+                                                <span class="text-danger">{{ $errors->first('CNIC') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="canidate_name">Canidate Name <span class="required">*</span></label>
-                                            <input class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Name" />
+                                            <input value="{{old('canidate_name')}}" class="form-control" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Name" />
+                                               @if ($errors->has('canidate_name'))
+                                                <span class="text-danger">{{ $errors->first('canidate_name') }}</span>
+                                            @endif
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="dob">Date Of Birth <span class="required">*</span></label>
-                                            <input class="form-control" id="dob" type="tel" maxlength="10" name="dob" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)" />
+                                            <input value="{{old('dob')}}" class="form-control" id="dob" type="tel" maxlength="10" name="dob" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)" />
+                                              @if ($errors->has('dob'))
+                                                <span class="text-danger">{{ $errors->first('dob') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_name">Father Name <span class="required">*</span></label>
-                                            <input class="form-control" id="f_name" type="Year" name="f_name" placeholder="Enter f_name" />
+                                            <input value="{{old('f_name')}}" class="form-control" id="f_name" type="Year" name="f_name" placeholder="Enter f_name" />
+                                             @if ($errors->has('f_name'))
+                                                <span class="text-danger">{{ $errors->first('f_name') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_cnic">Father CNIC <span class="required">*</span></label>
-                                            <input class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />
+                                            <input value="{{old('f_cnic')}}" class="form-control" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />
+                                              @if ($errors->has('f_cnic'))
+                                                <span class="text-danger">{{ $errors->first('f_cnic') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="contact_number">Contact No.<span class="required">*</span></label>
-                                            <input class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" maxlength="11" />
+                                            <input value="{{old('contact_number')}}" class="form-control" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" maxlength="11" />
+                                             @if ($errors->has('contact_number'))
+                                                <span class="text-danger">{{ $errors->first('contact_number') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="address">Address<span class="required">*</span></label>
-                                            <input class="form-control" id="address" type="Year" name="address" placeholder="Enter address" />
+                                            <input value="{{old('address')}}" class="form-control" id="address" type="Year" name="address" placeholder="Enter address" />
+                                              @if ($errors->has('address'))
+                                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                                            @endif
                                         </div>
                                           <div class="col-md-3 form-group mb-3">
                                             <label for="religion">Religion<span class="required">*</span></label>
@@ -389,6 +421,9 @@ input {
                                                 <option value="Muslim">Muslim</option>
                                                 <option value="Non-Muslim">Non-Muslim</option>
                                             </select>
+                                             @if ($errors->has('religion'))
+                                                <span class="text-danger">{{ $errors->first('religion') }}</span>
+                                            @endif
                                         </div>
                                      
                                         <div class="col-md-3 form-group mb-3">
@@ -398,6 +433,9 @@ input {
                                                 <option value="Pakistani">Pakistani</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                             @if ($errors->has('nationality'))
+                                                <span class="text-danger">{{ $errors->first('nationality') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="specialty">Specialty<span class="required">*</span></label>
@@ -408,6 +446,9 @@ input {
                                                 <option value="Blind">Blind</option>
                                                 <option value="Board Employee Child">Board Employee Child</option>
                                             </select>
+                                              @if ($errors->has('specialty'))
+                                                <span class="text-danger">{{ $errors->first('specialty') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="covid">COVID Vaccination:<span class="required">*</span></label>
@@ -417,10 +458,13 @@ input {
                                                 <option value="Double Dose">Double Dose  </option>
                                                 <option value="None">None </option> 
                                             </select>
+                                              @if ($errors->has('covid'))
+                                                <span class="text-danger">{{ $errors->first('covid') }}</span>
+                                            @endif
                                         </div>
                                            <div class="col-md-3 form-group mb-3">
                                             <label for="bgroup">Blood Group<span class="required">*</span></label>
-                                            <input class="form-control" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
+                                            <input value="{{old('bgroup')}}" class="form-control" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Group<span class="required">*</span></label>
@@ -458,22 +502,34 @@ input {
 
                                             </optgroup>
                                             </select>
+                                              @if ($errors->has('group'))
+                                                <span class="text-danger">{{ $errors->first('group') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_one">Optional Subject One<span class="required">*</span></label>
-                                            <input class="form-control" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
+                                            <input value="{{old('optional_subject_one')}}" class="form-control" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
+                                               @if ($errors->has('optional_subject_one'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_one') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_two">Optional Subject Two<span class="required">*</span></label>
-                                            <input class="form-control" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
+                                            <input value="{{old('optional_subject_two')}}" class="form-control" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
+                                              @if ($errors->has('optional_subject_two'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_two') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_three">Optional Subject Three<span class="required">*</span></label>
-                                            <input class="form-control" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
+                                            <label for="optional_subject_three">OptionalSubject Three<span class="required">*</span></label>
+                                            <input value="{{old('optional_subject_three')}}" class="form-control" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
+                                             @if ($errors->has('optional_subject_three'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_three') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
-                                            <label for="image_name">Upload Student Photo<span class="required">*</span></label>
-                                            <input class="form-control" id="image_name"  type="file" name="image_name" placeholder="Enter image_name" />
+                                            <label for="image_name">Upload Student Photo</label>
+                                            <input value="{{old('name')}}" class="form-control" id="image_name"  type="file" name="image_name" placeholder="Enter image_name" />
                                         </div>
                                         
                                      
@@ -490,7 +546,10 @@ input {
                                     <div class="row ">
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="rollno">Roll No<span class="required">*</span></label>
-                                            <input class="form-control" id="roll_no" type="text" name="roll_no" placeholder="Enter Roll No" /> 
+                                            <input value="{{old('roll_no')}}" class="form-control" id="roll_no" type="text" name="roll_no" placeholder="Enter Roll No" />
+                                            @if ($errors->has('roll_no'))
+                                                <span class="text-danger">{{ $errors->first('roll_no') }}</span>
+                                            @endif 
                                         </div>
                                           
                                         <div class="col-md-3 form-group mb-3">
@@ -504,7 +563,10 @@ input {
                                                 <option value="2019">2019</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
-                                            </select> 
+                                            </select>
+                                            @if ($errors->has('Passing_Year'))
+                                                <span class="text-danger">{{ $errors->first('Passing_Year') }}</span>
+                                            @endif  
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Annual /Supp.<span class="required">*</span></label>
@@ -514,19 +576,35 @@ input {
                                                 <option value="Annual">Annual</option>
                                                 <option value="Supply">Supply</option>
                                             </select>
+                                              @if ($errors->has('exam_Type'))
+                                                <span class="text-danger">{{ $errors->first('exam_Type') }}</span>
+                                            @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
-                                            <input class="form-control" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                            <input value="{{old('Marks_Obt')}}" class="form-control" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." />
+                                             @if ($errors->has('Marks_Obt'))
+                                                <span class="text-danger">{{ $errors->first('Marks_Obt') }}</span>
+                                            @endif  
+                                        </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="totall_marks">Total Marks<span class="required">*</span></label>
-                                            <input class="form-control" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" /> </div>
+                                            <input value="1100" class="form-control" id="totall_marks" type="text" name="totall_marks"  placeholder="Enter Total Marks" readonly="" />
+                                             </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="%age">%age<span class="required">*</span></label>
-                                            <input class="form-control" id="results" type="text" name="percentage" readonly /> </div>
+                                            <input value="{{old('percentage')}}" class="form-control" id="results" type="text" name="percentage" readonly /> 
+                                              @if ($errors->has('percentage'))
+                                                <span class="text-danger">{{ $errors->first('percentage') }}</span>
+                                            @endif
+                                        </div>
                                             <div class="col-md-3 form-group mb-3">
                                             <label for="grade">Grade<span class="required">*</span></label>
-                                            <input class="form-control" name="grade" id="grade" type="text"   /> </div>
+                                            <input value="{{old('grade')}}" class="form-control" name="grade" id="grade" type="text"   />
+                                              @if ($errors->has('grade'))
+                                                <span class="text-danger">{{ $errors->first('grade') }}</span>
+                                            @endif
+                                             </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="insitute_name">Board /University<span class="required">*</span></label>     
                                              <select class="form-control" name="insitute_name">
@@ -542,6 +620,9 @@ input {
                                                     <option value="BISE Rawalpindi">BISE Rawalpindi</option>
                                                     <option value="BISE Sargodha">BISE Sargodha</option>
                                                 </select>
+                                                 @if ($errors->has('insitute_name'))
+                                                <span class="text-danger">{{ $errors->first('insitute_name') }}</span>
+                                            @endif
                                             </div>
                                      </div>
                                 </div>
@@ -551,7 +632,11 @@ input {
                                         
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="rollno">Roll No<span class="required">*</span></label>
-                                                <input class="form-control" id="Inter_Roll_No" type="Year" name="Inter_Roll_No" placeholder="Enter Roll No" /> </div>
+                                                <input value="{{old('Inter_Roll_No')}}" class="form-control" id="Inter_Roll_No" type="Year" name="Inter_Roll_No" placeholder="Enter Roll No" />
+                                                  @if ($errors->has('Inter_Roll_No'))
+                                                <span class="text-danger">{{ $errors->first('Inter_Roll_No') }}</span>
+                                                @endif 
+                                        </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Year">Passing Year<span class="required">*</span></label>
                                                  <select class="form-control" name="Inter_Year">
@@ -563,6 +648,9 @@ input {
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
                                             </select> 
+                                              @if ($errors->has('Inter_Year'))
+                                                <span class="text-danger">{{ $errors->first('Inter_Year') }}</span>
+                                                @endif
                                              </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="group">Select Annual /Supp.<span class="required">*</span></label>
@@ -571,19 +659,33 @@ input {
                                                     <option value="Annual">Annual</option>
                                                     <option value="Supply">Supply</option>
                                                 </select>
+                                                 @if ($errors->has('Inter_Exam_Type'))
+                                                <span class="text-danger">{{ $errors->first('Inter_Exam_Type') }}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
-                                                <input class="form-control" id="Inter_Marks_Obt" type="Year" name="Inter_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                                <input value="{{old('Inter_Marks_Obt')}}" class="form-control" id="Inter_Marks_Obt" type="Year" name="Inter_Marks_Obt" placeholder="Enter Marks Obt." />
+                                                 @if ($errors->has('Inter_Marks_Obt'))
+                                                <span class="text-danger">{{ $errors->first('Inter_Marks_Obt') }}</span>
+                                                @endif 
+
+                                            </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="totall_marks">Total Marks<span class="required">*</span></label>
-                                                <input class="form-control" id="Inter_totall_marks" value="1100" type="text" name="Inter_totall_marks" placeholder="Enter Total Marks" readonly="" /> </div>
+                                                <input value="1100" class="form-control" id="Inter_totall_marks"  type="text" name="Inter_totall_marks" placeholder="Enter Total Marks" readonly="" />
+                                                 @if ($errors->has('Inter_totall_marks'))
+                                                <span class="text-danger">{{ $errors->first('Inter_totall_marks') }}</span>
+                                                @endif  </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="%age">%age<span class="required">*</span></label>
-                                                <input class="form-control" id="Inter_results" type="text" name="Inter_percentage" readonly /> </div>
+                                                <input value="{{old('name')}}" class="form-control" id="Inter_results" type="text" name="Inter_percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Inter_grade">Grade<span class="required">*</span></label>
-                                                <input class="form-control" name="Inter_grade" id="Inter_grade" type="text"   /> 
+                                                <input value="{{old('name')}}" class="form-control" name="Inter_grade" id="Inter_grade" type="text"   /> 
+                                                 @if ($errors->has('Inter_grade'))
+                                                <span class="text-danger">{{ $errors->first('Inter_grade') }}</span>
+                                                @endif
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University<span class="required">*</span></label>
@@ -599,7 +701,13 @@ input {
                                                     <option value="BISE Multan">BISE Multan</option>
                                                     <option value="BISE Rawalpindi">BISE Rawalpindi</option>
                                                     <option value="BISE Sargodha">BISE Sargodha</option>
-                                                </select></div>
+                                                </select>
+                                                @if ($errors->has('Inter_insitute_name'))
+                                                <span class="text-danger">{{ $errors->first('Inter_insitute_name') }}</span>
+                                                @endif
+
+
+                                            </div>
                                        
                                     </div>
                                     <div class="row " id="Bachelordiv" style="display: none;">
@@ -609,7 +717,11 @@ input {
                                         
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="rollno">Roll No<span class="required">*</span></label>
-                                                <input class="form-control" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> </div>
+                                                <input value="{{old('Bachelor_Roll_No')}}" class="form-control" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> 
+                                               @if ($errors->has('Bachelor_Roll_No'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_Roll_No') }}</span>
+                                                @endif
+                                            </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Year">Passing Year<span class="required">*</span></label>                       
                                              <select class="form-control" name="Bachelor_Year">
@@ -620,7 +732,11 @@ input {
                                                 <option value="2019">2019</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
-                                            </select> </div>
+                                            </select>
+                                            @if ($errors->has('Bachelor_Year'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_Year') }}</span>
+                                                @endif 
+                                        </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="group">Select Annual /Supp.<span class="required">*</span></label>
                                                 <select class="form-control" name="Bachelor_Exam_Type">
@@ -628,23 +744,40 @@ input {
                                                     <option value="Annual">Annual</option>
                                                     <option value="Supply">Supply</option>
                                                 </select>
+                                                @if ($errors->has('Bachelor_Exam_Type'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_Exam_Type') }}</span>
+                                                @endif 
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Marks_Obt">Marks Obtian<span class="required">*</span></label>
-                                                <input class="form-control" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                                <input value="{{old('Bachelor_Marks_Obt')}}" class="form-control" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." />
+                                                 @if ($errors->has('Bachelor_Marks_Obt'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_Marks_Obt') }}</span>
+                                                @endif  </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="totall_marks">Total Marks<span class="required">*</span></label>
-                                                <input class="form-control" id="Bachelor_totall_marks" value="800" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
+                                                <input value="800" class="form-control" id="Bachelor_totall_marks"  type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" />
+                                                 @if ($errors->has('Bachelor_totall_marks'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_totall_marks') }}</span>
+                                                @endif  
+                                            </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="%age">%age<span class="required">*</span></label>
-                                                <input class="form-control" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
+                                                <input value="{{old('Bachelor_results')}}" class="form-control" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="Bachelor_grade">Grade<span class="required">*</span></label>
-                                                <input class="form-control" name="Bachelor_grade" id="Bachelor_grade" type="text"  /> 
+                                                <input value="{{old('Bachelor_grade')}}" class="form-control" name="Bachelor_grade" id="Bachelor_grade" type="text"  /> 
+                                                   @if ($errors->has('Bachelor_grade'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_grade') }}</span>
+                                                @endif  
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University<span class="required">*</span></label>
-                                                <input class="form-control" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
+                                                <input value="{{old('Bachelor_insitute_name')}}" class="form-control" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" />
+                                                  @if ($errors->has('Bachelor_insitute_name'))
+                                                <span class="text-danger">{{ $errors->first('Bachelor_insitute_name') }}</span>
+                                                @endif  
+                                            </div>
                                         </div>
                                  
                                 </div>
@@ -674,196 +807,7 @@ input {
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title mb-3">Form Inputs Rounded</div>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="firstName2">First name</label>
-                                            <input class="form-control form-control-rounded" id="firstName2" type="text" placeholder="Enter your first name" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="lastName2">Last name</label>
-                                            <input class="form-control form-control-rounded" id="lastName2" type="text" placeholder="Enter your last name" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="exampleInputEmail2">Email address</label>
-                                            <input class="form-control form-control-rounded" id="exampleInputEmail2" type="email" placeholder="Enter email" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="phone1">Phone</label>
-                                            <input class="form-control form-control-rounded" id="phone1" placeholder="Enter phone" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="credit2">Cradit card number</label>
-                                            <input class="form-control form-control-rounded" id="credit2" placeholder="Card" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="website2">Website</label>
-                                            <input class="form-control form-control-rounded" id="website2" placeholder="Web address" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="picker3">Birth date</label>
-                                            <input class="form-control form-control-rounded" id="picker3" placeholder="yyyy-mm-dd" name="dp" />
-                                        </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="picker1">Select</label>
-                                            <select class="form-control form-control-rounded">
-                                                <option>Option 1</option>
-                                                <option>Option 1</option>
-                                                <option>Option 1</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Switch</div>
-                                <label class="switch pr-5 switch-primary mr-3"><span>Primary</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-secondary mr-3"><span>Secondary</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-success mr-3"><span>Success</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-warning mr-3"><span>Warning</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-danger mr-3"><span>Danger</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-light mr-3"><span>Light</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                                <label class="switch pr-5 switch-dark mr-3"><span>Dark</span>
-                                    <input type="checkbox" checked="checked" /><span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Checkbox Default</div>
-                                <label class="checkbox checkbox-primary">
-                                    <input type="checkbox" checked="checked" /><span>Primary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-secondary">
-                                    <input type="checkbox" checked="checked" /><span>Secondary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-success">
-                                    <input type="checkbox" checked="checked" /><span>Success</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-warning">
-                                    <input type="checkbox" checked="checked" /><span>Warning</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-danger">
-                                    <input type="checkbox" checked="checked" /><span>Danger</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-info">
-                                    <input type="checkbox" checked="checked" /><span>Info</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-dark">
-                                    <input type="checkbox" checked="checked" /><span>Dark</span><span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Checkbox Outline</div>
-                                <label class="checkbox checkbox-outline-primary">
-                                    <input type="checkbox" checked="checked" /><span>Primary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-secondary">
-                                    <input type="checkbox" checked="checked" /><span>Secondary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-success">
-                                    <input type="checkbox" checked="checked" /><span>Success</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-warning">
-                                    <input type="checkbox" checked="checked" /><span>Warning</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-danger">
-                                    <input type="checkbox" checked="checked" /><span>Danger</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-info">
-                                    <input type="checkbox" checked="checked" /><span>Info</span><span class="checkmark"></span>
-                                </label>
-                                <label class="checkbox checkbox-outline-dark">
-                                    <input type="checkbox" checked="checked" /><span>Dark</span><span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Radio Button</div>
-                                <label class="radio radio-primary">
-                                    <input type="radio" name="radio" value="0" /><span>Primary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-secondary">
-                                    <input type="radio" name="radio" value="1" /><span>Secondary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-success">
-                                    <input type="radio" name="radio" value="2" /><span>Success</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-warning">
-                                    <input type="radio" name="radio" value="3" /><span>Warning</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-danger">
-                                    <input type="radio" name="radio" value="4" /><span>Danger</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-light">
-                                    <input type="radio" name="radio" value="5" /><span>Light</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-dark">
-                                    <input type="radio" name="radio" value="6" /><span>Dark</span><span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Radio Button Outline</div>
-                                <label class="radio radio-outline-primary">
-                                    <input type="radio" name="radio" /><span>Primary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-secondary">
-                                    <input type="radio" name="radio" /><span>Secondary</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-success">
-                                    <input type="radio" name="radio" /><span>Success</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-warning">
-                                    <input type="radio" name="radio" /><span>Warning</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-danger">
-                                    <input type="radio" name="radio" /><span>Danger</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-light">
-                                    <input type="radio" name="radio" /><span>Light</span><span class="checkmark"></span>
-                                </label>
-                                <label class="radio radio-outline-dark">
-                                    <input type="radio" name="radio" /><span>Dark</span><span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div> -->
+           
                 </div><!-- end of main-content -->
             </div><!-- Footer Start -->
             <div class="flex-grow-1"></div>
