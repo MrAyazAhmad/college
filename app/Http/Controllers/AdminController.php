@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Class_session;
 use App\Models\FeeStructer;
 use App\Models\StudentRecord;
+use App\Models\StudentTRoll;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
@@ -356,7 +357,13 @@ class AdminController extends Controller
     {
         $students = StudentRecord::all();
         return view('admin.student.index',compact('students'));
-    }    
+    }  
+          public function confirmstudents()
+    {
+        $students = StudentTRoll::all();
+        // dd($students);
+        return view('admin.student.confirm',compact('students'));
+    }   
      public function CreateSession()
     {
         return view('admin.sessions.create');

@@ -69,9 +69,9 @@ class LoginController extends Controller
                 ->with('error','Email & Password are incorrect.');
         }     
     }
-     public function logout() {
-        Session::flush();
-        Auth::logout();
-        return Redirect('login');
-    }
+    //  public function logout() {
+    //     Session::flush();
+    //     Auth::logout();
+    //     return Redirect('login');
+    // }
 }

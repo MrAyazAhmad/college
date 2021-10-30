@@ -29,6 +29,7 @@ class FeeVoucherOfficerController extends Controller
     }
        public function studentfeevoucher(Request $request ,$id )
     {
+       $Studentrecord =  StudentRecord::find($id);
        $feeStructer =  StudentFeeRecord::where('std_id',$id)->get()->first();
        if(isset($feeStructer)){
          $feeStructer =  StudentFeeRecord::find($feeStructer->id);
@@ -109,6 +110,8 @@ class FeeVoucherOfficerController extends Controller
         $wordFile->setValue('due_date',$feeStructer->due_date);
         $wordFile->setValue('user',$user);
         $wordFile->saveAs($fileName.'.docx');
+        $Studentrecord->challan_print=1;
+        $Studentrecord->save();
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
         return redirect('feevoucherofficer')->with('success','challan created successfully.');
 
