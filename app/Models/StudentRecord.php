@@ -9,5 +9,6 @@ class StudentRecord extends Model
 {
     use HasFactory;
     protected $table = "student_records";
-    
+
+   
 }

@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Datatables | GACB</title>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Datatables |GACA Software Poratl</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.css" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/perfect-scrollbar.css" rel="stylesheet" />
@@ -13,6 +16,23 @@
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/metisMenu.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js" integrity="sha512-4WpSQe8XU6Djt8IPJMGD9Xx9KuYsVCEeitZfMhPi8xdYlVA5hzRitm0Nt1g2AZFS136s29Nq4E4NVvouVAVrBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -23,7 +43,7 @@
                 <!--  <span class=" item-name text-20 text-primary font-weight-700">GULL</span> -->
                 <div class="sidebar-compact-switch ml-auto"><span></span></div>
             </div>
-            @include('layouts/fee_sidebar')
+            @include('layouts/sidebar')
         </div>
         <div class="switch-overlay"></div>
         <div class="main-content-wrap mobile-menu-content bg-off-white m-0">
@@ -40,9 +60,8 @@
                     <!-- Grid menu Dropdown-->
                     <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="menu-icon-grid"><a href="{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="i-Checked-User"></i> Logout</a><a href="{{URL('change-password')}}"><i class="text-20 i-Key"></i>Change Password</a></div>
+                                                     document.getElementById('logout-form').submit();"><i class="i-Checked-User"></i> Logout</a><a href="#"><i class="i-Ambulance"></i>Change Password</a></div>
                                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -52,29 +71,24 @@
             </header><!-- ============ Body content start ============= -->
             <div class="main-content pt-4">
                 <div class="breadcrumb">
-                    <h1 class="mr-2">Admission Officer</h1>
+                    <h1 class="mr-2">Admin</h1>
                     <ul>
                         <li><a href="">Dashboard</a></li>
-                        <li>Student List</li>
+                        <li>Admission Confirm</li>
                     </ul>
                 </div>
+
+
+
+
                 <div class="separator-breadcrumb border-top"></div>
               
                 <!-- end of row-->
                 <div class="row mb-4">
-                      @if (\Session::has('success'))
-                                <br>
-                                  <div class="alert alert-success d-inline ml-6 mr-6">
-                                    
-                                      <strong>{!! \Session::get('success') !!}</strong>
-                                    
-                                  </div>
-                                  <br>
-                                @endif
                     <div class="col-md-12 mb-4">
                         <div class="card text-left">
                             <div class="card-body">
-                                <h4 class="card-title mb-3">Students List Challan Not Upload</h4>
+                                <h4 class="card-title mb-3">All Student Confirm Students Records</h4>
                                 <!-- <p>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> -->
                                 <div class="table-responsive">
                                     <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
@@ -87,22 +101,30 @@
                                                 <th>Contact Number</th>
                                                 <th>Group</th>
                                                 <th>Picture</th>
-                                                <th> Upload Challan</th>
-                                                <th> Print Apllication</th>
+                                                <th>Print Chalan</th>
+                                                <th>Print Receipt</th>
+                                                <th>Print Application Form</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($students as $user)
-                                            <tr>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
-                                                <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
-                                                <td><a href="{{ url('/uploadrespit/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
-                                                   <td><a href="{{ url('/printaplication/' . $user->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                            <tr id="sid{{$user->id}}" class="p-0">
+
+                                                <td>{{$user->Student->CNIC}}</td>
+                                                <td>{{$user->Student->canidate_name}}</td>
+                                                <td>{{$user->Student->f_name}}</td>
+                                                <td>{{$user->Student->dob}}</td>
+                                                <td>{{$user->Student->contact_number}}</td>
+                                                <td>{{$user->Student->group}}</td>
+                                                <td><img src="{{URL::to('public')}}/image/canidatephoto/{{$user->Student->image_name}}" class="rounded-circle" alt="Cinque Terre" width="50" height="43"> </td>
+                                                <td><a href="{{ url('/admissionrespit/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                                 <td><a href="{{ url('/generate-pdf/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                                 <td><a href="{{ url('/printaplication/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
+                                             
+
+                                 
+
+
                                             </tr>
                                             @endforeach
                                             
@@ -262,6 +284,25 @@
         </div>
     </div>
     <!-- ============ Search UI End ============= -->
+     <script>
+      function userdelete(id)
+       {
+        if (confirm("Do you really want to delete this record?")) 
+        {
+          $.ajax({
+          url: 'userdelete/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#tid'+id).remove();
+          }
+        });
+        }
+      }
+    </script>
+    <!-- ============ Search UI End ============= -->
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -274,6 +315,57 @@
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/layout-sidebar-vertical.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
+
+
+
+
+
+
+      <script type="text/javascript">
+    function deleteUser(id) {
+        swal({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        }).then(function (e) {
+
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+             $.ajax({
+          url: 'deleteuser/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#cid'+id).remove();
+            swal({
+                title: "Success!",
+                text:  "Record has been deleted..",
+                type: "success",
+                timer: 3000,
+                showConfirmButton: false
+            });
+            window.setTimeout(function(){ } ,3000);
+            location.reload();
+          }
+        });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    }
+</script>
 </body>
 
 </html>

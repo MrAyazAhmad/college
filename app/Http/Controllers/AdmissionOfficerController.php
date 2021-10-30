@@ -215,8 +215,17 @@ class AdmissionOfficerController extends Controller
        public function studentrecordupload(Request $request)
     {
         $studentinfo = StudentRecord::where('id' , $request->stdid)->get()->first();
+        // dd($studentinfo);
+        if(isset($studentinfo)){
+            if($studentinfo->challan_print==1){
         return view('student.info.upload',compact('studentinfo'));
-       
+            }else{
+            dd('Please Print FeeVoucher First From Feevoucher Officer Dashboard');
+
+            }   
+       }else{
+        dd('Record Not Found PLease Enter Correct Registration ID');
+       }
     }
       public function printaplication( $student_id){
 
