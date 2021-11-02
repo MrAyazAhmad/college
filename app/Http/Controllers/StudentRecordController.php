@@ -59,7 +59,7 @@ class StudentRecordController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'CNIC' => 'required',
+            'CNIC' => 'required|unique:student_records',
             'canidate_name' => 'required',
             'dob' => 'required',
             'covid' => 'required',
@@ -78,6 +78,7 @@ class StudentRecordController extends Controller
             'section_name' =>'required',
             'class_year' =>'required',
             'section_id' =>'required',
+            'bgroup' =>'required',
         ]); 
 
 
