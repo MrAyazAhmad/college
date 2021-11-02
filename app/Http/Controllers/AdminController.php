@@ -145,6 +145,27 @@ class AdminController extends Controller
          $user->section_id = $request->section_id;
         $feestructer = FeeStructer::where('section_id', $request->section_id)->first();
         $classsession = Class_session::where('id', $request->section_id)->first();
+          $request->validate([
+            'CNIC' => 'required',
+            'canidate_name' => 'required',
+            'dob' => 'required',
+            'covid' => 'required',
+            'f_name' => 'required',
+            'f_cnic' => 'required',
+            'contact_number' => 'required',
+            'address' => 'required',
+            'religion' => 'required',
+            'nationality' => 'required',
+            'specialty' => 'required',
+            'group' => 'required',
+            'optional_subject_one' => 'required',
+            'optional_subject_two' => 'required',
+            'optional_subject_three' => 'required',
+            'Applied' =>'required',
+            'section_name' =>'required',
+            'class_year' =>'required',
+            'section_id' =>'required',
+        ]); 
         $user->fee_id =$feestructer->id;
         $user->CNIC = $request->CNIC;
         $user->Applied = $request->Applied;
@@ -161,6 +182,11 @@ class AdminController extends Controller
         $user->covid = $request->covid;
         $user->bgroup = $request->bgroup;
         $user->group = $request->group;
+        $user->previous_roll_no = $request->previous_roll_no;
+        $user->previous_year = $request->previous_year;
+        $user->previous_session = $request->previous_session;
+        $user->previous_board = $request->previous_board;
+        $user->reg_no = $request->reg_no;
         $user->optional_subject_one = $request->optional_subject_one;
         $user->optional_subject_two = $request->optional_subject_two;
         $user->optional_subject_three = $request->optional_subject_three;

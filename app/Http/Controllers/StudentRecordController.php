@@ -106,6 +106,11 @@ class StudentRecordController extends Controller
         $studentinfo->covid = $request->covid;
         $studentinfo->bgroup = $request->bgroup;
         $studentinfo->group = $request->group;
+        $studentinfo->previous_roll_no = $request->previous_roll_no;
+        $studentinfo->previous_year = $request->previous_year;
+        $studentinfo->previous_session = $request->previous_session;
+        $studentinfo->previous_board = $request->previous_board;
+        $studentinfo->reg_no = $request->reg_no;
         $studentinfo->optional_subject_one = $request->optional_subject_one;
         $studentinfo->optional_subject_two = $request->optional_subject_two;
         $studentinfo->optional_subject_three = $request->optional_subject_three;
