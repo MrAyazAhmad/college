@@ -52,6 +52,18 @@ button {
 .inter{
     display: none;
 }
+.error {
+    color: red;
+    font-weight: 400;
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.form-control.error {
+    border-color: red;
+    padding: .375rem .75rem;
+}
 
 button:hover {
   opacity: 0.8;
@@ -183,6 +195,10 @@ input {
                                                 <option value="BS(ENG)"{{ $user->Applied == 'BS(ENG)' ? 'selected' : '' }}>BS(ENG)</option>
                                                
                                             </select>
+                                              <!-- Error -->
+                                              @if ($errors->has('Applied'))
+                                                <span class="text-danger">{{ $errors->first('Applied') }}</span>
+                                            @endif
                                         </div>
                                          <div class="col-md-4 form-group mb-3"></div>
                                     </div>
@@ -563,8 +579,60 @@ input {
                                                 <input class="form-control"  value="{{$bacholer->insitute_name}}" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
                                 @endif
                                         </div>
+                                                   <button type="button" onclick="myFunction()">Re-Admisssion</button>
+                                        
+                                        <div class="row " id="rediv" style="display: none;">
+                                             <div class="col-md-12 form-group mb-3">
+                                                <br>
+                                            <h1>In Case of Re-Admission Provide Following Information</h1> </div>
+                                              <div class="col-md-3 form-group mb-3">
+                                                <label for="previous_roll_no">Previous Roll No</label>
+                                                <input value="{{$user->previous_roll_no}}" class="form-control" id="previous_roll_no" type="Year" name="previous_roll_no" placeholder="Enter Board /University" />
+                                                  @if ($errors->has('previous_roll_no'))
+                                                <span class="text-danger">{{ $errors->first('previous_roll_no') }}</span>
+                                                @endif  
+                                            </div>
+                                              <div class="col-md-3 form-group mb-3">
+                                                <label for="previous_year">Previous Year</label>
+                                               
+                                                 <select class="form-control" name="previous_year">
+                                                <option value="">Select</option>
+
+                                                <option value="2017"{{ $matric->previous_year == '2017' ? 'selected' : '' }}>2017</option>
+                                                <option value="2018"{{ $matric->previous_year == '2018' ? 'selected' : '' }}>2018</option>
+                                                <option value="2019"{{ $matric->previous_year == '2019' ? 'selected' : '' }}>2019</option>
+                                                <option value="2020"{{ $matric->previous_year == '2020' ? 'selected' : '' }}>2020</option>
+                                                <option value="2021"{{ $matric->previous_year == '2021' ? 'selected' : '' }}>2021</option>
+                                            </select>  
+                                            </div>
+                                              <div class="col-md-3 form-group mb-3">
+                                                <label for="previous_session">Previous Session</label>
+                                                <input value="{{$user->previous_session}}" class="form-control" id="previous_session" type="Year" name="previous_session" placeholder="Enter Previous Session" />
+                                                  @if ($errors->has('previous_session'))
+                                                <span class="text-danger">{{ $errors->first('previous_session') }}</span>
+                                                @endif  
+                                            </div>
+                                              <div class="col-md-3 form-group mb-3">
+                                                <label for="previous_board">Previous Board</label>
+                                                <input value="{{$user->previous_board}}" class="form-control" id="previous_board" type="Year" name="previous_board" placeholder="Enter Previous Board" />
+                                                  @if ($errors->has('previous_board'))
+                                                <span class="text-danger">{{ $errors->first('previous_board') }}</span>
+                                                @endif  
+                                            </div>
+                                              <div class="col-md-3 form-group mb-3">
+                                                <label for="reg_no">Reg. No:</label>
+                                                <input value="{{$user->reg_no}}" class="form-control" id="reg_no" type="Year" name="reg_no" placeholder="Enter Reg.No" />
+                                                  @if ($errors->has('reg_no'))
+                                                <span class="text-danger">{{ $errors->first('reg_no') }}</span>
+                                                @endif  
+                                            </div>
+
+                                        </div>
+
+                                 
                                  
                                 </div>
+
                                 
 
 
@@ -705,6 +773,14 @@ $(function () {
 });
 </script>
 <script> 
+    function myFunction() {
+   var x = document.getElementById("rediv");
+  if (x.style.display === "none") {
+    x.style.display = "flex";
+  } else {
+    x.style.display = "none";
+  }
+}
 $(document).ready(function(){
     $('#section_name').on('change', function() {
         $("#div1").show(); 
