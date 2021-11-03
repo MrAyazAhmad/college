@@ -76,8 +76,7 @@ class AdmissionOfficerController extends Controller
 
         $wordFile=new TemplateProcessor('word/AdmissionForm .docx');
         $name= $studentinfo->canidate_name;
-        $wordFile->setValue('name',$name);
-        $wordFile->setValue('user',$user);
+        $wordFile->setValue('name',$name);        
         $wordFile->setValue('cnic',$studentinfo->CNIC);
         $wordFile->setValue('dob',$studentinfo->dob);
         $wordFile->setValue('fname',$studentinfo->f_name);
@@ -91,6 +90,15 @@ class AdmissionOfficerController extends Controller
         $wordFile->setValue('bgroup',$studentinfo->bgroup);
         $wordFile->setValue('covid',$studentinfo->covid);
         $wordFile->setValue('group',$studentinfo->group);
+        $wordFile->setValue('newid',$studentinfo->id);
+        $wordFile->setValue('previous_roll_no',$studentinfo->previous_roll_no);
+        $wordFile->setValue('previous_year',$studentinfo->previous_year);
+        $wordFile->setValue('previous_session',$studentinfo->previous_session);
+        $wordFile->setValue('previous_board',$studentinfo->previous_board);
+        $wordFile->setValue('reg_no',$studentinfo->reg_no);
+        $wordFile->setValue('user',$user);
+
+        $wordFile->setValue('submissiondate',$request->submissiondate);
         $wordFile->setValue('optional_subject_one',$studentinfo->optional_subject_one);
         $wordFile->setValue('optional_subject_two',$studentinfo->optional_subject_two);
         $wordFile->setValue('optional_subject_three',$studentinfo->optional_subject_three);
@@ -98,9 +106,7 @@ class AdmissionOfficerController extends Controller
         $wordFile->setImageValue('ticketimage',array('path' =>public_path().'/image/canidatephoto/'.$studentinfo->image_name, 'width' => 140, 'height' => 140, 'ratio' => true));
         $wordFile->setValue('updated_at',$studentinfo->updated_at);
         $wordFile->setValue('roll_no',$studentinfo->roll_no);
-        $wordFile->setValue('newid',$studentinfo->id);
-
-        $wordFile->setValue('submissiondate',$request->submissiondate);
+      
 
         if(isset($studentmatricinfo)){
         $wordFile->setValue('rollno',$studentmatricinfo->roll_no);
@@ -203,6 +209,7 @@ class AdmissionOfficerController extends Controller
         $date= date('d-M-Y');
         $wordFile->setValue('date',$date);
         $fileName=$studentinfo->canidate_name.'_'.$studentinfo->CNIC;
+        dd($wordFile);
         $wordFile->saveAs($fileName.'.docx');
       
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
@@ -230,6 +237,9 @@ class AdmissionOfficerController extends Controller
       public function printaplication( $student_id){
 
       $studentinfo =  StudentRecord::find($student_id);
+        $user = Auth::user()->name;
+
+      // dd($studentinfo);
       $studentmatricinfo =  Matric_Academic::where('stu_id',$student_id)->first();
       $studentinterinfo =  Inter_Academic::where('stu_id',$student_id)->first();
       $studentbachelorcinfo =  Bachelor_Academic::where('stu_id',$student_id)->first();
@@ -254,6 +264,17 @@ class AdmissionOfficerController extends Controller
         $wordFile->setValue('bgroup',$studentinfo->bgroup);
         $wordFile->setValue('covid',$studentinfo->covid);
         $wordFile->setValue('group',$studentinfo->group);
+        $wordFile->setValue('previous_roll_no',$studentinfo->previous_roll_no);
+        $wordFile->setValue('previous_year',$studentinfo->previous_year);
+        $wordFile->setValue('previous_session',$studentinfo->previous_session);
+        $wordFile->setValue('previous_board',$studentinfo->previous_board);
+        $wordFile->setValue('reg_no',$studentinfo->reg_no);
+        $wordFile->setValue('user',$user);
+        $wordFile->setValue('newid',$studentinfo->id);
+        $ddate = date('d-M-Y', strtotime($studentinfo->submissiondate));
+
+        $wordFile->setValue('submissiondate',$ddate);
+
         $wordFile->setValue('optional_subject_one',$studentinfo->optional_subject_one);
         $wordFile->setValue('optional_subject_two',$studentinfo->optional_subject_two);
         $wordFile->setValue('optional_subject_three',$studentinfo->optional_subject_three);

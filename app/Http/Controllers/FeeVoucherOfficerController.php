@@ -9,6 +9,10 @@ use App\Models\StudentFeeRecord;
 use App\Models\Class_session;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Auth;
+use Session;
+use Redirect;
+
+
 
 class FeeVoucherOfficerController extends Controller
 {
@@ -113,9 +117,12 @@ class FeeVoucherOfficerController extends Controller
         $wordFile->setValue('user',$user);
         $wordFile->saveAs($fileName.'.docx');
         $Studentrecord->challan_print=1;
+        // $date = $feeStructer->due_date->format('d/m/Y');
+      
         $Studentrecord->save();
+
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
-        return redirect('feevoucherofficer')->with('success','challan created successfully.');
+        return redirect('feevoucherofficer')->with('success','challan created successfully.'); 
 
        
     }

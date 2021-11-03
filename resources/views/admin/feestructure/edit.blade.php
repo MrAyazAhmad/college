@@ -70,8 +70,9 @@ option{
                                            <div class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Class </label>
                                             <select class="form-control " name="section_id">
+                                                <option value="">Select</option>
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->id}}">{{$c_section->class_name}} ({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                <option value="{{$c_section->id}}"{{ $c_section->id == $feestructure->section_id ? 'selected' : '' }}>{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -3,7 +3,7 @@
                 <div class="side-nav">
                     <div class="main-menu">
                         <ul class="metismenu" id="menu">
-                            <li class="Ul_li--hover"><a class="has-arrow" href="#"><i class="i-Bar-Chart text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Dashboard</span></a>
+                            <li class="Ul_li--hover"><a  href="{{url('feevoucherofficer')}}"><i class="i-Bar-Chart text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Fee Voucher</span></a>
                                 <!-- <ul class="mm-collapse">
                                     <li class="item-name"><a href="{{route('export')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Cash Book</span></a></li>
                                     <li class="item-name"><a href="{{route('libraryexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Library Secuirity Book</span></a></li>

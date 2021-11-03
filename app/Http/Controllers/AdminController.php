@@ -15,6 +15,8 @@ use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
 use File;
+use Auth;
+
 
 class AdminController extends Controller
 {
@@ -85,7 +87,7 @@ class AdminController extends Controller
     {
          $feestructer = FeeStructer::find($id);
         $feestructer->delete();
-        return redirect()->back()->with('Deleted','your record successfully.....');
+        return redirect()->back()->with('success','FeeStructer Is Deleted Successfully');
     } 
      public function DeleteSession($id)
     {
@@ -165,6 +167,14 @@ class AdminController extends Controller
             'section_name' =>'required',
             'class_year' =>'required',
             'section_id' =>'required',
+             'roll_no' => 'required',
+            'Passing_Year' => 'required',
+            'exam_Type' => 'required',
+            'Marks_Obt' => 'required',
+            'totall_marks' => 'required',
+            'percentage' => 'required',
+            'insitute_name' => 'required',
+            'grade' => 'required',
         ]); 
         $user->fee_id =$feestructer->id;
         $user->CNIC = $request->CNIC;

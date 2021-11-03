@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
 use Session;
 class LoginController extends Controller
 {
@@ -69,9 +70,11 @@ class LoginController extends Controller
                 ->with('error','Email & Password are incorrect.');
         }     
     }
-    //  public function logout() {
-    //     Session::flush();
-    //     Auth::logout();
-    //     return Redirect('login');
-    // }
+
+    public function logout() {
+        Session::flush();
+        Auth::logout();
+        return Redirect('login');
+    }
+    
 }

@@ -215,6 +215,9 @@ input {
                                                 <option value="{{$c_section->class_name}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}} </option>
                                                 @endforeach
                                             </select>
+                                               @if ($errors->has('section_name'))
+                                                <span class="text-danger">{{ $errors->first('section_name') }}</span>
+                                                @endif 
                                         </div>
                                          <div class="col-md-4 form-group mb-3"></div>
 
@@ -243,6 +246,9 @@ input {
                                                 <option class="master" value="4th_Semster"{{ $user->class_year == '4th_Semster' ? 'selected' : '' }}>4th Semster</option>
                                             
                                             </select>
+                                            @if ($errors->has('class_year'))
+                                                <span class="text-danger">{{ $errors->first('class_year') }}</span>
+                                                @endif 
                                         </div>
                                      <div class="col-md-4 form-group mb-3"></div>
 
@@ -255,11 +261,16 @@ input {
                                            <div id="div3"   class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Session </label>
                                             <select class="form-control" name="section_id">
+                                                <option value="">Select</option>
                                                 @foreach($class_section AS $c_section)
                                                 <option value="{{$c_section->id}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endforeach
                                             </select>
+                                              @if ($errors->has('section_id'))
+                                                <span class="text-danger">{{ $errors->first('section_id') }}</span>
+                                                @endif 
                                         </div>
+                                        
                                     </div>
                                      <div class="col-md-4 form-group mb-3"></div>
 
@@ -279,31 +290,52 @@ input {
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="CNIC">CNIC</label>
                                             <input class="form-control"  value="{{$user->CNIC}}" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" value="{{$user->CNIC}}" maxlength="13"/>
+                                            @if ($errors->has('CNIC'))
+                                                <span class="text-danger">{{ $errors->first('CNIC') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="canidate_name">Canidate Name</label>
                                             <input class="form-control"  value="{{$user->canidate_name}}" id="canidate_name" name="canidate_name" type="Year" placeholder="Enter Canidate Name" />
                                             <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                             @if ($errors->has('canidate_name'))
+                                                <span class="text-danger">{{ $errors->first('canidate_name') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="dob">Date Of Birth</label>
                                             <input class="form-control"  value="{{$user->dob}}" id="dob" type="tel" maxlength="10" name="dob" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)" />
+                                             @if ($errors->has('dob'))
+                                                <span class="text-danger">{{ $errors->first('dob') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_name">Father Name</label>
                                             <input class="form-control"  value="{{$user->f_name}}" id="f_name" type="Year" name="f_name" placeholder="Enter f_name" />
+                                             @if ($errors->has('f_name'))
+                                                <span class="text-danger">{{ $errors->first('f_name') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_cnic">Father CNIC</label>
                                             <input class="form-control"  value="{{$user->f_cnic}}" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />
+                                             @if ($errors->has('f_name'))
+                                                <span class="text-danger">{{ $errors->first('f_name') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="contact_number">Contact No.</label>
                                             <input class="form-control"  value="{{$user->contact_number}}" id="contact_number" type="Year" name="contact_number" placeholder="Enter contact_number" maxlength="11" />
+                                             @if ($errors->has('contact_number'))
+                                                <span class="text-danger">{{ $errors->first('contact_number') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="address">Address</label>
                                             <input class="form-control"  value="{{$user->address}}" id="address" type="Year" name="address" placeholder="Enter address" />
+                                            @if ($errors->has('address'))
+                                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                                                @endif 
                                         </div>
                                           <div class="col-md-3 form-group mb-3">
                                             <label for="religion">Religion</label>
@@ -312,6 +344,9 @@ input {
                                                 <option value="Muslim"{{ $user->religion == 'Muslim' ? 'selected' : '' }}>Muslim</option>
                                                 <option value="Non-Muslim"{{ $user->religion == 'Non-Muslim' ? 'selected' : '' }}>Non-Muslim</option>
                                             </select>
+                                            @if ($errors->has('religion'))
+                                                <span class="text-danger">{{ $errors->first('religion') }}</span>
+                                                @endif 
                                         </div>
                                      
                                         <div class="col-md-3 form-group mb-3">
@@ -321,6 +356,9 @@ input {
                                                 <option value="Pakistani"{{ $user->nationality == 'Pakistani' ? 'selected' : '' }}>Pakistani</option>
                                                 <option value="Other"{{ $user->nationality == 'Other' ? 'selected' : '' }}>Other</option>
                                             </select>
+                                              @if ($errors->has('nationality'))
+                                                <span class="text-danger">{{ $errors->first('nationality') }}</span>
+                                                @endif 
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="specialty">Specialty</label>
@@ -331,6 +369,9 @@ input {
                                                 <option value="Blind">Blind</option>
                                                 <option value="Board Employee Child">Board Employee Child</option>
                                             </select>
+                                              @if ($errors->has('specialty'))
+                                                <span class="text-danger">{{ $errors->first('specialty') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="covid">COVID Vaccination:</label>
@@ -340,10 +381,16 @@ input {
                                                 <option value="Double Dose"{{ $user->covid == 'Double Dose' ? 'selected' : '' }}>Double Dose  </option>
                                                 <option value="None"{{ $user->covid == 'None' ? 'selected' : '' }}>None </option> 
                                             </select>
+                                             @if ($errors->has('covid'))
+                                                <span class="text-danger">{{ $errors->first('covid') }}</span>
+                                                @endif
                                         </div>
                                            <div class="col-md-3 form-group mb-3">
                                             <label for="bgroup">Blood Group</label>
                                             <input class="form-control"  value="{{$user->bgroup}}" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
+                                            @if ($errors->has('bgroup'))
+                                                <span class="text-danger">{{ $errors->first('bgroup') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Group</label>
@@ -377,6 +424,9 @@ input {
                                                 <option class="hg" value="Grouphg10"{{ $user->group == 'Grouphg10' ? 'selected' : '' }}>Group10</option>
                                                 <option class="hg" value="Grouphg11"{{ $user->group == 'Grouphg11' ? 'selected' : '' }}>Group11</option>
                                                 <option class="hg" value="Grouphg12"{{ $user->group == 'Grouphg12' ? 'selected' : '' }}>Group12</option>
+                                                       @if ($errors->has('group'))
+                                                <span class="text-danger">{{ $errors->first('group') }}</span>
+                                                @endif
 
 
                                             </optgroup>
@@ -385,14 +435,23 @@ input {
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_one">Optional Subject One</label>
                                             <input class="form-control"  value="{{$user->optional_subject_one}}" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
+                                                @if ($errors->has('optional_subject_one'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_one') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_two">Optional Subject Two</label>
                                             <input class="form-control"  value="{{$user->optional_subject_two}}" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
+                                             @if ($errors->has('optional_subject_two'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_two') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="optional_subject_three">Optional Subject Three</label>
                                             <input class="form-control"  value="{{$user->optional_subject_three}}" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
+                                            @if ($errors->has('optional_subject_three'))
+                                                <span class="text-danger">{{ $errors->first('optional_subject_three') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="image_name">Upload Student Photo</label>
@@ -419,6 +478,9 @@ input {
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="rollno">Roll No</label>
                                             <input class="form-control"  value="{{$matric->roll_no}}" id="roll_no" type="text" name="roll_no" placeholder="Enter Roll No" /> 
+                                            @if ($errors->has('roll_no'))
+                                                <span class="text-danger">{{ $errors->first('roll_no') }}</span>
+                                                @endif
                                         </div>
                                           
                                         <div class="col-md-3 form-group mb-3">
@@ -433,6 +495,9 @@ input {
                                                 <option value="2020"{{ $matric->passing_year == '2020' ? 'selected' : '' }}>2020</option>
                                                 <option value="2021"{{ $matric->passing_year == '2021' ? 'selected' : '' }}>2021</option>
                                             </select> 
+                                            @if ($errors->has('Passing_Year'))
+                                                <span class="text-danger">{{ $errors->first('Passing_Year') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Annual /Supp.</label>
@@ -442,19 +507,39 @@ input {
                                                 <option value="Annual"{{ $matric->exam_type == 'Annual' ? 'selected' : '' }}>Annual</option>
                                                 <option value="Supply"{{ $matric->exam_type == 'Supply' ? 'selected' : '' }}>Supply</option>
                                             </select>
+                                                  @if ($errors->has('exam_Type'))
+                                                <span class="text-danger">{{ $errors->first('exam_Type') }}</span>
+                                                @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="Marks_Obt">Marks Obtian</label>
-                                            <input class="form-control"  value="{{$matric->marks_obtian}}" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." /> </div>
+                                            <input class="form-control"  value="{{$matric->marks_obtian}}" id="Marks_Obt" type="Year" name="Marks_Obt" placeholder="Enter Marks Obt." />
+                                                @if ($errors->has('marks_obtian'))
+                                                <span class="text-danger">{{ $errors->first('marks_obtian') }}</span>
+                                                @endif
+                                             </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="totall_marks">Total Marks</label>
-                                            <input class="form-control"  value="{{$matric->total_marks}}" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" /> </div>
+                                            <input class="form-control"  value="{{$matric->total_marks}}" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" />
+                                              @if ($errors->has('total_marks'))
+                                                <span class="text-danger">{{ $errors->first('total_marks') }}</span>
+                                                @endif 
+                                        </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="%age">%age</label>
-                                            <input class="form-control"  value="{{$matric->percentage}}" id="results" type="text" name="percentage" readonly /> </div>
+                                            <input class="form-control"  value="{{$matric->percentage}}" id="results" type="text" name="percentage" readonly /> 
+                                            @if ($errors->has('percentage'))
+                                                <span class="text-danger">{{ $errors->first('percentage') }}</span>
+                                                @endif 
+
+                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                             <label for="grade">Grade</label>
-                                            <input class="form-control"  value="{{$matric->grade}}" name="grade" id="grade" type="text"   /> </div>
+                                            <input class="form-control"  value="{{$matric->grade}}" name="grade" id="grade" type="text"   />
+                                            @if ($errors->has('grade'))
+                                                <span class="text-danger">{{ $errors->first('grade') }}</span>
+                                                @endif  
+                                        </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="insitute_name">Board /University</label>     
                                              <select class="form-control" name="insitute_name">
@@ -470,6 +555,9 @@ input {
                                                     <option value="BISE Rawalpindi"{{ $matric->insitute_name == 'BISE Rawalpindi' ? 'selected' : '' }}>BISE Rawalpindi</option>
                                                     <option value="BISE Sargodha"{{ $matric->insitute_name == 'BISE Sargodha' ? 'selected' : '' }}>BISE Sargodha</option>
                                                 </select>
+                                                @if ($errors->has('insitute_name'))
+                                                <span class="text-danger">{{ $errors->first('insitute_name') }}</span>
+                                                @endif  
                                             </div>
                                      </div>
                                 </div>
@@ -576,10 +664,13 @@ input {
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University</label>
-                                                <input class="form-control"  value="{{$bacholer->insitute_name}}" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" /> </div>
+                                                <input class="form-control"  value="{{$bacholer->insitute_name}}" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" />
+
+                                                 </div>
                                 @endif
+                                 <button type="button" onclick="myFunction()">Re-Admisssion</button>
                                         </div>
-                                                   <button type="button" onclick="myFunction()">Re-Admisssion</button>
+                                                  
                                         
                                         <div class="row " id="rediv" style="display: none;">
                                              <div class="col-md-12 form-group mb-3">
@@ -587,7 +678,8 @@ input {
                                             <h1>In Case of Re-Admission Provide Following Information</h1> </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_roll_no">Previous Roll No</label>
-                                                <input value="{{$user->previous_roll_no}}" class="form-control" id="previous_roll_no" type="Year" name="previous_roll_no" placeholder="Enter Board /University" />
+                                                <input value="{{$user->previous_roll_no}}" class="form-control" id="previous_roll_no" type="Year" name="previous_roll_no" placeholder="Enter Previous Roll No" />
+
                                                   @if ($errors->has('previous_roll_no'))
                                                 <span class="text-danger">{{ $errors->first('previous_roll_no') }}</span>
                                                 @endif  
@@ -607,14 +699,27 @@ input {
                                             </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_session">Previous Session</label>
-                                                <input value="{{$user->previous_session}}" class="form-control" id="previous_session" type="Year" name="previous_session" placeholder="Enter Previous Session" />
+                                                <input value="{{$user->previous_session}}" class="form-control" id="previous_session" type="Year" name="previous_session" placeholder="E.g. 2020 To 2022" />
                                                   @if ($errors->has('previous_session'))
                                                 <span class="text-danger">{{ $errors->first('previous_session') }}</span>
                                                 @endif  
                                             </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_board">Previous Board</label>
-                                                <input value="{{$user->previous_board}}" class="form-control" id="previous_board" type="Year" name="previous_board" placeholder="Enter Previous Board" />
+                                                
+                                                 <select class="form-control" name="previous_board">
+                                                    <option value="">Select</option>
+
+                                                    <option value="BISE Sahiwal"{{ $user->previous_board == 'BISE Sahiwal' ? 'selected' : '' }}>BISE Sahiwal</option>
+                                                    <option value="BISE Bahawalpur"{{ $user->previous_board == 'BISE Bahawalpur' ? 'selected' : '' }}>BISE Bahawalpur</option>
+                                                    <option value="BISE DG Khan"{{ $user->previous_board == 'BISE DG Khan' ? 'selected' : '' }}>BISE DG Khan</option>
+                                                    <option value="BISE Faisalabad"{{ $user->previous_board == 'BISE Faisalabad' ? 'selected' : '' }}>BISE Faisalabad</option>
+                                                    <option value="BISE Gujranwala"{{ $user->previous_board == 'BISE Gujranwala' ? 'selected' : '' }}>BISE Gujranwala</option>
+                                                    <option value="BISE Lahore"{{ $user->previous_board == 'BISE Multan' ? 'selected' : '' }}>BISE Lahore</option>
+                                                    <option value="BISE Multan"{{ $user->previous_board == 'BISE Multan' ? 'selected' : '' }}>BISE Multan</option>
+                                                    <option value="BISE Rawalpindi"{{ $user->previous_board == 'BISE Rawalpindi' ? 'selected' : '' }}>BISE Rawalpindi</option>
+                                                    <option value="BISE Sargodha"{{ $user->previous_board == 'BISE Sargodha' ? 'selected' : '' }}>BISE Sargodha</option>
+                                                </select>
                                                   @if ($errors->has('previous_board'))
                                                 <span class="text-danger">{{ $errors->first('previous_board') }}</span>
                                                 @endif  
@@ -631,7 +736,6 @@ input {
 
                                  
                                  
-                                </div>
 
                                 
 

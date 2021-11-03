@@ -23,8 +23,34 @@ Route::get('command', function () {
     dd("Done");
 });
 Route::get('/', function () {
-    return view('auth.login');
+     if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (Auth::user()->role == 1) {
+            return redirect()->route('superadmin');
+        }
+
+        if (Auth::user()->role == 4) {
+            return redirect()->route('feevoucherofficer');
+        }
+
+        if (Auth::user()->role == 3) {
+            return redirect()->route('deo');
+
+        }
+        if (Auth::user()->role == 2) {
+            return redirect()->route('admin');
+
+        }
+
+        if (Auth::user()->role == 5) {
+            return redirect()->route('admissionofficer');
+
+        }
 });
+// Route::get('/', [App\Http\Controllers\LoginController::class, 'check'])->name('generate-pdf');
+
 Route::get('/pdf', function () {
     return view('myPDF');
 });
