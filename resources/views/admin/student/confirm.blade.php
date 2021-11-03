@@ -60,8 +60,8 @@
                     <!-- Grid menu Dropdown-->
                     <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <div class="menu-icon-grid"><a href="{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="i-Checked-User"></i> Logout</a><a href="#"><i class="i-Ambulance"></i>Change Password</a></div>
+                               <div class="menu-icon-grid"><a href="{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="i-Checked-User"></i> Logout</a><a href="{{URL('change-password')}}"><i class="text-20 i-Key"></i>Change Password</a></div>
                                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -94,6 +94,7 @@
                                     <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Roll NO</th>
                                                 <th>CNIC</th>
                                                 <th>Name</th>
                                                 <th>Father Name</th>
@@ -110,6 +111,7 @@
                                             @foreach($students as $user)
                                             <tr id="sid{{$user->id}}" class="p-0">
 
+                                                <td>{{$user->id}}</td>
                                                 <td>{{$user->Student->CNIC}}</td>
                                                 <td>{{$user->Student->canidate_name}}</td>
                                                 <td>{{$user->Student->f_name}}</td>

@@ -36,6 +36,12 @@
                                     <li class="item-name"><a href="{{url('create-session')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">Add New Sessions</span></a></li>
                                     
                                 </ul>
+                            </li>  
+                            <li class="Ul_li--hover"><a href="{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Logout</span></a>
+                                
+                                    
+                                </ul>
                             </li>
            
            

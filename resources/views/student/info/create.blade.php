@@ -183,9 +183,12 @@ input {
            
             <div style="margin: auto"></div>
             <div class="header-part-right">
-                    <!-- Full screen toggle--><i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
+                    <!-- Full screen toggle--><button><a href="{{url('/deo')}}"><i class=" bu d-none d-sm-inline-block"  ></i></a>New Form</button>
+                    <i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
                     <!-- Grid menu Dropdown-->
                     <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                <div class="menu-icon-grid"><a href="{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="i-Checked-User"></i> Logout</a><a href="{{URL('change-password')}}"><i class="text-20 i-Key"></i>Change Password</a></div>
@@ -202,6 +205,7 @@ input {
                     <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text" style="font-weight: bold;"><i>DEO</i></span></a>
                         <!-- <div class="triangle"></div> -->
                     </li>
+
                      <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Checked-User"></i><span class="nav-text">{{ auth()->user()->name }}</span></a>
                         <!-- <div class="triangle"></div> -->
                     </li>
@@ -465,6 +469,9 @@ input {
                                            <div class="col-md-3 form-group mb-3">
                                             <label for="bgroup">Blood Group<span class="required">*</span></label>
                                             <input value="{{old('bgroup')}}" class="form-control" id="bgroup" type="Year" name="bgroup" placeholder="Enter Blood Group" />
+                                              @if ($errors->has('bgroup'))
+                                                <span class="text-danger">{{ $errors->first('bgroup') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="group">Select Group<span class="required">*</span></label>
@@ -787,28 +794,48 @@ input {
                                             <h1>In Case of Re-Admission Provide Following Information</h1> </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_roll_no">Previous Roll No</label>
-                                                <input value="{{old('previous_roll_no')}}" class="form-control" id="previous_roll_no" type="Year" name="previous_roll_no" placeholder="Enter Board /University" />
+                                                <input value="{{old('previous_roll_no')}}" class="form-control" id="previous_roll_no" type="Year" name="previous_roll_no" placeholder="Enter Previous Roll No" />
                                                   @if ($errors->has('previous_roll_no'))
                                                 <span class="text-danger">{{ $errors->first('previous_roll_no') }}</span>
                                                 @endif  
                                             </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_year">Previous Year</label>
-                                                <input value="{{old('previous_year')}}" class="form-control" id="previous_year" type="Year" name="previous_year" placeholder="Enter Previous Year" />
+                                               <select class="form-control" name="previous_year">
+                                                <option value="">Select</option>
+
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                            </select>
                                                   @if ($errors->has('previous_year'))
                                                 <span class="text-danger">{{ $errors->first('previous_year') }}</span>
                                                 @endif  
                                             </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_session">Previous Session</label>
-                                                <input value="{{old('previous_session')}}" class="form-control" id="previous_session" type="Year" name="previous_session" placeholder="Enter Previous Session" />
+                                                <input value="{{old('previous_session')}}" class="form-control" id="previous_session" type="Year" name="previous_session" placeholder="E.g. 2020 To 2022" />
                                                   @if ($errors->has('previous_session'))
                                                 <span class="text-danger">{{ $errors->first('previous_session') }}</span>
                                                 @endif  
                                             </div>
                                               <div class="col-md-3 form-group mb-3">
                                                 <label for="previous_board">Previous Board</label>
-                                                <input value="{{old('previous_board')}}" class="form-control" id="previous_board" type="Year" name="previous_board" placeholder="Enter Previous Board" />
+                                                <select class="form-control" name="previous_board">
+                                                    <option value="">Select</option>
+
+                                                    <option value="BISE Sahiwal">BISE Sahiwal</option>
+                                                    <option value="BISE Bahawalpur">BISE Bahawalpur</option>
+                                                    <option value="BISE DG Khan">BISE DG Khan</option>
+                                                    <option value="BISE Faisalabad">BISE Faisalabad</option>
+                                                    <option value="BISE Gujranwala">BISE Gujranwala</option>
+                                                    <option value="BISE Lahore">BISE Lahore</option>
+                                                    <option value="BISE Multan">BISE Multan</option>
+                                                    <option value="BISE Rawalpindi">BISE Rawalpindi</option>
+                                                    <option value="BISE Sargodha">BISE Sargodha</option>
+                                                </select>
                                                   @if ($errors->has('previous_board'))
                                                 <span class="text-danger">{{ $errors->first('previous_board') }}</span>
                                                 @endif  

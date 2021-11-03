@@ -23,8 +23,34 @@ Route::get('command', function () {
     dd("Done");
 });
 Route::get('/', function () {
-    return view('auth.login');
+     if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (Auth::user()->role == 1) {
+            return redirect()->route('superadmin');
+        }
+
+        if (Auth::user()->role == 4) {
+            return redirect()->route('feevoucherofficer');
+        }
+
+        if (Auth::user()->role == 3) {
+            return redirect()->route('deo');
+
+        }
+        if (Auth::user()->role == 2) {
+            return redirect()->route('admin');
+
+        }
+
+        if (Auth::user()->role == 5) {
+            return redirect()->route('admissionofficer');
+
+        }
 });
+// Route::get('/', [App\Http\Controllers\LoginController::class, 'check'])->name('generate-pdf');
+
 Route::get('/pdf', function () {
     return view('myPDF');
 });
@@ -58,7 +84,7 @@ Route::get('admin/allusers', [App\Http\Controllers\AdminController::class, 'allu
 Route::get('admin/addusers', [App\Http\Controllers\AdminController::class, 'adduser'])->name('adduser');
 Route::delete('admin/deleteuser/{id}',[AdminController::class,'deleteUser']);
 Route::delete('admin/deletestudent/{id}',[AdminController::class,'deletsudent']);
-Route::post('deletefeestructure/{id}',[AdminController::class,'DeleteFeestructure']);
+Route::delete('deletefeestructure/{id}',[AdminController::class,'DeleteFeestructure']);
 Route::get('view-session',  [App\Http\Controllers\AdminController::class, 'viewsessions']);
 Route::get('create-session',  [App\Http\Controllers\AdminController::class, 'CreateSession']);
 Route::post('session-store',  [App\Http\Controllers\AdminController::class, 'StoreSession']);

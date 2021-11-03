@@ -240,7 +240,7 @@
         <tr>
         <td><label for="action">Action</label>
                                             </td>
-        <td><button type="submit">Print Voucher</button></td>
+        <td><button id="printvoucher" onclick="myFunction()" type="submit">Print Voucher</button></td>
       </tr>
   </form>
       
@@ -405,6 +405,28 @@ function findTotal(){
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/layout-sidebar-vertical.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
+     <script>
+      function userdelete()
+       {
+        if (confirm("Do you really want to delete this record?")) 
+        {
+          $.ajax({
+          url: 'userdelete/'+id,
+          type:"DELETE",
+          data:{
+            _token:$("input[name=_token]").val()
+          },
+          success:function(response){
+            $('#tid'+id).remove();
+          }
+        });
+        }
+      }
+      <script>
+function myFunction() {
+  alert("I am an alert box!");
+}
+    </script>
 </body>
 
 </html>

@@ -79,6 +79,14 @@ class StudentRecordController extends Controller
             'class_year' =>'required',
             'section_id' =>'required',
             'bgroup' =>'required',
+             'roll_no' => 'required',
+            'Passing_Year' => 'required',
+            'exam_Type' => 'required',
+            'Marks_Obt' => 'required',
+            'totall_marks' => 'required',
+            'percentage' => 'required',
+            'insitute_name' => 'required',
+            'grade' => 'required',
         ]); 
 
 
@@ -128,17 +136,7 @@ class StudentRecordController extends Controller
         }
         $studentinfo->save();
 
-        if($request->roll_no){
-            // dd('done');
-             $request->validate([
-            'roll_no' => 'required',
-            'Passing_Year' => 'required',
-            'exam_Type' => 'required',
-            'Marks_Obt' => 'required',
-            'totall_marks' => 'required',
-            'percentage' => 'required',
-            'insitute_name' => 'required',
-        ]);
+  
         $matric_academic = New Matric_Academic();
         $matric_academic->stu_id =$studentinfo->id;
         $matric_academic->roll_no =$request->roll_no;
@@ -154,7 +152,7 @@ class StudentRecordController extends Controller
         
 
 
-        }
+        
 
          if($request->Inter_Roll_No || $request->Inter_insitute_name){
              $request->validate([
@@ -208,9 +206,9 @@ class StudentRecordController extends Controller
 
         }
 
-        return redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
+        return Redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
 
-         return Redirect::back()->with('errors', 'The Message');
+         // return Redirect::back()->with('errors', 'The Message');
 
         // $data = ['title' => $studentinfo->canidate_name,'fname' => $studentinfo->f_name ,'image' => $studentinfo->image_name ,'id' => $studentinfo->id,'class_name' => $classsession->class_name];
         // $pdf = PDF::loadView('myPDF', $data);

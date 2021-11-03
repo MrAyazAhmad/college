@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Datatables |GACA Software Poratl</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.css" rel="stylesheet" />
@@ -164,7 +166,7 @@
                                                 <td>{{$feestructure->account_number}}</td>
                                                 
                                                 <td>
-                                                <form id="myForm" method="get" action="edit_feestructure/{{$feestructure->id}}">
+                                                <form  method="get" action="edit_feestructure/{{$feestructure->id}}">
     {{ csrf_field() }}
    
 
@@ -172,16 +174,16 @@
       <input type="submit"  id="btn-edit" class="btn btn-primary" value="Edit">
     </div>
   </form></td>
-                                                <!-- <td>><i class="fas fa-trash-alt"><a href="javascript:void(0)" onclick="feestructuredelete({{$feestructure->id}})"> </a></i></td> -->
-                                                <!-- <td><a href="feestructuredelete/{{$feestructure->id}}" ><i class="fas fa-trash-alt"></i></a></td> -->
+                                            
 
-                                                <td>
-                                                <form id="myForm1" method="POST" action="deletefeestructure/{{$feestructure->id}}">
+                                                 
+                                             <td>
+                                                <form id="new{{$feestructure->id}}" method="POST" action="deletefeestructure/{{$feestructure->id}}">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
 
     <div class="form-group">
-      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+      <input type="submit"  id="btn-submit{{$feestructure->id}}" class="btn btn-danger" value="Delete">
     </div>
   </form>
   <script>
@@ -189,7 +191,7 @@
 
 
 
-$(document).on('click', '#btn-submit', function(e) {
+$(document).on('click', '#btn-submit{{$feestructure->id}}', function(e) {
   var form = this;
 
   e.preventDefault(); // <--- prevent form from submitting
@@ -207,10 +209,10 @@ $(document).on('click', '#btn-submit', function(e) {
       if (isConfirm) {
         swal({
           title: 'Deleted!',
-          text: 'feestructure Is Deleted  successfully!',
+          text: 'Feestructure Is Deleted  successfully!',
           icon: 'success'
         }).then(function() {
-          $('#myForm1').submit(); // <--- submit form programmatically
+          $('#new{{$feestructure->id}}').submit(); // <--- submit form programmatically
         });
       } else {
         swal("Cancelled", "Your imaginary file is safe :)", "error");
@@ -223,12 +225,11 @@ $(document).on('click', '#btn-submit', function(e) {
   </script>
 </td>
 
-
                                             </tr>
                                             @endforeach
                                             
                                         </tbody>
-                                        <tfoot>
+                                       <!--  <tfoot>
                                             <tr>
                                              <th>section id</th>
                                                 <th>admission fee</th>
@@ -256,7 +257,7 @@ $(document).on('click', '#btn-submit', function(e) {
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> -->
                                     </table>
                                 </div>
                             </div>
@@ -410,23 +411,8 @@ $(document).on('click', '#btn-submit', function(e) {
             </nav>
         </div>
     </div>
-     <script>
-      function feestructuredelete(id)
-       {
-        if (confirm("Do you really want to delete this record?")) 
-        {
-          $.ajax({
-          url: 'feestructuredelete/'+id,
-          type:"DELETE",
-          data:{
-            _token:$("input[name=_token]").val()
-          },
-          success:function(response){
-            $('#tid'+id).remove();
-          }
-        });
-        }
-      }
+     
+    <!-- ============ Search UI End ============= -->
     </script>
     <!-- ============ Search UI End ============= -->
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
@@ -441,57 +427,6 @@ $(document).on('click', '#btn-submit', function(e) {
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/layout-sidebar-vertical.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/datatables.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/datatables.script.min.js"></script>
-
-
-
-
-
-
-      <script type="text/javascript">
-    function deletefeestructure(id) {
-        swal({
-            title: "Delete?",
-            text: "Please ensure and then confirm!",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: !0
-        }).then(function (e) {
-
-            if (e.value === true) {
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-             $.ajax({
-          url: 'deletefeestructure/'+id,
-          type:"DELETE",
-          data:{
-            _token:$("input[name=_token]").val()
-          },
-          success:function(response){
-            $('#cid'+id).remove();
-            swal({
-                title: "Success!",
-                text:  "Record has been deleted..",
-                type: "success",
-                timer: 3000,
-                showConfirmButton: false
-            });
-            window.setTimeout(function(){ } ,3000);
-            location.reload();
-          }
-        });
-
-            } else {
-                e.dismiss;
-            }
-
-        }, function (dismiss) {
-            return false;
-        })
-    }
-</script>
 </body>
 
 </html>
