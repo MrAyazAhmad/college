@@ -107,7 +107,9 @@ class FeeVoucherOfficerController extends Controller
         $wordFile->setValue('bank_name',$feeStructer->bank_name);
         $wordFile->setValue('account_title',$feeStructer->account_title);
         $wordFile->setValue('account_number',$feeStructer->account_number);
-        $wordFile->setValue('due_date',$feeStructer->due_date);
+        $ddate = date('d-m-Y', strtotime($feeStructer->due_date));
+
+        $wordFile->setValue('due_date',$ddate);
         $wordFile->setValue('user',$user);
         $wordFile->saveAs($fileName.'.docx');
         $Studentrecord->challan_print=1;

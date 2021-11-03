@@ -94,6 +94,7 @@
                                     <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Respit ID</th>
                                                 <th>CNIC</th>
                                                 <th>Name</th>
                                                 <th>Father Name</th>
@@ -111,6 +112,7 @@
                                             @foreach($students as $user)
                                             <tr id="sid{{$user->id}}" class="p-0">
 
+                                                <td>{{$user->id}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
