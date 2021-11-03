@@ -72,7 +72,6 @@ class AdmissionOfficerController extends Controller
       $studentbachelorcinfo =  Bachelor_Academic::where('stu_id',$student_id)->first();
       
         $class_section = Class_session::find($studentinfo->section_id);
-     
 
         $wordFile=new TemplateProcessor('word/AdmissionForm .docx');
         $name= $studentinfo->canidate_name;
@@ -209,7 +208,6 @@ class AdmissionOfficerController extends Controller
         $date= date('d-M-Y');
         $wordFile->setValue('date',$date);
         $fileName=$studentinfo->canidate_name.'_'.$studentinfo->CNIC;
-        dd($wordFile);
         $wordFile->saveAs($fileName.'.docx');
       
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
