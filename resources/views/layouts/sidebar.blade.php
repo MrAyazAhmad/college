@@ -3,9 +3,13 @@
                 <div class="side-nav">
                     <div class="main-menu">
                         <ul class="metismenu" id="menu">
+                             <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="{{url('/')}}"><i class="nav-icon i-Checked-User"></i><span class="nav-text">{{ auth()->user()->name }}</span></a>
+                        <!-- <div class="triangle"></div> -->
+                    </li>
                             <li class="Ul_li--hover"><a class="has-arrow" href="#"><i class="i-Bar-Chart text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Export Files</span></a>
                                 <ul class="mm-collapse">
                                     <li class="item-name"><a href="{{route('export')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Cash Book</span></a></li>
+                                    <li class="item-name"><a href="{{route('studentexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Student List</span></a></li>
                                     <li class="item-name"><a href="{{route('libraryexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Library Secuirity Book</span></a></li>
                                 </ul>
                             </li>
@@ -38,7 +42,7 @@
                                 </ul>
                             </li>  
                             <li class="Ul_li--hover"><a href="{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Logout</span></a>
+                                                     document.getElementById('logout-form').submit();"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Logout</span></a></li>
                                 
                                     
                                 </ul>

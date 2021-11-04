@@ -19,7 +19,7 @@
 <body class="text-left">
     <div class="app-admin-wrap layout-sidebar-vertical sidebar-full">
         <div class="sidebar-panel bg-white">
-            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="alt" />
+            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><a href="{{url('/')}}"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="alt" /></a>
                 <!--  <span class=" item-name text-20 text-primary font-weight-700">GULL</span> -->
                 <div class="sidebar-compact-switch ml-auto"><span></span></div>
             </div>
@@ -60,66 +60,39 @@
                 <div class="separator-breadcrumb border-top"></div>
                 <div class="row">
                     <!-- ICON BG-->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Add-User"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">New Leads</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">205</p>
+                                    <p class="text-muted mt-2 mb-0">Total Student</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2">{{$totalstudents}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Financial"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Sales</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">$4021</p>
+                                    <p class="text-muted mt-2 mb-0">Admission Confirm</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2">{{$admissionconfirm}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
                             <div class="card-body text-center"><i class="i-Checkout-Basket"></i>
                                 <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Orders</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">80</p>
+                                    <p class="text-muted mt-2 mb-0">Challan NotUpload</p>
+                                    <p class="text-primary text-24 line-height-1 mb-2">{{$challanupload}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-icon-bg card-icon-bg-primary o-hidden mb-4">
-                            <div class="card-body text-center"><i class="i-Money-2"></i>
-                                <div class="content">
-                                    <p class="text-muted mt-2 mb-0">Expense</p>
-                                    <p class="text-primary text-24 line-height-1 mb-2">$1200</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">This Year Sales</div>
-                                <div id="echartBar" style="height: 300px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="card-title">Sales by Countries</div>
-                                <div id="echartPie" style="height: 300px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          <div class="sidebar-overlay open"></div><!-- Footer Start -->
+                          <div class="sidebar-overlay open"></div><!-- Footer Start -->
             <div class="flex-grow-1"></div>
             <div class="app-footer">
                <p><strong>&#169;2021 All Rights Reserved By GPCA.</strong></p>
@@ -127,7 +100,7 @@
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
+                        <a href="{{url('/')}}"><a href="{{url('/')}}"><img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt=""></a></a>
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>

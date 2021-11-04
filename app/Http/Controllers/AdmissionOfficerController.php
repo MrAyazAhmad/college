@@ -37,24 +37,29 @@ class AdmissionOfficerController extends Controller
     public function postrespit(Request $request, $student_id){
 
 
+
         $studentinfo =  StudentRecord::find($student_id);
         $studentinfofee =  StudentFeeRecord::where('std_id',$student_id)->first();
         $studentroll =  StudentTRoll::where('std_id',$studentinfofee->std_id)->first();
         if(isset($studentroll)){
 
         $studentroll =  StudentTRoll::find($studentroll->id);
+         $request->validate([
+            'challan_file' => 'required',
+            'submissiondate' => 'required',
+            ]);
+        
 
         }else{
         $studentroll = New StudentTRoll();
+         $request->validate([
+            'challan_file' => 'required',
+            'submissiondate' => 'required',
+            ]);
 
         }
-         $studentroll->std_id = $studentinfo->id;
-        $studentroll->std_feei = $studentinfofee->id;
-        $studentroll->save();
-        $studentinfo->roll_no= $studentroll->id;
-        $studentinfo->save();
-        $user = Auth::user()->name;
-        
+       
+    
 
       
 
@@ -66,6 +71,13 @@ class AdmissionOfficerController extends Controller
             $input['challan_file'] = 
         $studentinfo->challan_file = "$canidateImage";
         $studentinfo->save();
+             $studentroll->std_id = $studentinfo->id;
+        $studentroll->std_feei = $studentinfofee->id;
+        $studentroll->save();
+        $studentinfo->roll_no= $studentroll->id;
+        $studentinfo->save();
+        $user = Auth::user()->name; 
+        
         $studentinfo =  StudentRecord::find($student_id);
       $studentmatricinfo =  Matric_Academic::where('stu_id',$student_id)->first();
       $studentinterinfo =  Inter_Academic::where('stu_id',$student_id)->first();
@@ -73,7 +85,7 @@ class AdmissionOfficerController extends Controller
       
         $class_section = Class_session::find($studentinfo->section_id);
 
-        $wordFile=new TemplateProcessor('word/AdmissionForm .docx');
+        $wordFile=new TemplateProcessor('word/AdmissionForm.docx');
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);        
         $wordFile->setValue('cnic',$studentinfo->CNIC);
@@ -222,6 +234,11 @@ class AdmissionOfficerController extends Controller
         $studentinfo = StudentRecord::where('id' , $request->stdid)->get()->first();
         // dd($studentinfo);
         if(isset($studentinfo)){
+            if(isset($studentinfo->challan_file)){
+            dd('Challan File Already Uplaoded');
+
+
+            }
             if($studentinfo->challan_print==1){
         return view('student.info.upload',compact('studentinfo'));
             }else{
@@ -246,7 +263,7 @@ class AdmissionOfficerController extends Controller
       // dd($class_section);
 
         // dd($class_section->class_name);
-        $wordFile=new TemplateProcessor('word/AdmissionForm .docx');
+        $wordFile=new TemplateProcessor('word/AdmissionForm.docx');
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);
         $wordFile->setValue('cnic',$studentinfo->CNIC);

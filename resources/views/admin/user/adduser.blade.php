@@ -31,7 +31,7 @@
 <body class="text-left">
     <div class="app-admin-wrap layout-sidebar-vertical sidebar-full">
         <div class="sidebar-panel bg-white">
-            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="alt" />
+            <div class="gull-brand pr-3 text-center mt-4 mb-2 d-flex justify-content-center align-items-center"><a href="{{url('/')}}"><img class="pl-3" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="alt" /></a>
                 <!--  <span class=" item-name text-20 text-primary font-weight-700">GULL</span> -->
                 <div class="sidebar-compact-switch ml-auto"><span></span></div>
             </div>
@@ -330,7 +330,7 @@
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
+                        <a href="{{url('/')}}"><img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt=""></a>
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>

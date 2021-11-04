@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
 use App\Exports\LibraryRecordExport;
+use App\Exports\StudentListExport;
 use Hash;
 use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
@@ -27,8 +28,11 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $totalstudents =StudentRecord::all()->count();
+        $challanupload =StudentRecord::orWhereNull('challan_file')->count();
+        $admissionconfirm =StudentTRoll::all()->count();
     
-        return view('admin');
+        return view('admin',compact('totalstudents','admissionconfirm','challanupload'));
     }   
     public function allusera()
     {
@@ -458,6 +462,11 @@ class AdminController extends Controller
     {
         $name='Cashbook'.date('M-d-Y_hia').'.xlsx';  
         return Excel::download(new StudentRecordExport1, $name);
+    }
+        public function studentexport() 
+    {
+        $name='StudentRecords'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new StudentListExport, $name);
     }
        public function libraryexport() 
     {

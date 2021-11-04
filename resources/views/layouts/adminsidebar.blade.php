@@ -30,6 +30,9 @@
                     <li class="nav-item" ><a class="nav-item-hold" href="{{route('admin')}}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Back To Admin</span></a>
                         <!-- <div class="triangle"></div> -->
                     </li>
+                     <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Checked-User"></i><span class="nav-text">{{ auth()->user()->name }}</span></a>
+                        <!-- <div class="triangle"></div> -->
+                    </li>
                     
                         <!-- <div class="triangle"></div> -->
                   

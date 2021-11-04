@@ -266,7 +266,7 @@
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
+                        <a href="{{url('/')}}"><img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt=""></a>
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>

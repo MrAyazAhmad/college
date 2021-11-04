@@ -108,7 +108,7 @@ Route::get('/feevoucherofficer', [App\Http\Controllers\FeeVoucherOfficerControll
 Route::post('/studentrecord', [App\Http\Controllers\FeeVoucherOfficerController::class, 'studentrecord'])->name('studentrecord')->middleware('feevoucherofficer');
 Route::post('/studentfeevoucher/{id}', [App\Http\Controllers\FeeVoucherOfficerController::class, 'studentfeevoucher'])->name('studentfeevoucher')->middleware('feevoucherofficer');
 Route::get('/admissionofficer', [App\Http\Controllers\AdmissionOfficerController::class, 'index'])->name('admissionofficer')->middleware('admissionofficer');
-Route::post('/studentrecordupload', [App\Http\Controllers\AdmissionOfficerController::class, 'studentrecordupload'])->name('studentrecordupload')->middleware('admissionofficer');
+Route::get('/studentrecordupload', [App\Http\Controllers\AdmissionOfficerController::class, 'studentrecordupload'])->name('studentrecordupload')->middleware('admissionofficer');
 
 Route::get('view-feestructure', [App\Http\Controllers\AdminController::class, 'viewfeestructure']);
 Route::get('edit_feestructure/{id}', [App\Http\Controllers\AdminController::class, 'EditFeestructure']);
@@ -125,6 +125,7 @@ Route::get('printaplication/{id}', [App\Http\Controllers\AdmissionOfficerControl
 Route::post('postrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'postrespit']);
 // Route::get('/home', 'AcademicController@index')->name('home');
 Route::get('export', [App\Http\Controllers\AdminController::class, 'export'])->name('export')->middleware('admin');
+Route::get('studentexport', [App\Http\Controllers\AdminController::class, 'studentexport'])->name('studentexport')->middleware('admin');
 Route::get('libraryexport', [App\Http\Controllers\AdminController::class, 'libraryexport'])->name('libraryexport')->middleware('admin');
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class,'index']);
 Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'store'])->name('change.password');
