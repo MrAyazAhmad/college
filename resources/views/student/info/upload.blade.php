@@ -17,11 +17,7 @@
             <div class="logo">
                 <img src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
             </div>
-            <div class="menu-toggle">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+           
            
             <div style="margin: auto"></div>
             <div class="header-part-right">
@@ -41,26 +37,19 @@
         <div class="side-content-wrap">
             <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true" >
                 <ul class="navigation-left">
-                    <li class="nav-item" data-item="dashboard"><a class="nav-item-hold" href="#"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span></a>
-                        <div class="triangle"></div>
+                    <li class="nav-item" ><a class="nav-item-hold" href="{{url('/')}}"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">New Search</span></a>
+                        <!-- <div class="triangle"></div> -->
                     </li>
                     
-                        <div class="triangle"></div>
-                    </li>
+                        <!-- <div class="triangle"></div> -->
+                    
                 </ul>
             </div>
-            <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
-                <!-- Submenu Dashboards-->
-                <ul class="childNav" data-parent="dashboard">
-                    <li class="nav-item"><a href="dashboard1.html"><i class="nav-icon i-Clock-3"></i><span class="item-name">Version 1</span></a></li>
-                    <li class="nav-item"><a href="dashboard2.html"><i class="nav-icon i-Clock-4"></i><span class="item-name">Version 2</span></a></li>
-                    <li class="nav-item"><a href="dashboard3.html"><i class="nav-icon i-Over-Time"></i><span class="item-name">Version 3</span></a></li>
-                    <li class="nav-item"><a href="dashboard4.html"><i class="nav-icon i-Clock"></i><span class="item-name">Version 4</span></a></li>
-                </ul>
-                
-            </div>
-            <div class="sidebar-overlay"></div>
         </div>
+           
+                
+            <!-- <div class="sidebar-overlay"></div> -->
+
         <!-- =============== Left side End ================-->
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <!-- ============ Body content start ============= -->
@@ -79,7 +68,7 @@
                             <div class="card-body">
                                 <div class="card-title mb-3">Form Inputs</div>
                             <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multipart/form-data">
-                                    @csrf
+                             {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="CNIC">CNIC</label>
@@ -107,10 +96,16 @@
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="challan_file">Challan File</label>
                                             <input class="form-control" id="challan_file" type="file" name="challan_file" placeholder="Upload Challan File" />
+                                            @if ($errors->has('challan_file'))
+                                                <span class="text-danger">{{ $errors->first('challan_file') }}</span>
+                                            @endif
                                         </div>
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="submissiondate">Fee Submission Date</label>
-                                            <input class="form-control" id="submissiondate" type="date" name="submissiondate" />
+                                            <input class="form-control" id="submissiondate"  name="submissiondate" type="tel" maxlength="10" placeholder="dd/mm/yyyy"oninput="this.value = DDMMYYYY(this.value, event)"/>
+                                             @if ($errors->has('submissiondate'))
+                                                <span class="text-danger">{{ $errors->first('submissiondate') }}</span>
+                                            @endif
                                         </div>
                                         
                                      
@@ -321,7 +316,7 @@
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
+                        <a href="{{url('/')}}"><img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt=""></a>
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>
@@ -339,6 +334,20 @@
     <script src="{{URL::to('public')}}/dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/script.min.js"></script>
     <script src="{{URL::to('public')}}/dist-assets/js/scripts/sidebar.large.script.min.js"></script>
+    <script type="text/javascript">
+        function DDMMYYYY(value, event) {
+  let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
+
+  const dayOrMonth = (index) => index % 2 === 1 && index < 4;
+
+  // on delete key.  
+  if (!event.data) {
+    return value;
+  }
+
+  return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
+}
+    </script>
 </body>
 
 </html>

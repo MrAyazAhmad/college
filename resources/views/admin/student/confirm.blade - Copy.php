@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="{{URL::to('public')}}/dist-assets/css/plugins/datatables.min.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -35,11 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-<style type="text/css">
-    .dropdown-item.active, .dropdown-item:active {
-    color: #000;
-}
-</style>
 
 </head>
 
@@ -98,10 +91,9 @@
                                 <h4 class="card-title mb-3">All Student Confirm Students Records</h4>
                                 <!-- <p>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> -->
                                 <div class="table-responsive">
-                                    <table id="example" class="display" style="width:100%">
-                                    <thead>
-                                          <tr>
-                                                <th>Respit ID</th>
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
                                                 <th>Roll NO</th>
                                                 <th>CNIC</th>
                                                 <th>Name</th>
@@ -109,29 +101,22 @@
                                                 <th>Date Of Birth</th>
                                                 <th>Contact Number</th>
                                                 <th>Group</th>
-                                                 <th>Optional Subject One</th>
-                                                <th>Optional Subject Two</th>
-                                                <th>Optional Subject Three</th>
                                                 <th>Print Chalan</th>
                                                 <th>Print Receipt</th>
                                                 <th>Print Application Form</th>
-                                               
                                             </tr>
-                                    </thead>
-                                    <tbody>
-                                         @foreach($students as $user)
+                                        </thead>
+                                        <tbody>
+                                            @foreach($students as $user)
                                             <tr id="sid{{$user->id}}" class="p-0">
 
-                                                <td>{{$user->Student->id}}</td>
                                                 <td>{{$user->id}}</td>
+                                                <td>{{$user->Student->CNIC}}</td>
                                                 <td>{{$user->Student->canidate_name}}</td>
                                                 <td>{{$user->Student->f_name}}</td>
                                                 <td>{{$user->Student->dob}}</td>
                                                 <td>{{$user->Student->contact_number}}</td>
                                                 <td>{{$user->Student->group}}</td>
-                                                 <td >{{$user->Student->optional_subject_one}}</td>
-                                                <td >{{$user->Student->optional_subject_two}}</td>
-                                                <td >{{$user->Student->optional_subject_three}}</td>
                                                 <td><a href="{{ url('/admissionrespit/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
                                                  <td><a  target="_blank" href="{{ url('/generate-pdf/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
                                                  <td><a href="{{ url('/printaplication/' . $user->Student->id) }}"><i class="fa fa-print" aria-hidden="true"></i></a></td>
@@ -142,19 +127,10 @@
 
                                             </tr>
                                             @endforeach
-                                        
-                                    </tbody>
-                                   <!--  <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
-                                </table>
+                                            
+                                        </tbody>
+                                   
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -389,19 +365,7 @@
             return false;
         })
     }
-  
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'colvis',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5',
-        ]
-    } );
-} );
-
+    
 </script>
 </body>
 

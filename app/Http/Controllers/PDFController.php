@@ -6,6 +6,8 @@ use PDF;
 use App\Models\StudentRecord;
 use App\Models\Class_session;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+
   
 class PDFController extends Controller
 {
@@ -24,8 +26,9 @@ class PDFController extends Controller
 
          $data = ['title' => $studentinfo->canidate_name,'fname' => $studentinfo->f_name ,'image' => $studentinfo->image_name ,'id' => $studentinfo->id,'classname' => $classsession->class_name ,'user'=>$user];
 
-        $pdf = PDF::loadView('myPDF', $data);  
-        return $pdf->stream($studentinfo->canidate_name.'_'.$studentinfo->CNIC);
+        $pdf = PDF::loadView('myPDF', $data);
+        return $pdf->stream($studentinfo->canidate_name.'_'.$studentinfo->CNIC);                
+
 
     }
 }

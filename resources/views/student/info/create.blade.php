@@ -247,7 +247,7 @@ input {
                             <div class="card-body">
 
                             <div class="card-title mb-3">Form Inputs</div>
-                            <form id="regForm" method="post" action="{{url('admissionform')}}" enctype="multipart/form-data">
+                            <form id="regForm" method="post"  target="_blank" action="{{url('admissionform')}}" enctype="multipart/form-data">
 <!-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -888,7 +888,7 @@ input {
                     
                     <span class="flex-grow-1"></span>
                     <div class="d-flex align-items-center">
-                        <img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt="">
+                        <a href="{{url('/')}}"><img class="logo" src="{{URL::to('public')}}/dist-assets/images/logo.jpg" alt=""></a>
                         <div>
                             <p class="m-0">&copy; 2021 GPCA </p>
                             <p class="m-0">All rights reserved</p>
@@ -1169,14 +1169,14 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Economics";
         document.getElementById("optional_subject_two").value = "Computer";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
        if ( this.value == 'Grouphg1')
       {
         document.getElementById("optional_subject_one").value = "Economics";
         document.getElementById("optional_subject_two").value = "Islamiyat";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg2')
@@ -1190,7 +1190,7 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Economics";
         document.getElementById("optional_subject_two").value = "Arabic";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg4')
@@ -1204,7 +1204,7 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Economics";
         document.getElementById("optional_subject_two").value = "History";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg6')
@@ -1218,7 +1218,7 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Civics";
         document.getElementById("optional_subject_two").value = "Islamiyat";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg8')
@@ -1232,7 +1232,7 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Civics";
         document.getElementById("optional_subject_two").value = "Arabic";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg10')
@@ -1246,7 +1246,7 @@ $(document).ready(function(){
       {
         document.getElementById("optional_subject_one").value = "Civics";
         document.getElementById("optional_subject_two").value = "History";
-        document.getElementById("optional_subject_three").value = "Health & Physical Education";
+        document.getElementById("optional_subject_three").value = "Health And Physical Education";
 
       }
          if ( this.value == 'Grouphg12')
