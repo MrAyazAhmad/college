@@ -209,7 +209,6 @@ class AdmissionOfficerController extends Controller
         $date= date('d-M-Y');
         $wordFile->setValue('date',$date);
         $fileName=$studentinfo->canidate_name.'_'.$studentinfo->CNIC;
-        dd($wordFile);
         $wordFile->saveAs($fileName.'.docx');
       
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
