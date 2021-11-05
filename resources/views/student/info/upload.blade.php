@@ -9,6 +9,25 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
     <link href="{{URL::to('public')}}/dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
+    <style type="text/css">
+        button {
+  background-color: #04AA6D;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+.inter{
+    display: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+    </style>
 </head>
 
 <body class="text-left">
@@ -21,7 +40,7 @@
            
             <div style="margin: auto"></div>
             <div class="header-part-right">
-                    <!-- Full screen toggle--><i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
+                    <!-- Full screen toggle--><a href="{{url('/')}}"><button href="{{url('/deo')}}"><i class=" bu d-none d-sm-inline-block"  ></i>New Search</button></a><i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
                     <!-- Grid menu Dropdown-->
                     <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -67,7 +86,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-3">Form Inputs</div>
-                            <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multipart/form-data">
+                            <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multi/form-data">
                              {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-3">

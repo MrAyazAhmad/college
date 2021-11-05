@@ -21,6 +21,22 @@
                 width: 60%;
                 font-weight: bolder;
             }
+                    button {
+  background-color: #04AA6D;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+.inter{
+    display: none;
+}
+
+button:hover {
+  opacity: 0.8;
+}
     </style>
 
 </head>

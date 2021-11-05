@@ -267,7 +267,7 @@ input {
                                             <label for="picker1">Admission Applied For Class<span class="required">*</span></label>
 
                                           
-                                            <select class="form-control " name="Applied" id="Applied">
+                                            <select class="form-control " name="Applied" id="Applied" >
                                                 
                                                 <option value="">Select </option>
                                                 <option value="Intermediate">Intermediate </option>
@@ -370,7 +370,7 @@ input {
                                        
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="CNIC">CNIC <span class="required">*</span></label>
-                                            <input value="{{old('CNIC')}}" class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" maxlength="13"/>
+                                            <input value="{{old('CNIC')}}" class="form-control" id="CNIC" name="CNIC" type="text" placeholder="Enter canidate cnic" autofocus maxlength="13"/>
                                              @if ($errors->has('CNIC'))
                                                 <span class="text-danger">{{ $errors->first('CNIC') }}</span>
                                             @endif
@@ -1265,6 +1265,9 @@ $(document).ready(function(){
       }
     });
 });
+window.onload = function() {
+  var input = document.getElementById("Applied").focus();
+}
 </script>
 <script>
 function DDMMYYYY(value, event) {
