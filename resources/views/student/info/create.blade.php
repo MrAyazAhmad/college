@@ -183,7 +183,7 @@ input {
            
             <div style="margin: auto"></div>
             <div class="header-part-right">
-                    <!-- Full screen toggle--><button><a href="{{url('/deo')}}"><i class=" bu d-none d-sm-inline-block"  ></i></a>New Form</button>
+                    <!-- Full screen toggle--><a href="{{url('/deo')}}"><button href="{{url('/deo')}}"><i class=" bu d-none d-sm-inline-block"  ></i>New Form</button></a>
                     <i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
                     <!-- Grid menu Dropdown-->
                     <div class="dropdown dropleft"><i class="i-Safe-Box text-muted header-icon" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
