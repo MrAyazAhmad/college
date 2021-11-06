@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 use PDF;
-
+use File;
 use Carbon\Carbon;
 
 
@@ -43,6 +43,7 @@ class AdmissionOfficerController extends Controller
         $studentroll =  StudentTRoll::where('std_id',$studentinfofee->std_id)->first();
         if(isset($studentroll)){
 
+
         $studentroll =  StudentTRoll::find($studentroll->id);
          $request->validate([
             'challan_file' => 'required',
@@ -52,19 +53,21 @@ class AdmissionOfficerController extends Controller
 
         }else{
         $studentroll = New StudentTRoll();
+
          $request->validate([
             'challan_file' => 'required',
             'submissiondate' => 'required',
             ]);
+        $studentinfo->submissiondate = $request->submissiondate;
 
-        }
+  
        
     
 
       
 
-        $studentinfo->submissiondate = $request->submissiondate;
-         if ($challan_file = $request->file('challan_file')) {
+         if ($challan_file = $request->challan_file) {
+            $challan_file = $request->file('challan_file');
             $destinationPath = 'public/image/challan_file/';
             $canidateImage = date('YmdHis') . $request->canidate_name ."." . $challan_file->getClientOriginalExtension();
             $challan_file->move($destinationPath, $canidateImage);
@@ -224,8 +227,10 @@ class AdmissionOfficerController extends Controller
       
         return response()->download($fileName.'.docx')->deleteFileAfterSend(true);
 
-        }    
+        
+        }   
         return redirect::to('admissionofficer')->with('message', 'please upload challan image and selecte date!');;
+    }
 
 
     }

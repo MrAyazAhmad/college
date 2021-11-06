@@ -998,6 +998,7 @@ function myFunction() {
     x.style.display = "none";
   }
 }
+$(".form-control form:visible").find('input')[0].focus();
 
     
 </script>
