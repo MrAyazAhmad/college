@@ -86,7 +86,7 @@ button:hover {
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="card-title mb-3">Form Inputs</div>
-                            <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multi/form-data">
+                            <form method="post" action="{{url('postrespit/')}}/{{$studentinfo->id}}" enctype="multipart/form-data">
                              {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-md-6 form-group mb-3">
