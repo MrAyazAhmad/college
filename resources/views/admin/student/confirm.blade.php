@@ -109,7 +109,7 @@
                                                 <th>Father Name</th>
                                                 <th>Date Of Birth</th>
                                                 <th>Contact Number</th>
-                                                <th>Group</th>
+                                                <th>Class</th>
                                                  <th>Optional Subject One</th>
                                                 <th>Optional Subject Two</th>
                                                 <th>Optional Subject Three</th>
@@ -120,6 +120,8 @@
                                             </tr>
                                     </thead>
                                     <tbody>
+                                        
+                                        
                                          @foreach($students as $user)
                                             <tr id="sid{{$user->id}}" class="p-0">
 
@@ -130,7 +132,12 @@
                                                 <td>{{$user->Student->f_name}}</td>
                                                 <td>{{$user->Student->dob}}</td>
                                                 <td>{{$user->Student->contact_number}}</td>
-                                                <td>{{$user->Student->group}}</td>
+                                                <?php
+                                                $clasname = DB::table('class_session')->where('id',$user->Student->section_id)->get()->first();
+                                                // dd($clasname);
+
+                                                ?>
+                                                <td>{{$clasname->class_name}}</td>
                                                  <td >{{$user->Student->optional_subject_one}}</td>
                                                 <td >{{$user->Student->optional_subject_two}}</td>
                                                 <td >{{$user->Student->optional_subject_three}}</td>
