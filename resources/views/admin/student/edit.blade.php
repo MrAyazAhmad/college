@@ -316,6 +316,13 @@ input {
                                                 <span class="text-danger">{{ $errors->first('f_name') }}</span>
                                                 @endif 
                                         </div>
+                                         <div class="col-md-3 form-group mb-3">
+                                            <label for="m_name">Mother Name</label>
+                                            <input class="form-control"  value="{{$user->m_name}}" id="m_name" type="Year" name="m_name" placeholder="Enter m_name" />
+                                             @if ($errors->has('m_name'))
+                                                <span class="text-danger">{{ $errors->first('m_name') }}</span>
+                                                @endif 
+                                        </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="f_cnic">Father CNIC</label>
                                             <input class="form-control"  value="{{$user->f_cnic}}" id="f_cnic" type="Year" name="f_cnic" placeholder="Enter f_cnic" maxlength="13" />

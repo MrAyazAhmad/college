@@ -157,6 +157,7 @@ class AdminController extends Controller
             'dob' => 'required',
             'covid' => 'required',
             'f_name' => 'required',
+            'm_name' => 'required',
             'f_cnic' => 'required',
             'contact_number' => 'required',
             'address' => 'required',
@@ -187,6 +188,7 @@ class AdminController extends Controller
         $user->canidate_name = $request->canidate_name;
         $user->dob = $request->dob;
         $user->f_name = $request->f_name;
+        $user->m_name = $request->m_name;
         $user->f_cnic = $request->f_cnic;
         $user->contact_number = $request->contact_number;
         $user->address = $request->address;

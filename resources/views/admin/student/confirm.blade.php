@@ -110,6 +110,8 @@
                                                 <th>Date Of Birth</th>
                                                 <th>Contact Number</th>
                                                 <th>Class</th>
+                                                <th>Matric Obtain Marks</th>
+                                                <th>Total Marks</th>
                                                  <th>Optional Subject One</th>
                                                 <th>Optional Subject Two</th>
                                                 <th>Optional Subject Three</th>
@@ -134,10 +136,11 @@
                                                 <td>{{$user->Student->contact_number}}</td>
                                                 <?php
                                                 $clasname = DB::table('class_session')->where('id',$user->Student->section_id)->get()->first();
-                                                // dd($clasname);
-
+                                                $matric = DB::table('matric_academic')->where('stu_id',$user->Student->id)->get()->first();
                                                 ?>
                                                 <td>{{$clasname->class_name}}</td>
+                                                <td>{{$matric->marks_obtian}}</td>
+                                                <td>{{$matric->total_marks}}</td>
                                                  <td >{{$user->Student->optional_subject_one}}</td>
                                                 <td >{{$user->Student->optional_subject_two}}</td>
                                                 <td >{{$user->Student->optional_subject_three}}</td>
