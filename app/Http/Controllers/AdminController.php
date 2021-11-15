@@ -85,7 +85,7 @@ class AdminController extends Controller
                     unlink($image_path);
                 }
         $student->delete();
-        return redirect()->back()->with('success','your record successfully.....');
+        return redirect()->back()->with('success','Student record delete successfully.....');
     } 
     public function DeleteFeestructure($id)
     {

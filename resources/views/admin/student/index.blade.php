@@ -90,6 +90,15 @@
                             <div class="card-body">
                                 <h4 class="card-title mb-3">All Student Records</h4>
                                 <!-- <p>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</p> -->
+                                   @if (\Session::has('success'))
+                                <br>
+                                  <div class="alert alert-success d-inline ml-6 mr-6">
+                                    
+                                      <strong>{!! \Session::get('success') !!}</strong>
+                                    
+                                  </div>
+                                  <br>
+                                @endif
                                 <div class="table-responsive">
                                     <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
                                         <thead>
@@ -141,7 +150,7 @@
     {{ method_field('DELETE') }}
 
     <div class="form-group">
-      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+      <input type="submit"  id="btn-submit{{$user->id}}" class="btn btn-danger" value="Delete">
     </div>
   </form>
   <script>
@@ -149,7 +158,7 @@
 
 
 
-$(document).on('click', '#btn-submit', function(e) {
+$(document).on('click', '#btn-submit{{$user->id}}', function(e) {
   var form = this;
 
   e.preventDefault(); // <--- prevent form from submitting

@@ -527,7 +527,7 @@ input {
                                              </div>
                                         <div class="col-md-3 form-group mb-3">
                                             <label for="totall_marks">Total Marks</label>
-                                            <input class="form-control"  value="{{$matric->total_marks}}" id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" />
+                                            <input class="form-control"   id="totall_marks" type="text" name="totall_marks" value="1100" placeholder="Enter Total Marks" readonly="" />
                                               @if ($errors->has('total_marks'))
                                                 <span class="text-danger">{{ $errors->first('total_marks') }}</span>
                                                 @endif 
