@@ -139,8 +139,10 @@
                                                 $matric = DB::table('matric_academic')->where('stu_id',$user->Student->id)->get()->first();
                                                 ?>
                                                 <td>{{$clasname->class_name}}</td>
+                                                @if($matric)
                                                 <td>{{$matric->marks_obtian}}</td>
                                                 <td>{{$matric->total_marks}}</td>
+                                                @endif
                                                  <td >{{$user->Student->optional_subject_one}}</td>
                                                 <td >{{$user->Student->optional_subject_two}}</td>
                                                 <td >{{$user->Student->optional_subject_three}}</td>
