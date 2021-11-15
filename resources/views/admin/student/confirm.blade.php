@@ -142,6 +142,9 @@
                                                 @if($matric)
                                                 <td>{{$matric->marks_obtian}}</td>
                                                 <td>{{$matric->total_marks}}</td>
+                                                @else
+                                                <td>Not Found</td>
+                                                <td>Not Found</td>
                                                 @endif
                                                  <td >{{$user->Student->optional_subject_one}}</td>
                                                 <td >{{$user->Student->optional_subject_two}}</td>
