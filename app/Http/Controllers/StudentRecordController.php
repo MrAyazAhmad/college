@@ -64,6 +64,7 @@ class StudentRecordController extends Controller
             'dob' => 'required',
             'covid' => 'required',
             'f_name' => 'required',
+            'm_name' => 'required',
             'f_cnic' => 'required',
             'contact_number' => 'required',
             'address' => 'required',
@@ -105,6 +106,7 @@ class StudentRecordController extends Controller
         $studentinfo->canidate_name = $request->canidate_name;
         $studentinfo->dob = $request->dob;
         $studentinfo->f_name = $request->f_name;
+        $studentinfo->m_name = $request->m_name;
         $studentinfo->f_cnic = $request->f_cnic;
         $studentinfo->contact_number = $request->contact_number;
         $studentinfo->address = $request->address;
@@ -281,6 +283,7 @@ class StudentRecordController extends Controller
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);
         $wordFile->setValue('f_name',$studentinfo->f_name);
+        $wordFile->setValue('m_name',$studentinfo->m_name);
         $wordFile->setValue('id',$studentinfo->id);
         $wordFile->setValue('class',$class_section->class_name);
         $session=$class_section->start_year." ".$class_section->end_year;
