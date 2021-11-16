@@ -141,7 +141,7 @@
     {{ method_field('DELETE') }}
 
     <div class="form-group">
-      <input type="submit"  id="btn-submit" class="btn btn-danger" value="Delete">
+      <input type="submit"  id="btn-submit{{$user->id}}" class="btn btn-danger" value="Delete">
     </div>
   </form>
   <script>
@@ -149,7 +149,7 @@
 
 
 
-$(document).on('click', '#btn-submit', function(e) {
+$(document).on('click', '#btn-submit{{$user->id}}', function(e) {
   var form = this;
 
   e.preventDefault(); // <--- prevent form from submitting
