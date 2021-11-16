@@ -271,8 +271,7 @@ input {
                                                 
                                                 <option value="">Select </option>
                                                 <option value="Intermediate">Intermediate </option>
-                                                <option value="Bachelor">Bachelor </option>
-                                                <option value="BS(ENG)">BS(ENG)</option>
+                                                <option value="BS(hons)">BS(hons)</option>
                                                
                                             </select>
                                              <!-- Error -->
@@ -325,6 +324,14 @@ input {
                                                 <option class="master" value="2nd_Semster">2nd Semster</option>
                                                 <option class="master" value="3rd_Semster">3rd Semster</option>
                                                 <option class="master" value="4th_Semster">4th Semster</option>
+                                                <option class="bshons" value="1st">1st Semster</option>
+                                                <option class="bshons" value="2nd_Semster">2nd Semster</option>
+                                                <option class="bshons" value="3rd_Semster">3rd Semster</option>
+                                                <option class="bshons" value="4th_Semster">4th Semster</option>
+                                                <option class="bshons" value="5th_Semster">5th Semster</option>
+                                                <option class="bshons" value="6th_Semster">6th Semster</option>
+                                                <option class="bshons" value="7th_Semster">7th Semster</option>
+                                                <option class="bshons" value="8th_Semster">8th Semster</option>
                                             
                                             </select>
                                              @if ($errors->has('class_year'))
@@ -1078,13 +1085,14 @@ $(document).ready(function(){
         $("#div1").show();
        
 
-      if ( this.value == 'Bachelor')
+      if ( this.value == 'BS(hons)')
       {
         $("#interdiv").show();
-        $(".inter").hide();
         $("#Bachelordiv").hide();
-        $(".bch").show();
+         $(".inter").hide();
+        $(".bch").hide();
         $(".master").hide();
+        $(".bshons").show();
 
       }
       if ( this.value == 'BS(ENG)')
@@ -1093,7 +1101,7 @@ $(document).ready(function(){
         $("#Bachelordiv").show();
          $(".inter").hide();
         $(".bch").hide();
-        $(".master").show();
+        $(".master").hide();
 
       }
       if ( this.value == 'Intermediate')
