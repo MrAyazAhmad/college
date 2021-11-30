@@ -212,7 +212,14 @@ input {
                                                 <option value="">Select </option>
 
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->class_name}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}} </option>
+                                                 @if($c_section->category=='Intermediate')                                                
+                                                <option class="Interclass" style="display: none;" value="{{$c_section->class_name}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}} </option>
+                                                @endif
+                                                 @if($c_section->category=='BS(hons)')                                                
+                                                <option class="BS" style="display: none;" value="{{$c_section->class_name}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}} </option>
+                                                @endif
+
+                                                 
                                                 @endforeach
                                             </select>
                                                @if ($errors->has('section_name'))
@@ -245,6 +252,10 @@ input {
                                                 <option class="master" value="3rd_Semster"{{ $user->class_year == '3rd_Semster' ? 'selected' : '' }}>3rd Semster</option>
                                                 <option class="master" value="4th_Semster"{{ $user->class_year == '4th_Semster' ? 'selected' : '' }}>4th Semster</option>
                                                
+                                                <option class="bshons" value="1st_Semster">1st Semster</option>
+                                                <option class="bshons" value="2nd_Semster">2nd Semster</option>
+                                                <option class="bshons" value="3rd_Semster">3rd Semster</option>
+                                                <option class="bshons" value="4th_Semster">4th Semster</option>
                                                 <option class="bshons" value="5th_Semster">5th Semster</option>
                                                 <option class="bshons" value="6th_Semster">6th Semster</option>
                                                 <option class="bshons" value="7th_Semster">7th Semster</option>
@@ -268,7 +279,14 @@ input {
                                             <select class="form-control" name="section_id">
                                                 <option value="">Select</option>
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->id}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                @if($c_section->category=='Intermediate')
+
+                                                <option class="Interclass" style="display: none;" value="{{$c_section->id}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                @endif
+                                                 @if($c_section->category=='BS(hons)')
+
+                                                <option class="BS" style="display: none;" value="{{$c_section->id}}"{{ $c_section->id == $user->section_id ? 'selected' : '' }}>{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                               @if ($errors->has('section_id'))
@@ -351,7 +369,7 @@ input {
                                         </div>
                                           <div class="col-md-3 form-group mb-3">
                                             <label for="religion">Religion</label>
-                                             <select class="form-control" name="religion">
+                                              <select class="form-control" name="religion">
                                                 <option value="">Select</option>
                                                 <option value="Muslim"{{ $user->religion == 'Muslim' ? 'selected' : '' }}>Muslim</option>
                                                 <option value="Non-Muslim"{{ $user->religion == 'Non-Muslim' ? 'selected' : '' }}>Non-Muslim</option>
@@ -586,11 +604,11 @@ input {
                                                  <select class="form-control" name="Inter_Year">
                                                 <option value="">Select</option>
 
-                                                  <option value="2017"{{ $inter->passing_year == '2017' ? 'selected' : '' }}>2017</option>
-                                                <option value="2018"{{ $inter->passing_year == '2018' ? 'selected' : '' }}>2018</option>
-                                                <option value="2019"{{ $inter->passing_year == '2019' ? 'selected' : '' }}>2019</option>
-                                                <option value="2020"{{ $inter->passing_year == '2020' ? 'selected' : '' }}>2020</option>
                                                 <option value="2021"{{ $inter->passing_year == '2021' ? 'selected' : '' }}>2021</option>
+                                                <option value="2020"{{ $inter->passing_year == '2020' ? 'selected' : '' }}>2020</option>
+                                                <option value="2019"{{ $inter->passing_year == '2019' ? 'selected' : '' }}>2019</option>
+                                                <option value="2018"{{ $inter->passing_year == '2018' ? 'selected' : '' }}>2018</option>
+                                                  <option value="2017"{{ $inter->passing_year == '2017' ? 'selected' : '' }}>2017</option>
                                             </select> 
                                             </select> 
                                              </div>
@@ -631,6 +649,13 @@ input {
                                                 </select>
                                        
                                     </div>
+                                    <div class="col-md-3 form-group mb-3">
+                                                <label for="Inter_subject_marks">Subject Marks<span class="required">*</span></label>
+                                                <input value="{{old('name')}}" class="form-control" name="Inter_subject_marks" id="Inter_subject_marks" type="text"   /> 
+                                                 @if ($errors->has('Inter_subject_marks'))
+                                                <span class="text-danger">{{ $errors->first('Inter_subject_marks') }}</span>
+                                                @endif
+                                            </div>
                                     @endif
                                 @if(isset($bacholer))
 
@@ -964,12 +989,14 @@ $(document).ready(function(){
         $("#div1").show();
        
 
-      if ( this.value == 'BS(hons)')
+       if ( this.value == 'BS(hons)')
       {
         $("#interdiv").show();
         $("#Bachelordiv").hide();
          $(".inter").hide();
         $(".bch").hide();
+        $(".BS").show();
+        $(".Interclass").hide();
         $(".master").hide();
         $(".bshons").show();
 
@@ -988,8 +1015,12 @@ $(document).ready(function(){
         $("#interdiv").hide();
         $("#Bachelordiv").hide();
         $(".inter").show();
+        $(".BS").hide();
         $(".bch").hide();
+        $(".Interclass").show();
         $(".master").hide();
+        $(".bshons").hide();
+
 
 
       }

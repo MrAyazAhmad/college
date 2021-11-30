@@ -55,6 +55,7 @@ class ClassSessionController extends Controller
         $classsession->start_year = $request->start_year;
         $classsession->end_year = $request->end_year;
         $classsession->status_id = $request->status_id;
+        $classsession->category = $request->category;
         // dd($classsession);
         // die();
         
