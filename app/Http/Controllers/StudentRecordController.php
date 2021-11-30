@@ -58,37 +58,37 @@ class StudentRecordController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
-            'CNIC' => 'required|unique:student_records',
-            'canidate_name' => 'required',
-            'dob' => 'required',
-            'covid' => 'required',
-            'f_name' => 'required',
-            'm_name' => 'required',
-            'f_cnic' => 'required',
-            'contact_number' => 'required',
-            'address' => 'required',
-            'religion' => 'required',
-            'nationality' => 'required',
-            'specialty' => 'required',
-            'group' => 'required',
-            'optional_subject_one' => 'required',
-            'optional_subject_two' => 'required',
-            'optional_subject_three' => 'required',
-            'Applied' =>'required',
-            'section_name' =>'required',
-            'class_year' =>'required',
-            'section_id' =>'required',
-            'bgroup' =>'required',
-             'roll_no' => 'required',
-            'Passing_Year' => 'required',
-            'exam_Type' => 'required',
-            'Marks_Obt' => 'required',
-            'totall_marks' => 'required',
-            'percentage' => 'required',
-            'insitute_name' => 'required',
-            'grade' => 'required',
-        ]); 
+        // $request->validate([
+        //     'CNIC' => 'required|unique:student_records',
+        //     'canidate_name' => 'required',
+        //     'dob' => 'required',
+        //     'covid' => 'required',
+        //     'f_name' => 'required',
+        //     'm_name' => 'required',
+        //     'f_cnic' => 'required',
+        //     'contact_number' => 'required',
+        //     'address' => 'required',
+        //     'religion' => 'required',
+        //     'nationality' => 'required',
+        //     'specialty' => 'required',
+        //     'group' => 'required',
+        //     'optional_subject_one' => 'required',
+        //     'optional_subject_two' => 'required',
+        //     'optional_subject_three' => 'required',
+        //     'Applied' =>'required',
+        //     'section_name' =>'required',
+        //     'class_year' =>'required',
+        //     'section_id' =>'required',
+        //     'bgroup' =>'required',
+        //      'roll_no' => 'required',
+        //     'Passing_Year' => 'required',
+        //     'exam_Type' => 'required',
+        //     'Marks_Obt' => 'required',
+        //     'totall_marks' => 'required',
+        //     'percentage' => 'required',
+        //     'insitute_name' => 'required',
+        //     'grade' => 'required',
+        // ]); 
 
 
  /*       $validator = Validator::make($input, $rules, $message = [
@@ -115,15 +115,24 @@ class StudentRecordController extends Controller
         $studentinfo->specialty = $request->specialty;
         $studentinfo->covid = $request->covid;
         $studentinfo->bgroup = $request->bgroup;
-        $studentinfo->group = $request->group;
         $studentinfo->previous_roll_no = $request->previous_roll_no;
         $studentinfo->previous_year = $request->previous_year;
         $studentinfo->previous_session = $request->previous_session;
         $studentinfo->previous_board = $request->previous_board;
         $studentinfo->reg_no = $request->reg_no;
+        if($request->Applied=="BS(hons)"){
+        $studentinfo->optional_subject_one = $request->section_name;
+        $studentinfo->optional_subject_two = $request->section_name;
+        $studentinfo->optional_subject_three = $request->section_name;
+        $studentinfo->group = $request->section_name;
+
+        }else{
         $studentinfo->optional_subject_one = $request->optional_subject_one;
         $studentinfo->optional_subject_two = $request->optional_subject_two;
         $studentinfo->optional_subject_three = $request->optional_subject_three;
+        $studentinfo->group = $request->group;
+
+        }
             if ($image_name = $request->file('image_name')) {
             $destinationPath = 'public/image/canidatephoto/';
             $canidateImage = date('YmdHis') . $request->canidate_name ."." . $image_name->getClientOriginalExtension();
@@ -137,6 +146,7 @@ class StudentRecordController extends Controller
            File::copy(public_path('image/canidatephoto/avatar/avatar.jpg'), public_path('image/canidatephoto/avatar.jpg')); 
         }
         $studentinfo->save();
+        if($request->Applied=="Intermediate"){
 
   
         $matric_academic = New Matric_Academic();
@@ -150,6 +160,7 @@ class StudentRecordController extends Controller
         $matric_academic->insitute_name = $request->insitute_name;
         $matric_academic->grade = $request->grade;
         $matric_academic->save();
+    }
         // die();
         
 
@@ -176,7 +187,8 @@ class StudentRecordController extends Controller
         $Inter_academic->total_marks = $request->Inter_totall_marks;
         $Inter_academic->percentage = $request->Inter_percentage;
         $Inter_academic->insitute_name = $request->Inter_insitute_name;
-        $matric_academic->grade = $request->Inter_grade;
+        $Inter_academic->grade = $request->Inter_grade;
+        $Inter_academic->subject_marks = $request->Inter_subject_marks;
         // dd($matric_academic);       
         $Inter_academic->save();
         // die();

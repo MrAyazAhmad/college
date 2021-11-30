@@ -137,6 +137,9 @@ input {
 .required {
     color: red;
 }
+#bsgroup{
+    display: none;
+}
 </style>
 
 </head>
@@ -292,7 +295,12 @@ input {
                                                 <option value="">Select </option>
 
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
+                                                @if($c_section->category=='Intermediate')
+                                                <option class="Interclass" style="display: none;" value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
+                                                @endif
+                                                @if($c_section->category=='BS(hons)')
+                                                <option class="BS" style="display: none;" value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('section_name'))
@@ -352,7 +360,13 @@ input {
                                                 <option value="">Select</option>
 
                                                 @foreach($class_section AS $c_section)
-                                                <option value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                
+                                                @if($c_section->category=='Intermediate')
+                                                <option class="Interclass" style="display: none;" value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}}) </option>
+                                                @endif
+                                                @if($c_section->category=='BS(hons)')
+                                                <option class="BS" style="display: none;" value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                @endif
                                                 @endforeach
                                             </select>
                                              @if ($errors->has('section_id'))
@@ -487,7 +501,7 @@ input {
                                                 <span class="text-danger">{{ $errors->first('bgroup') }}</span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mb-3">
+                                        <div class="col-md-3 form-group mb-3" id="sbjectgroup">
                                             <label for="group">Select Group<span class="required">*</span></label>
                                                <select class="form-control" id="group" name="group">
                                                 <option value="Null">Select</option>
@@ -519,6 +533,7 @@ input {
                                                 <option class="hg" value="Grouphg10">Group10</option>
                                                 <option class="hg" value="Grouphg11">Group11</option>
                                                 <option class="hg" value="Grouphg12">Group12</option>
+                                                <option  id="bsgroup" value="Bs(Hons)">Bs(Hons)</option>
 
 
                                             </optgroup>
@@ -527,22 +542,22 @@ input {
                                                 <span class="text-danger">{{ $errors->first('group') }}</span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_one">Optional Subject One<span class="required">*</span></label>
+                                        <div class="col-md-3 form-group mb-3 one" >
+                                            <label  for="optional_subject_one">Optional Subject One<span class="required">*</span></label>
                                             <input value="{{old('optional_subject_one')}}" class="form-control" id="optional_subject_one" type="Year" name="optional_subject_one" placeholder="Enter optional_subject_one" />
                                                @if ($errors->has('optional_subject_one'))
                                                 <span class="text-danger">{{ $errors->first('optional_subject_one') }}</span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_two">Optional Subject Two<span class="required">*</span></label>
+                                        <div class="col-md-3 form-group mb-3 two" >
+                                            <label  for="optional_subject_two">Optional Subject Two<span class="required">*</span></label>
                                             <input value="{{old('optional_subject_two')}}" class="form-control" id="optional_subject_two" type="Year" name="optional_subject_two" placeholder="Enter optional_subject_two" />
                                               @if ($errors->has('optional_subject_two'))
                                                 <span class="text-danger">{{ $errors->first('optional_subject_two') }}</span>
                                             @endif
                                         </div>
-                                        <div class="col-md-3 form-group mb-3">
-                                            <label for="optional_subject_three">OptionalSubject Three<span class="required">*</span></label>
+                                        <div class="col-md-3 form-group mb-3 three" >
+                                            <label  for="optional_subject_three">OptionalSubject Three<span class="required">*</span></label>
                                             <input value="{{old('optional_subject_three')}}" class="form-control" id="optional_subject_three" type="Year" name="optional_subject_three" placeholder="Enter optional_subject_three" />
                                              @if ($errors->has('optional_subject_three'))
                                                 <span class="text-danger">{{ $errors->first('optional_subject_three') }}</span>
@@ -561,7 +576,7 @@ input {
 
                                 </div>
                                 <div class="tab">
-                                <div class="row ">
+                                <div class="row " id="matricdiv">
                                     <div class="col-md-3 form-group mb-3">
                                         <h1>Matric</h1> </div>
                                     <div class="row ">
@@ -663,11 +678,11 @@ input {
                                                  <select class="form-control" name="Inter_Year">
                                                 <option value="">Select</option>
 
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
                                             </select> 
                                               @if ($errors->has('Inter_Year'))
                                                 <span class="text-danger">{{ $errors->first('Inter_Year') }}</span>
@@ -728,6 +743,13 @@ input {
                                                 @endif
 
 
+                                            </div>
+                                               <div class="col-md-3 form-group mb-3">
+                                                <label for="Inter_subject_marks">Subject Marks<span class="required">*</span></label>
+                                                <input value="{{old('name')}}" class="form-control" name="Inter_subject_marks" id="Inter_subject_marks" type="text"   /> 
+                                                 @if ($errors->has('Inter_subject_marks'))
+                                                <span class="text-danger">{{ $errors->first('Inter_subject_marks') }}</span>
+                                                @endif
                                             </div>
                                        
                                     </div>
@@ -800,7 +822,7 @@ input {
                                                 @endif  
                                             </div>
                                         </div>
-                                            <button type="button" onclick="myFunction()">Re-Admisssion</button>
+                                            <button id="admission" type="button" onclick="myFunction()">Re-Admisssion</button>
                                         
                                         <div class="row " id="rediv" style="display: none;">
                                              <div class="col-md-12 form-group mb-3">
@@ -1088,29 +1110,48 @@ $(document).ready(function(){
       if ( this.value == 'BS(hons)')
       {
         $("#interdiv").show();
+        $("#matricdiv").hide();
         $("#Bachelordiv").hide();
+        $("#admission").hide();
+        $("#optional_subject_one").hide();
+        $("#optional_subject_two").hide();
+        $("#optional_subject_three").hide();
+        $("#sbjectgroup").hide();
          $(".inter").hide();
+         $(".one").hide();
+         $(".two").hide();
+         $(".three").hide();
         $(".bch").hide();
+
+        $(".BS").show();
+        $(".Interclass").hide();
         $(".master").hide();
         $(".bshons").show();
 
-      }
-      if ( this.value == 'BS(ENG)')
-      {
-        $("#interdiv").show();
-        $("#Bachelordiv").show();
-         $(".inter").hide();
-        $(".bch").hide();
-        $(".master").hide();
 
       }
+     
       if ( this.value == 'Intermediate')
       {
         $("#interdiv").hide();
         $("#Bachelordiv").hide();
         $(".inter").show();
+        $(".BS").hide();
+        $("#matricdiv").show();
         $(".bch").hide();
+        $(".Interclass").show();
         $(".master").hide();
+        $(".bshons").hide();
+        $("#admission").show();
+         $("#optional_subject_one").show();
+        $("#optional_subject_two").show();
+        $("#optional_subject_three").show();
+        $("#sbjectgroup").show();
+        $(".one").show();
+         $(".two").show();
+         $(".three").show();
+
+
 
 
       }
@@ -1132,6 +1173,7 @@ $(document).ready(function(){
         document.getElementById("optional_subject_three").value = "Biology";
 
       }
+     
       if ( this.value == 'pre-engineering')
       {
         document.getElementById("optional_subject_one").value = "Phyics";

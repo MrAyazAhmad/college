@@ -101,7 +101,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Class Name</th>
-                                                <th>Session Name</th>
+                                                <th>Category</th>
                                                 <th>Start Year</th>
                                                 <th>End Year</th>
                                                 <th>Status</th>
@@ -113,7 +113,7 @@
                                            @foreach($sessions as $session)
                                             <tr id="cid{{$session->id}}" class="p-0">
                                                 <td>{{$session->class_name}}</td>
-                                                <td>{{$session->session_name}}</td>
+                                                <td>{{$session->category}}</td>
                                                 <td>{{$session->start_year}}</td>
                                                 <td>{{$session->end_year}}</td>
                                                 @if($session->status_id==1)
@@ -195,7 +195,7 @@ $(document).on('click', '#btn-delete', function(e) {
                                         <tfoot>
                                             <tr>
                                                 <th>Class Name</th>
-                                                <th>Session Name</th>
+                                                <th>Category</th>
                                                 <th>Start Year</th>
                                                 <th>End Year</th>
                                                 <th>Status</th>

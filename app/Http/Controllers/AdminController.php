@@ -269,7 +269,8 @@ class AdminController extends Controller
         $Inter_academic->total_marks = $request->Inter_totall_marks;
         $Inter_academic->percentage = $request->Inter_percentage;
         $Inter_academic->insitute_name = $request->Inter_insitute_name;
-        $matric_academic->grade = $request->Inter_grade;
+        $Inter_academic->grade = $request->Inter_grade;
+        $Inter_academic->subject_marks = $request->Inter_subject_marks;
         // dd($matric_academic);       
         $Inter_academic->save();
         // die();
@@ -386,6 +387,7 @@ class AdminController extends Controller
         $classsession->start_year = $request->start_year;
         $classsession->end_year = $request->end_year;
         $classsession->status_id = $request->status_id;
+        $classsession->category = $request->category;
         // dd($classsession);
         // die();
         

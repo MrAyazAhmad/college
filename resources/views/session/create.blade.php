@@ -50,6 +50,19 @@
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="end_year">End Year</label>
                                             <input class="form-control" id="end_year" type="Year" name="end_year" placeholder="Enter end_year" />
+                                        </div>  
+                                        <div class="col-md-6 form-group mb-3">
+                                            <label for="end_year">Category</label>
+                                           
+
+                                          
+                                            <select class="form-control " name="category" id="category" >
+                                                
+                                                <option value="">Select </option>
+                                                <option value="Intermediate">Intermediate </option>
+                                                <option value="BS(hons)">BS(hons)</option>
+                                               
+                                            </select>
                                         </div>
                                         
                                         <div class="col-md-6 form-group mb-3">

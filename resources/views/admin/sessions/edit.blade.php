@@ -48,6 +48,19 @@
                                             <label for="end_year">End Year</label>
                                             <input value="{{$session->end_year}}" class="form-control" id="end_year" type="Year" name="end_year" placeholder="Enter end_year" />
                                         </div>
+                                            <div class="col-md-6 form-group mb-3">
+                                            <label for="end_year">Category</label>
+                                           
+
+                                          
+                                            <select class="form-control " name="category" id="category" >
+                                                
+                                              <option value="">Select </option>
+                                                <option value="Intermediate"{{ $session->category == 'Intermediate'? 'selected' : '' }}>Intermediate </option>
+                                                <option value="BS(hons)"{{ $session->category == 'BS(hons)' ? 'selected' : '' }}>BS(hons) </option>
+                                               
+                                            </select>
+                                        </div>
                                         
                                         <div class="col-md-6 form-group mb-3">
                                             <label for="picker1">Select Status</label>
