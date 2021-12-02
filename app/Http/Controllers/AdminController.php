@@ -401,6 +401,14 @@ class AdminController extends Controller
     {
         $students = StudentRecord::all();
         return view('admin.student.index',compact('students'));
+    } 
+       public function bsstudents()
+    {
+        $students = StudentRecord::Where('Applied','BS(hons)')->get();
+        // dd($students);
+        // return view('admin.student.confirm',compact('students'));
+
+        return view('admin.student.bs',compact('students'));
     }  
           public function confirmstudents()
     {
@@ -432,6 +440,8 @@ class AdminController extends Controller
         $classsession->start_year = $request->start_year;
         $classsession->end_year = $request->end_year;
         $classsession->status_id = $request->status_id;
+        $classsession->category = $request->category;
+        
         // dd($classsession);
         // die();
         

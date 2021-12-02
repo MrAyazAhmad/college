@@ -94,6 +94,7 @@ Route::get('admin/edit_student/{id}',[AdminController::class,'EditStudent']);
 Route::get('admin/edit_session/{id}',[AdminController::class,'EditSession']);
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
+Route::get('admin/bs-students', [App\Http\Controllers\AdminController::class, 'bsstudents'])->name('bs-students');
 Route::get('admin/confirmstudents', [App\Http\Controllers\AdminController::class, 'confirmstudents'])->name('confirmstudents');
 
 Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);

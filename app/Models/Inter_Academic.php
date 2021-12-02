@@ -10,4 +10,5 @@ class Inter_Academic extends Model
     use HasFactory;
     protected $table = "inter_academic";
     
+   
 }
