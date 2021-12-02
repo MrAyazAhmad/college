@@ -13,6 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js" integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+function CheckColors(val){
+ var element=document.getElementById('Inter_insitute_name1');
+ if(val=='Select'||val=='others')
+   element.style.display='block';
+ else  
+   element.style.display='none';
+}
+
+</script> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" integrity="sha512-YDChav1pUAodyH1Ja7PIpEDUOoFROpZi5Lb7pY8+9+kU8UTr3J8SI8QO7SRuf4qdDKb5OI0xSt4Vk1wiYjBXgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
@@ -725,8 +735,8 @@ input {
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University<span class="required">*</span></label>
-                                                  <select class="form-control" name="Inter_insitute_name">
-                                                    <option value="">Select</option>
+                                                  <select class="form-control" onchange='CheckColors(this.value);' name="Inter_insitute_name">
+                                                    <option  >Select</option>
 
                                                     <option value="BISE Sahiwal">BISE Sahiwal</option>
                                                     <option value="BISE Bahawalpur">BISE Bahawalpur</option>
@@ -737,7 +747,12 @@ input {
                                                     <option value="BISE Multan">BISE Multan</option>
                                                     <option value="BISE Rawalpindi">BISE Rawalpindi</option>
                                                     <option value="BISE Sargodha">BISE Sargodha</option>
+                                                    <option value="others">others</option>
+            
+
+
                                                 </select>
+                                                 <input  class="form-control" id="Inter_insitute_name1" type="text" name="Inter_insitute_name" placeholder="Enter Board/Universty"  style='display:none;'/> 
                                                 @if ($errors->has('Inter_insitute_name'))
                                                 <span class="text-danger">{{ $errors->first('Inter_insitute_name') }}</span>
                                                 @endif
