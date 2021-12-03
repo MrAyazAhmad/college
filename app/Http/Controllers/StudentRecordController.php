@@ -23,7 +23,7 @@ use Carbon\Carbon;
 
 use File;
 
-
+ 
 class StudentRecordController extends Controller
 {
     /**
