@@ -735,7 +735,7 @@ input {
                                             </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="insitute_name">Board /University<span class="required">*</span></label>
-                                                  <select class="form-control" onchange='CheckColors(this.value);' name="Inter_insitute_name">
+                                                  <select class="form-control"  name="Inter_insitute_name">
                                                     <option  >Select</option>
 
                                                     <option value="BISE Sahiwal">BISE Sahiwal</option>
@@ -747,12 +747,12 @@ input {
                                                     <option value="BISE Multan">BISE Multan</option>
                                                     <option value="BISE Rawalpindi">BISE Rawalpindi</option>
                                                     <option value="BISE Sargodha">BISE Sargodha</option>
-                                                    <option value="others">others</option>
+                                                    <!-- <option value="others">others</option> -->
             
 
 
                                                 </select>
-                                                 <input  class="form-control" id="Inter_insitute_name1" type="text" name="Inter_insitute_name" placeholder="Enter Board/Universty"  style='display:none;'/> 
+                                                 <!-- <input  class="form-control" id="Inter_insitute_name1" type="text" name="Inter_insitute_name" placeholder="Enter Board/Universty"  style='display:none;'/>  -->
                                                 @if ($errors->has('Inter_insitute_name'))
                                                 <span class="text-danger">{{ $errors->first('Inter_insitute_name') }}</span>
                                                 @endif
