@@ -78,7 +78,13 @@ class FeeVoucherOfficerController extends Controller
         $user = Auth::user()->name;
 
         $class_section = Class_session::find($studentinfo->section_id);
+        if($studentinfo->Applied=='Intermediate'){
+
         $wordFile=new TemplateProcessor('word/Fee Voucher.docx');
+     }else{
+
+        $wordFile=new TemplateProcessor('word/BS Fee Voucher.docx');
+     }
         $name= $studentinfo->canidate_name;
         $wordFile->setValue('name',$name);
         $wordFile->setValue('f_name',$studentinfo->f_name);
