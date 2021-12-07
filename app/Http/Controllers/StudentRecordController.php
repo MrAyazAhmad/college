@@ -127,10 +127,16 @@ class StudentRecordController extends Controller
         $studentinfo->group = $request->section_name;
 
         }else{
+        $checkcnic=StudentRecord::where('CNIC',$request->CNIC)->get()->first();
+        if(isset($checkcnic->id)){
+            dd("student all ready Registor");
+        }else{
+
         $studentinfo->optional_subject_one = $request->optional_subject_one;
         $studentinfo->optional_subject_two = $request->optional_subject_two;
         $studentinfo->optional_subject_three = $request->optional_subject_three;
         $studentinfo->group = $request->group;
+        }
 
         }
             if ($image_name = $request->file('image_name')) {
@@ -160,8 +166,7 @@ class StudentRecordController extends Controller
         $matric_academic->insitute_name = $request->insitute_name;
         $matric_academic->grade = $request->grade;
         $matric_academic->save();
-    }
-        // die();
+    }else{
         
 
 
@@ -194,31 +199,32 @@ class StudentRecordController extends Controller
         // die();
 
         }
-         if($request->Bachelor_Roll_No || $request->Bachelor_insitute_name){
-            $request->validate([
-            'Bachelor_Roll_No' => 'required',
-            'Bachelor_Year' => 'required',
-            'Bachelor_Exam_Type' => 'required',
-            'class_year' => 'required',
-            'Bachelor_Marks_Obt' => 'required',
-            'Bachelor_totall_marks' => 'required',
-            'Bachelor_percentage' => 'required',
-            'Bachelor_insitute_name' => 'required',
-        ]); 
-        $Bachelor_academic = New Bachelor_Academic();
-        $Bachelor_academic->stu_id =$studentinfo->id;
-        $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
-        $Bachelor_academic->Passing_Year = $request->Bachelor_Year;
-        $Bachelor_academic->exam_type = $request->Bachelor_Exam_Type;
-        $Bachelor_academic->marks_obtian = $request->Bachelor_Marks_Obt;
-        $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
-        $Bachelor_academic->percentage = $request->Bachelor_percentage;
-        $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
-        $matric_academic->grade = $request->Bachelor_grade;
-        $Bachelor_academic->save();
+    }
+        //  if($request->Bachelor_Roll_No || $request->Bachelor_insitute_name){
+        //     $request->validate([
+        //     'Bachelor_Roll_No' => 'required',
+        //     'Bachelor_Year' => 'required',
+        //     'Bachelor_Exam_Type' => 'required',
+        //     'class_year' => 'required',
+        //     'Bachelor_Marks_Obt' => 'required',
+        //     'Bachelor_totall_marks' => 'required',
+        //     'Bachelor_percentage' => 'required',
+        //     'Bachelor_insitute_name' => 'required',
+        // ]); 
+        // $Bachelor_academic = New Bachelor_Academic();
+        // $Bachelor_academic->stu_id =$studentinfo->id;
+        // $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
+        // $Bachelor_academic->Passing_Year = $request->Bachelor_Year;
+        // $Bachelor_academic->exam_type = $request->Bachelor_Exam_Type;
+        // $Bachelor_academic->marks_obtian = $request->Bachelor_Marks_Obt;
+        // $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
+        // $Bachelor_academic->percentage = $request->Bachelor_percentage;
+        // $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
+        // $matric_academic->grade = $request->Bachelor_grade;
+        // $Bachelor_academic->save();
    
 
-        }
+        // }
 
         return Redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
 
