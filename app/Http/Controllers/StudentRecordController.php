@@ -129,7 +129,7 @@ class StudentRecordController extends Controller
         }else{
         $checkcnic=StudentRecord::where('CNIC',$request->CNIC)->get()->first();
         if(isset($checkcnic->id)){
-            dd("student all ready Registor");
+            dd("student already Registor");
         }else{
 
         $studentinfo->optional_subject_one = $request->optional_subject_one;
