@@ -95,6 +95,8 @@ Route::get('admin/edit_session/{id}',[AdminController::class,'EditSession']);
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
 Route::get('admin/bs-students', [App\Http\Controllers\AdminController::class, 'bsstudents'])->name('bs-students');
+Route::get('admin/bs-challanprint', [App\Http\Controllers\AdminController::class, 'bschallanprint'])->name('bs-challanprint');
+Route::get('admin/bs-confirm', [App\Http\Controllers\AdminController::class, 'bsconfirm'])->name('bs-confirm');
 Route::get('admin/confirmstudents', [App\Http\Controllers\AdminController::class, 'confirmstudents'])->name('confirmstudents');
 
 Route::post('createuser', [App\Http\Controllers\AdminController::class, 'createuser']);

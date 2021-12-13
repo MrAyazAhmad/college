@@ -57,38 +57,38 @@ class StudentRecordController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'CNIC' => 'required|unique:student_records',
-        //     'canidate_name' => 'required',
-        //     'dob' => 'required',
-        //     'covid' => 'required',
-        //     'f_name' => 'required',
-        //     'm_name' => 'required',
-        //     'f_cnic' => 'required',
-        //     'contact_number' => 'required',
-        //     'address' => 'required',
-        //     'religion' => 'required',
-        //     'nationality' => 'required',
-        //     'specialty' => 'required',
-        //     'group' => 'required',
-        //     'optional_subject_one' => 'required',
-        //     'optional_subject_two' => 'required',
-        //     'optional_subject_three' => 'required',
-        //     'Applied' =>'required',
-        //     'section_name' =>'required',
-        //     'class_year' =>'required',
-        //     'section_id' =>'required',
-        //     'bgroup' =>'required',
-        //      'roll_no' => 'required',
-        //     'Passing_Year' => 'required',
-        //     'exam_Type' => 'required',
-        //     'Marks_Obt' => 'required',
-        //     'totall_marks' => 'required',
-        //     'percentage' => 'required',
-        //     'insitute_name' => 'required',
-        //     'grade' => 'required',
-        // ]); 
+            $request->validate([
+            'CNIC' => 'required',
+            'canidate_name' => 'required',
+            'dob' => 'required',
+            'covid' => 'required',
+            'f_name' => 'required',
+            'm_name' => 'required',
+            'f_cnic' => 'required',
+            'contact_number' => 'required',
+            'address' => 'required',
+            'religion' => 'required',
+            'nationality' => 'required',
+            'specialty' => 'required',
+
+            
+            'Applied' =>'required',
+            'section_name' =>'required',
+            'class_year' =>'required',
+            'section_id' =>'required',
+            
+          
+        ]); 
+         if($request->Applied=="Intermediate"){
+                $request->validate([
+            'CNIC' => 'required',
+
+            'group' => 'required',
+            'optional_subject_one' => 'required',
+            'optional_subject_two' => 'required',
+            'optional_subject_three' => 'required',
+        ]);
+            }
 
 
  /*       $validator = Validator::make($input, $rules, $message = [
@@ -153,8 +153,20 @@ class StudentRecordController extends Controller
         }
         $studentinfo->save();
         if($request->Applied=="Intermediate"){
-
-  
+                $request->validate([
+            'group' => 'required',
+            'optional_subject_one' => 'required',
+            'optional_subject_two' => 'required',
+            'optional_subject_three' => 'required',
+            'roll_no' => 'required',
+            'Passing_Year' => 'required',
+            'exam_Type' => 'required',
+            'Marks_Obt' => 'required',
+            'totall_marks' => 'required',
+            'percentage' => 'required',
+            'insitute_name' => 'required',
+            'grade' => 'required',
+        ]);   
         $matric_academic = New Matric_Academic();
         $matric_academic->stu_id =$studentinfo->id;
         $matric_academic->roll_no =$request->roll_no;

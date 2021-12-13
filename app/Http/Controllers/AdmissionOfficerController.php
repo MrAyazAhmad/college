@@ -11,6 +11,13 @@ use App\Models\StudentTRoll;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
 use App\Models\StudentFeeRecord;
+use App\Models\BsEnglishRoll;
+use App\Models\BsChemisteryRoll;
+use App\Models\BsComputerRoll;
+use App\Models\BsIslamicStudiesRoll;
+use App\Models\BsMathematicsRoll;
+use App\Models\BsPhyicsRoll;
+use App\Models\BsUrduRoll;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
@@ -40,7 +47,9 @@ class AdmissionOfficerController extends Controller
 
         $studentinfo =  StudentRecord::find($student_id);
         $studentinfofee =  StudentFeeRecord::where('std_id',$student_id)->first();
+        if($studentinfo->Applied=='Intermediate'){
         $studentroll =  StudentTRoll::where('std_id',$studentinfofee->std_id)->first();
+    }
         if(isset($studentroll)){
 
 
@@ -52,7 +61,31 @@ class AdmissionOfficerController extends Controller
         
 
         }else{
+        if($studentinfo->Applied=='Intermediate'){
         $studentroll = New StudentTRoll();
+        }else{
+        if($studentinfo->group=='BS(ENGLISH)'){
+        $studentroll = New BsEnglishRoll();
+        }elseif($studentinfo->group=='BS(CHEMISTRY)'){
+        $studentroll = New BsChemisteryRoll();
+        }elseif($studentinfo->group=='BS(COMPUTERE SCIENCE)'){
+        $studentroll = New BsComputerRoll();
+        }elseif($studentinfo->group=='BS(MATHEMATICS)'){
+        $studentroll = New BsMathematicsRoll();
+        }elseif($studentinfo->group=='BS(PHYICS)'){
+        $studentroll = New BsPhyicsRoll();
+        }elseif($studentinfo->group=='BS(URDU)'){
+        $studentroll = New BsUrduRoll();
+        }elseif($studentinfo->group=='BS(ISLAMIC STUDIES)'){
+        $studentroll = New BsIslamicStudiesRoll();
+        }else{
+            dd('Please Check Student Record Something Went Wrong');
+            die();
+        }
+
+            
+
+        }
 
          $request->validate([
             'challan_file' => 'required',

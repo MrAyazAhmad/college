@@ -44,7 +44,8 @@
                                 <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">BS(hons)</span></a>
                                 <ul class="mm-collapse">
                                     <li class="item-name"><a href="{{route('bs-students')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">BS(hons) List</span></a></li>
-                                    <!-- <li class="item-name"><a href="{{url('create-session')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">Add New Sessions</span></a></li> -->
+                                    <li class="item-name"><a href="{{route('bs-challanprint')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">BS(hons) Challan Print Students</span></a></li>
+                                    <li class="item-name"><a href="{{route('bs-confirm')}}"><i class="nav-icon i-Add-User"></i><span class="item-name">BS(hons) Confirm Students</span></a></li>
                                     
                                 </ul>
                             </li> 
