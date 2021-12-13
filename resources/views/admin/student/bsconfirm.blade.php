@@ -128,7 +128,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>ENG-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -202,7 +202,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>CHE-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -274,7 +274,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>CS-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -346,7 +346,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>MATH-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -418,7 +418,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>PHY-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -490,7 +490,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>URD-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
@@ -562,7 +562,7 @@
                                             <tr id="sid{{$user->id}}" class="p-0">
 
                                                 <td>{{$user->id}}</td>
-                                                <td>{{$user->roll_no}}</td>
+                                                <td>ISL-{{$user->roll_no}}</td>
                                                 <td>{{$user->CNIC}}</td>
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
