@@ -152,7 +152,30 @@ class AdmissionOfficerController extends Controller
         // $wordFile->setValue('image_name',$studentinfo->image_name);
         $wordFile->setImageValue('ticketimage',array('path' =>public_path().'/image/canidatephoto/'.$studentinfo->image_name, 'width' => 140, 'height' => 140, 'ratio' => true));
         $wordFile->setValue('updated_at',$studentinfo->updated_at);
+         if($studentinfo->Applied=='Intermediate'){
         $wordFile->setValue('roll_no',$studentinfo->roll_no);
+
+        }else{
+        if($studentinfo->group=='BS(ENGLISH)'){
+        $wordFile->setValue('roll_no','ENG-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(CHEMISTRY)'){
+        $wordFile->setValue('roll_no','CHE-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(COMPUTERE SCIENCE)'){
+        $wordFile->setValue('roll_no','CS-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(MATHEMATICS)'){
+        $wordFile->setValue('roll_no','MATH-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(PHYICS)'){
+        $wordFile->setValue('roll_no','PHY-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(URDU)'){
+        $wordFile->setValue('roll_no','URD-'.$studentinfo->roll_no);
+        }elseif($studentinfo->group=='BS(ISLAMIC STUDIES)'){
+        $wordFile->setValue('roll_no','ISL'.$studentinfo->roll_no);
+        }else{
+            dd('Please Check Student Record Something Went Wrong');
+            die();
+        }
+    }
+
       
 
         if(isset($studentmatricinfo)){
