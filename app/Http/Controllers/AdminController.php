@@ -151,7 +151,7 @@ class AdminController extends Controller
          $user->section_id = $request->section_id;
         $feestructer = FeeStructer::where('section_id', $request->section_id)->first();
         $classsession = Class_session::where('id', $request->section_id)->first();
-          $request->validate([
+           $request->validate([
             'CNIC' => 'required',
             'canidate_name' => 'required',
             'dob' => 'required',
@@ -164,23 +164,25 @@ class AdminController extends Controller
             'religion' => 'required',
             'nationality' => 'required',
             'specialty' => 'required',
-            'group' => 'required',
-            'optional_subject_one' => 'required',
-            'optional_subject_two' => 'required',
-            'optional_subject_three' => 'required',
+
+            
             'Applied' =>'required',
             'section_name' =>'required',
             'class_year' =>'required',
             'section_id' =>'required',
-             'roll_no' => 'required',
-            'Passing_Year' => 'required',
-            'exam_Type' => 'required',
-            'Marks_Obt' => 'required',
-            'totall_marks' => 'required',
-            'percentage' => 'required',
-            'insitute_name' => 'required',
-            'grade' => 'required',
+            
+          
         ]); 
+         if($request->Applied=="Intermediate"){
+                $request->validate([
+            'CNIC' => 'required',
+
+            'group' => 'required',
+            'optional_subject_one' => 'required',
+            'optional_subject_two' => 'required',
+            'optional_subject_three' => 'required',
+        ]);
+            }
         $user->fee_id =$feestructer->id;
         $user->CNIC = $request->CNIC;
         $user->Applied = $request->Applied;

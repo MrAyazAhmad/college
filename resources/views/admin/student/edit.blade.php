@@ -612,12 +612,12 @@ input {
                                                 <option value="2018"{{ $inter->passing_year == '2018' ? 'selected' : '' }}>2018</option>
                                                   <option value="2017"{{ $inter->passing_year == '2017' ? 'selected' : '' }}>2017</option>
                                             </select> 
-                                            </select> 
                                              </div>
                                             <div class="col-md-3 form-group mb-3">
                                                 <label for="group">Select Annual /Supp.</label>
                                                 <select class="form-control" name="Inter_Exam_Type">
-                                                    <option value="">Select One    <option value="Annual"{{ $inter->exam_type == 'Annual' ? 'selected' : '' }}>Annual</option>
+                                                    <option value="">Select One </option>
+                                                       <option value="Annual"{{ $inter->exam_type == 'Annual' ? 'selected' : '' }}>Annual</option>
                                                 <option value="Supply"{{ $inter->exam_type == 'Supply' ? 'selected' : '' }}>Supply</option>
                                             </select>
                                             </div>
@@ -658,55 +658,10 @@ input {
                                                 <span class="text-danger">{{ $errors->first('Inter_subject_marks') }}</span>
                                                 @endif
                                             </div>
+                                        </div>
+
                                     @endif
-                                @if(isset($bacholer))
-
-                                    <div class="row " id="Bachelordiv" >
-                                        <div class="col-md-12 form-group mb-3">
-                                            <h1>Bachelor </h1> </div>
-
-                                        
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="rollno">Roll No</label>
-                                                <input class="form-control"  value="{{$bacholer->roll_no}}" id="Bachelor_Roll_No" type="Roll-no" name="Bachelor_Roll_No" placeholder="Enter Roll No" /> </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="Year">Passing Year</label>                       
-                                             <select class="form-control" name="Bachelor_Year">
-                                                <option value="">Select</option>
-
-                                                   <option value="2017"{{ $bacholer->passing_year == '2017' ? 'selected' : '' }}>2017</option>
-                                                <option value="2018"{{ $bacholer->passing_year == '2018' ? 'selected' : '' }}>2018</option>
-                                                <option value="2019"{{ $bacholer->passing_year == '2019' ? 'selected' : '' }}>2019</option>
-                                                <option value="2020"{{ $bacholer->passing_year == '2020' ? 'selected' : '' }}>2020</option>
-                                                <option value="2021"{{ $bacholer->passing_year == '2021' ? 'selected' : '' }}>2021</option>
-                                            </select> 
-                                            </select> </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="group">Select Annual /Supp.</label>
-                                                <select class="form-control" name="Bachelor_Exam_Type">                      
-                                                   <option value="">Select One    <option value="Annual"{{ $bacholer->exam_type == 'Annual' ? 'selected' : '' }}>Annual</option>
-                                                <option value="Supply"{{ $bacholer->exam_type == 'Supply' ? 'selected' : '' }}>Supply</option>
-                                            </select>
-                                            </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="Marks_Obt">Marks Obtian</label>
-                                                <input class="form-control"  value="{{$bacholer->marks_obtian}}" id="Bachelor_Marks_Obt" type="Year" name="Bachelor_Marks_Obt" placeholder="Enter Marks Obt." /> </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="totall_marks">Total Marks</label>
-                                                <input class="form-control"  value="{{$bacholer->total_marks}}" id="Bachelor_totall_marks" value="800" type="Year" name="Bachelor_totall_marks" placeholder="Enter Total Marks" /> </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="%age">%age</label>
-                                                <input class="form-control"  value="{{$bacholer->percentage}}" id="Bachelor_results" type="text" name="Bachelor_percentage" readonly /> </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="Bachelor_grade">Grade</label>
-                                                <input class="form-control"  value="{{$bacholer->grade}}" name="Bachelor_grade" id="Bachelor_grade" type="text"  /> 
-                                            </div>
-                                            <div class="col-md-3 form-group mb-3">
-                                                <label for="insitute_name">Board /University</label>
-                                                <input class="form-control"  value="{{$bacholer->insitute_name}}" id="Bachelor_insitute_name" type="Year" name="Bachelor_insitute_name" placeholder="Enter Board /University" />
-
-                                                 </div>
-                                @endif
+                               
                                  <button type="button" onclick="myFunction()">Re-Admisssion</button>
                                         </div>
                                                   
