@@ -208,7 +208,7 @@ input {
 
                                            <div id="div1"  class="col-md-4 form-group mb-3">
                                             <label for="picker1">Select Class </label>
-                                            <select class="form-control" name="section_name" id="section_name">
+                                            <select class="form-control" name="section_namenew" id="section_name">
                                                 <option value="">Select </option>
 
                                                 @foreach($class_section AS $c_section)

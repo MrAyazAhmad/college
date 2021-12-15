@@ -167,7 +167,7 @@ class AdminController extends Controller
 
             
             'Applied' =>'required',
-            'section_name' =>'required',
+            'section_namenew' =>'required',
             'class_year' =>'required',
             'section_id' =>'required',
             
@@ -205,9 +205,20 @@ class AdminController extends Controller
         $user->previous_session = $request->previous_session;
         $user->previous_board = $request->previous_board;
         $user->reg_no = $request->reg_no;
+        if($request->Applied=="BS(hons)"){
+            
+        $user->optional_subject_one = $request->section_namenew;
+        $user->optional_subject_two = $request->section_namenew;
+        $user->optional_subject_three = $request->section_namenew;
+        $user->group = $request->section_namenew;
+
+        }else{
         $user->optional_subject_one = $request->optional_subject_one;
         $user->optional_subject_two = $request->optional_subject_two;
         $user->optional_subject_three = $request->optional_subject_three;
+        $user->group = $request->group;
+        }
+
             if ($image_name = $request->file('image_name')) {
                
             $destinationPath = 'public/image/canidatephoto/';
