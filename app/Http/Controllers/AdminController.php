@@ -11,6 +11,13 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
 use App\Exports\LibraryRecordExport;
 use App\Exports\StudentListExport;
+use App\Models\BsEnglishRoll;
+use App\Models\BsChemisteryRoll;
+use App\Models\BsComputerRoll;
+use App\Models\BsIslamicStudiesRoll;
+use App\Models\BsMathematicsRoll;
+use App\Models\BsPhyicsRoll;
+use App\Models\BsUrduRoll;
 use Hash;
 use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
@@ -147,7 +154,6 @@ class AdminController extends Controller
       public function UpdateForm(Request $request)
     {
         $user = StudentRecord::find($request->id);
-        // dd($user);
          $user->section_id = $request->section_id;
         $feestructer = FeeStructer::where('section_id', $request->section_id)->first();
         $classsession = Class_session::where('id', $request->section_id)->first();
@@ -206,7 +212,39 @@ class AdminController extends Controller
         $user->previous_board = $request->previous_board;
         $user->reg_no = $request->reg_no;
         if($request->Applied=="BS(hons)"){
-            
+        if($request->section_namenew==$user->optional_subject_one){
+        if($user->optional_subject_one=='BS(ENGLISH)'){
+        $studentroll =  BsEnglishRoll::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        // $max = DB::table('users')->max('id') + 1; 
+        // DB::statement("ALTER TABLE users AUTO_INCREMENT =  $max");
+        // dd($studentroll);
+        // dd($request->section_namenew);
+        }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
+        $studentroll =  BsChemisteryRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
+        $studentroll =  BsComputerRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
+        $studentroll =  BsMathematicsRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        }elseif($user->optional_subject_one=='BS(PHYICS)'){
+        $studentroll =  BsPhyicsRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        }elseif($user->optional_subject_one=='BS(URDU)'){
+        $studentroll =  BsUrduRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+        }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
+        $user =  BsIslamicStudiesRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll->delete();
+    }
+        $user->roll_no ='';
+        $user->challan_file ='';
+      
+
+
+            }
         $user->optional_subject_one = $request->section_namenew;
         $user->optional_subject_two = $request->section_namenew;
         $user->optional_subject_three = $request->section_namenew;
