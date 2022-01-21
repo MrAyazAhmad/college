@@ -112,6 +112,8 @@
                                                 <th>Class</th>
                                                 <th>Matric Obtain Marks</th>
                                                 <th>Total Marks</th>
+                                                <th>Insitute Name</th>
+                                                <th>Addmission Date</th>
                                                  <th>Optional Subject One</th>
                                                 <th>Optional Subject Two</th>
                                                 <th>Optional Subject Three</th>
@@ -142,10 +144,13 @@
                                                 @if($matric)
                                                 <td>{{$matric->marks_obtian}}</td>
                                                 <td>{{$matric->total_marks}}</td>
+                                                <td>{{$matric->insitute_name}}</td>
                                                 @else
                                                 <td>Not Found</td>
                                                 <td>Not Found</td>
+                                                <td>Not Found</td>
                                                 @endif
+                                                 <td >{{$user->Student->submissiondate}}</td>
                                                  <td >{{$user->Student->optional_subject_one}}</td>
                                                 <td >{{$user->Student->optional_subject_two}}</td>
                                                 <td >{{$user->Student->optional_subject_three}}</td>

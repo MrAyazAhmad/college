@@ -479,6 +479,7 @@ class AdminController extends Controller
           public function confirmstudents()
     {
         $students = StudentTRoll::all();
+        // dd($students);
         return view('admin.student.confirm',compact('students'));
     }   
      public function CreateSession()
