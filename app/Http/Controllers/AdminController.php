@@ -221,22 +221,22 @@ class AdminController extends Controller
         // dd($studentroll);
         // dd($request->section_namenew);
         }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
-        $studentroll =  BsChemisteryRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll =  BsChemisteryRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
         }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
-        $studentroll =  BsComputerRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll =  BsComputerRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
         }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
-        $studentroll =  BsMathematicsRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll =  BsMathematicsRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
         }elseif($user->optional_subject_one=='BS(PHYICS)'){
-        $studentroll =  BsPhyicsRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll =  BsPhyicsRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
         }elseif($user->optional_subject_one=='BS(URDU)'){
-        $studentroll =  BsUrduRoll::::where('std_id',$user->id)->get()->first();
+        $studentroll =  BsUrduRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
         }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
-        $user =  BsIslamicStudiesRoll::::where('std_id',$user->id)->get()->first();
+        $user =  BsIslamicStudiesRoll::where('std_id',$user->id)->get()->first();
         $studentroll->delete();
     }
         $user->roll_no ='';
