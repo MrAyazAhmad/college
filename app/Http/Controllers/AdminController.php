@@ -19,6 +19,7 @@ use App\Models\BsMathematicsRoll;
 use App\Models\BsPhyicsRoll;
 use App\Models\BsUrduRoll;
 use Hash;
+use DB;
 use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
@@ -220,6 +221,7 @@ class AdminController extends Controller
         $studentroll =BsEnglishRoll::where('std_id',$user->id)->get()->first();
         if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bsenglishroll AUTO_INCREMENT = '.(count(BsEnglishRoll::all())+1).';');
         }
         }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
         $user->roll_no ='';
@@ -227,6 +229,8 @@ class AdminController extends Controller
         $studentroll =BsChemisteryRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bschemistery AUTO_INCREMENT = '.(count(BsChemisteryRoll::all())+1).';');
+
         }
         }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
         $user->roll_no ='';
@@ -234,6 +238,8 @@ class AdminController extends Controller
         $studentroll =BsComputerRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bscomputer AUTO_INCREMENT = '.(count(BsComputerRoll::all())+1).';');
+
         }
         }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
         $user->roll_no ='';
@@ -243,6 +249,8 @@ class AdminController extends Controller
         $studentroll =BsMathematicsRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bsmathematics AUTO_INCREMENT = '.(count(BsMathematicsRoll::all())+1).';');
+
         }
         }elseif($user->optional_subject_one=='BS(PHYICS)'){
         $user->roll_no ='';
@@ -252,6 +260,8 @@ class AdminController extends Controller
         $studentroll =BsPhyicsRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bsphyics AUTO_INCREMENT = '.(count(BsPhyicsRoll::all())+1).';');
+
         }
         }elseif($user->optional_subject_one=='BS(URDU)'){
         $user->roll_no ='';
@@ -261,6 +271,8 @@ class AdminController extends Controller
         $studentroll = BsUrduRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bsurdu AUTO_INCREMENT = '.(count(BsUrduRoll::all())+1).';');
+
         }
         }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
         $user->roll_no ='';
@@ -270,6 +282,8 @@ class AdminController extends Controller
         $studentroll = BsIslamicStudiesRoll::where('std_id',$user->id)->get()->first();
          if(isset($studentroll)){
         $studentroll->delete();
+        DB::statement('ALTER TABLE bsislamicstudies AUTO_INCREMENT = '.(count(BsIslamicStudiesRoll::all())+1).';');
+
         }
         }
       

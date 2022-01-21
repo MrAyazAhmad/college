@@ -256,9 +256,11 @@
                                                 <th>Contact Number</th>
                                                 <th>Group</th>
                                                 <th>Obtian Marks</th>
+                                                <th>Insitute Name</th>
                                                 <th>Subject-Marks</th>
                                                 <th>Subject+Total Marks</th>
 
+                                                <th>Addmission Date</th>
                                                 <!-- <th>Print Chalan</th>
                                                 <th>Print Receipt</th>
                                                 <th>Edit</th>
@@ -287,13 +289,19 @@
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
+                                                <td>{{$inter->insitute_name}}</td>
+
                                                 <td>{{$inter->subject_marks}}</td>
                                                 <td>{{$inter->marks_obtian+$inter->subject_marks}}</td>
                                                  @else
                                                 <td>Not Found</td>
                                                 <td>Not Found</td>
                                                 <td>Not Found</td>
+                                                <td>Not Found</td>
                                                 @endif
+
+                                                 <td >{{$user->submissiondate}}</td>
+
 
 
                                             </tr>
