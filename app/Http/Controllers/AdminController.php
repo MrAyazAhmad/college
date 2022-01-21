@@ -213,34 +213,65 @@ class AdminController extends Controller
         $user->reg_no = $request->reg_no;
         if($request->Applied=="BS(hons)"){
         if($request->section_namenew==$user->optional_subject_one){
+       
         if($user->optional_subject_one=='BS(ENGLISH)'){
-        $studentroll =  BsEnglishRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        // $max = DB::table('users')->max('id') + 1; 
-        // DB::statement("ALTER TABLE users AUTO_INCREMENT =  $max");
-        // dd($studentroll);
-        // dd($request->section_namenew);
-        }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
-        $studentroll =  BsChemisteryRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
-        $studentroll =  BsComputerRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
-        $studentroll =  BsMathematicsRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        }elseif($user->optional_subject_one=='BS(PHYICS)'){
-        $studentroll =  BsPhyicsRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        }elseif($user->optional_subject_one=='BS(URDU)'){
-        $studentroll =  BsUrduRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-        }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
-        $user =  BsIslamicStudiesRoll::where('std_id',$user->id)->get()->first();
-        $studentroll->delete();
-    }
         $user->roll_no ='';
         $user->challan_file ='';
+        $studentroll =BsEnglishRoll::where('std_id',$user->id)->get()->first();
+        if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
+        $user->roll_no ='';
+        $user->challan_file ='';
+        $studentroll =BsChemisteryRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
+        $user->roll_no ='';
+        $user->challan_file ='';
+        $studentroll =BsComputerRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
+        $user->roll_no ='';
+
+        $user->challan_file ='';
+
+        $studentroll =BsMathematicsRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(PHYICS)'){
+        $user->roll_no ='';
+
+        $user->challan_file ='';
+
+        $studentroll =BsPhyicsRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(URDU)'){
+        $user->roll_no ='';
+
+        $user->challan_file ='';
+
+        $studentroll = BsUrduRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
+        $user->roll_no ='';
+
+        $user->challan_file ='';
+
+        $studentroll = BsIslamicStudiesRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        }
+        }
       
 
 
