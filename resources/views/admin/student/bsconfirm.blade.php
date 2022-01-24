@@ -253,6 +253,7 @@
                                                 <th>Name</th>
                                                 <th>Father Name</th>
                                                 <th>Date Of Birth</th>
+                                                <th>Address</th>
                                                 <th>Contact Number</th>
                                                 <th>Group</th>
                                                 <th>Obtian Marks</th>
@@ -281,6 +282,7 @@
                                                 <td>{{$user->canidate_name}}</td>
                                                 <td>{{$user->f_name}}</td>
                                                 <td>{{$user->dob}}</td>
+                                                <td>{{$user->address}}</td>
                                                 <td>{{$user->contact_number}}</td>
                                                 <td>{{$user->group}}</td>
                                                 <?php
