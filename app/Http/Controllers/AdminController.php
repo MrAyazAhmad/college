@@ -19,6 +19,7 @@ use App\Models\BsMathematicsRoll;
 use App\Models\BsPhyicsRoll;
 use App\Models\BsUrduRoll;
 use Hash;
+use DB;
 use App\Models\Bachelor_Academic;
 use App\Models\Inter_Academic;
 use App\Models\Matric_Academic;
@@ -212,10 +213,80 @@ class AdminController extends Controller
         $user->previous_board = $request->previous_board;
         $user->reg_no = $request->reg_no;
         if($request->Applied=="BS(hons)"){
-        if($request->section_namenew==$user->optional_subject_one){
-        $user->roll_no =null; 
+        if($request->section_namenew !=$user->optional_subject_one){
+       
+        if($user->optional_subject_one=='BS(ENGLISH)'){
+        $user->roll_no =null;
         $user->challan_file =null;
+        $studentroll =BsEnglishRoll::where('std_id',$user->id)->get()->first();
+        if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bsenglishroll AUTO_INCREMENT = '.(count(BsEnglishRoll::all())+1).';');
         }
+        }elseif($user->optional_subject_one=='BS(CHEMISTRY)'){
+        $user->roll_no =null;
+        $user->challan_file =null;
+        $studentroll =BsChemisteryRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bschemistery AUTO_INCREMENT = '.(count(BsChemisteryRoll::all())+1).';');
+
+        }
+        }elseif($user->optional_subject_one=='BS(COMPUTERE SCIENCE)'){
+        $user->roll_no =null;
+        $user->challan_file =null;
+        $studentroll =BsComputerRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bscomputer AUTO_INCREMENT = '.(count(BsComputerRoll::all())+1).';');
+
+        }
+        }elseif($user->optional_subject_one=='BS(MATHEMATICS)'){
+        $user->roll_no =null;
+
+        $user->challan_file =null;
+
+        $studentroll =BsMathematicsRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bsmathematics AUTO_INCREMENT = '.(count(BsMathematicsRoll::all())+1).';');
+
+        }
+        }elseif($user->optional_subject_one=='BS(PHYICS)'){
+        $user->roll_no =null;
+
+        $user->challan_file =null;
+
+        $studentroll =BsPhyicsRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bsphyics AUTO_INCREMENT = '.(count(BsPhyicsRoll::all())+1).';');
+
+        }
+        }elseif($user->optional_subject_one=='BS(URDU)'){
+
+        $studentroll = BsUrduRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bsurdu AUTO_INCREMENT = '.(count(BsUrduRoll::all())+1).';');
+
+        }
+        }elseif($user->optional_subject_one=='BS(ISLAMIC STUDIES)'){
+        $user->roll_no =null;
+
+        $user->challan_file =null;
+
+        $studentroll = BsIslamicStudiesRoll::where('std_id',$user->id)->get()->first();
+         if(isset($studentroll)){
+        $studentroll->delete();
+        DB::statement('ALTER TABLE bsislamicstudies AUTO_INCREMENT = '.(count(BsIslamicStudiesRoll::all())+1).';');
+
+        }
+        }
+      
+
+
+            }
         $user->optional_subject_one = $request->section_namenew;
         $user->optional_subject_two = $request->section_namenew;
         $user->optional_subject_three = $request->section_namenew;
@@ -245,8 +316,6 @@ class AdminController extends Controller
            $user->image_name="avatar.jpg"; 
         }
         $user->save();
-        // dd($user);
-        // die();
         $class_section = Class_session::all();
         if($request->roll_no & $request->insitute_name){
         //      $request->validate([
