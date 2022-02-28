@@ -10,7 +10,7 @@ class BsIslamicStudiesRoll extends Model
 {
     use HasFactory;
      protected $table = "bsislamicstudies";
-       public function IslamicStudent()
+       public function IslamStudent()
     {
         return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
     }

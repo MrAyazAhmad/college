@@ -508,10 +508,18 @@ class AdminController extends Controller
         $students = StudentRecord::Where('Applied','BS(hons)')->get();
         return view('admin.student.bschallanprint',compact('students'));
     }  
-       public function bsconfirm()
+       public function bsconfirm() 
     {
+        $bsphyics= BsPhyicsRoll::all();
+        $bsurdu= BsUrduRoll::all();
+        $bsisist= BsIslamicStudiesRoll::all();
+        $bsmath= BsMathematicsRoll::all();
+        $bscs= BsComputerRoll::all();
+        $bschem= BsChemisteryRoll::all();
+        $bsenglish= BsEnglishRoll::all();
+
         $students = StudentRecord::Where('Applied','BS(hons)')->whereNotNull('roll_no')->get();
-        return view('admin.student.bsconfirm',compact('students'));
+        return view('admin.student.bsconfirm',compact('students','bsphyics','bsurdu','bsisist','bsmath','bscs','bschem','bsenglish'));
     }    
     //  public function bsconfirm()
     // {

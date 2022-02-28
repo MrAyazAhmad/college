@@ -123,21 +123,20 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(ENGLISH)')
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            @foreach($bsenglish as $user)
+                                            <tr id="sid{{$user->EnglishStudent->id}}" class="p-0">
 
+                                                <td>{{$user->EnglishStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>ENG-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->EnglishStudent->CNIC}}</td>
+                                                <td>{{$user->EnglishStudent->canidate_name}}</td>
+                                                <td>{{$user->EnglishStudent->f_name}}</td>
+                                                <td>{{$user->EnglishStudent->dob}}</td>
+                                                <td>{{$user->EnglishStudent->contact_number}}</td>
+                                                <td>{{$user->EnglishStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->EnglishStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -151,7 +150,6 @@
 
 
                                             </tr>
-                                                @endif
 
                                             @endforeach
                                         
@@ -196,22 +194,21 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(CHEMISTRY)')
+                                            @foreach($bschem as $user)
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->ChemisteryStudent->id}}" class="p-0">
 
+                                                <td>{{$user->ChemisteryStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>CHE-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->ChemisteryStudent->CNIC}}</td>
+                                                <td>{{$user->ChemisteryStudent->canidate_name}}</td>
+                                                <td>{{$user->ChemisteryStudent->f_name}}</td>
+                                                <td>{{$user->ChemisteryStudent->dob}}</td>
+                                                <td>{{$user->ChemisteryStudent->contact_number}}</td>
+                                                <td>{{$user->ChemisteryStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->ChemisteryStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -225,7 +222,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
@@ -271,23 +267,22 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(COMPUTERE SCIENCE)')
+                                            @foreach($bscs as $user)
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->ComputerStudent->id}}" class="p-0">
 
+                                                <td>{{$user->ComputerStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>CS-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->address}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->ComputerStudent->CNIC}}</td>
+                                                <td>{{$user->ComputerStudent->canidate_name}}</td>
+                                                <td>{{$user->ComputerStudent->f_name}}</td>
+                                                <td>{{$user->ComputerStudent->dob}}</td>
+                                                <td>{{$user->ComputerStudent->address}}</td>
+                                                <td>{{$user->ComputerStudent->contact_number}}</td>
+                                                <td>{{$user->ComputerStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->ComputerStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -307,7 +302,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
@@ -350,22 +344,22 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(MATHEMATICS)')
+                                            @foreach($bsmath as $user)
+                                            
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->MathStudent->id}}" class="p-0">
 
+                                                <td>{{$user->MathStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>MATH-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->MathStudent->CNIC}}</td>
+                                                <td>{{$user->MathStudent->canidate_name}}</td>
+                                                <td>{{$user->MathStudent->f_name}}</td>
+                                                <td>{{$user->MathStudent->dob}}</td>
+                                                <td>{{$user->MathStudent->contact_number}}</td>
+                                                <td>{{$user->MathStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->MathStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -379,7 +373,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
@@ -422,22 +415,22 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(PHYICS)')
+                                            @foreach($bsphyics as $user)
+                                           
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->std_id}}" class="p-0">
 
+                                                <td>{{$user->PhyicsStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>PHY-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->PhyicsStudent->CNIC}}</td>
+                                                <td>{{$user->PhyicsStudent->canidate_name}}</td>
+                                                <td>{{$user->PhyicsStudent->f_name}}</td>
+                                                <td>{{$user->PhyicsStudent->dob}}</td>
+                                                <td>{{$user->PhyicsStudent->contact_number}}</td>
+                                                <td>{{$user->PhyicsStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->std_id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -451,7 +444,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
@@ -494,22 +486,22 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(URDU)')
+                                            @foreach($bsurdu as $user)
+                                          
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->UrduStudent->id}}" class="p-0">
 
+                                                <td>{{$user->UrduStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>URD-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->UrduStudent->CNIC}}</td>
+                                                <td>{{$user->UrduStudent->canidate_name}}</td>
+                                                <td>{{$user->UrduStudent->f_name}}</td>
+                                                <td>{{$user->UrduStudent->dob}}</td>
+                                                <td>{{$user->UrduStudent->contact_number}}</td>
+                                                <td>{{$user->UrduStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->UrduStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -523,7 +515,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
@@ -566,22 +557,22 @@
                                     <tbody>
                                         
                                         
-                                            @foreach($students as $user)
-                                            @if($user->group=='BS(ISLAMIC STUDIES)')
+                                            @foreach($bsisist as $user)
+                                           
 
-                                            <tr id="sid{{$user->id}}" class="p-0">
+                                            <tr id="sid{{$user->IslamStudent->id}}" class="p-0">
 
+                                                <td>{{$user->IslamStudent->id}}</td>
                                                 <td>{{$user->id}}</td>
-                                                <td>ISL-{{$user->roll_no}}</td>
-                                                <td>{{$user->CNIC}}</td>
-                                                <td>{{$user->canidate_name}}</td>
-                                                <td>{{$user->f_name}}</td>
-                                                <td>{{$user->dob}}</td>
-                                                <td>{{$user->contact_number}}</td>
-                                                <td>{{$user->group}}</td>
+                                                <td>{{$user->IslamStudent->CNIC}}</td>
+                                                <td>{{$user->IslamStudent->canidate_name}}</td>
+                                                <td>{{$user->IslamStudent->f_name}}</td>
+                                                <td>{{$user->IslamStudent->dob}}</td>
+                                                <td>{{$user->IslamStudent->contact_number}}</td>
+                                                <td>{{$user->IslamStudent->group}}</td>
                                                 <?php
                                                
-                                                $inter = DB::table('inter_academic')->where('stu_id',$user->id)->get()->first();
+                                                $inter = DB::table('inter_academic')->where('stu_id',$user->IslamStudent->id)->get()->first();
                                                 ?>
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
@@ -595,7 +586,6 @@
 
 
                                             </tr>
-                                                @endif
                                             @endforeach
                                         
                                     </tbody>
