@@ -65,7 +65,7 @@ button {
     padding: .375rem .75rem;
 }
 
-button:hover {
+button:hover {q
   opacity: 0.8;
 }
 
