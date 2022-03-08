@@ -8,7 +8,14 @@
                     </li>
                             <li class="Ul_li--hover"><a class="has-arrow" href="#"><i class="i-Bar-Chart text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Export Files</span></a>
                                 <ul class="mm-collapse">
-                                    <li class="item-name"><a href="{{route('export')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Cash Book</span></a></li>
+                                    <li class="item-name"><a href="{{route('export')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Intermediate CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('engexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">BSEnglish CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('chemexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">BChemistry CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('csexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Bscs CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('islamicexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Islamic Studies CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('mathematicsexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Mathematics CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('phyicssexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Phyics CashBook</span></a></li>
+                                    <li class="item-name"><a href="{{route('urduexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Urdu CashBook</span></a></li>
                                     <li class="item-name"><a href="{{route('studentexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Student List</span></a></li>
                                     <li class="item-name"><a href="{{route('libraryexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Library Secuirity Book</span></a></li>
                                 </ul>

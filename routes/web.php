@@ -128,6 +128,13 @@ Route::get('printaplication/{id}', [App\Http\Controllers\AdmissionOfficerControl
 Route::post('postrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'postrespit']);
 // Route::get('/home', 'AcademicController@index')->name('home');
 Route::get('export', [App\Http\Controllers\AdminController::class, 'export'])->name('export')->middleware('admin');
+Route::get('bsenglishexport', [App\Http\Controllers\AdminController::class, 'engexport'])->name('engexport')->middleware('admin');
+Route::get('bschemistryexport', [App\Http\Controllers\AdminController::class, 'chemexport'])->name('chemexport')->middleware('admin');
+Route::get('bscomputerexport', [App\Http\Controllers\AdminController::class, 'csexport'])->name('csexport')->middleware('admin');
+Route::get('bsislamicexport', [App\Http\Controllers\AdminController::class, 'islamicexport'])->name('islamicexport')->middleware('admin');
+Route::get('bsmathexport', [App\Http\Controllers\AdminController::class, 'mathematicsexport'])->name('mathematicsexport')->middleware('admin');
+Route::get('bsphyicsexport', [App\Http\Controllers\AdminController::class, 'phyicssexport'])->name('phyicssexport')->middleware('admin');
+Route::get('bsurduexport', [App\Http\Controllers\AdminController::class, 'urduexport'])->name('urduexport')->middleware('admin');
 Route::get('studentexport', [App\Http\Controllers\AdminController::class, 'studentexport'])->name('studentexport')->middleware('admin');
 Route::get('libraryexport', [App\Http\Controllers\AdminController::class, 'libraryexport'])->name('libraryexport')->middleware('admin');
 Route::get('change-password', [App\Http\Controllers\ChangePasswordController::class,'index']);

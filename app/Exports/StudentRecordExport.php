@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\StudentRecord;
+use App\Models\StudentFeeRecord;
 use App\Models\FeeStructer;
 use DB;
 use Illuminate\Contracts\View\View;
@@ -17,15 +18,15 @@ class StudentRecordExport implements FromView
 
     public function view(): View
     {
-       $std=StudentRecord::all();
+       // $stdfee=StudentFeeRecord::all();
+       // $std=StudentRecord::all();
         $student_records = DB::table('student_records')
             ->join('fee_structers', 'student_records.fee_id', '=', 'fee_structers.id')
             ->join('class_session', 'student_records.section_id', '=', 'class_session.id')
-            ->select('student_records.*', 'fee_structers.*','class_session.*')
+            ->selectRaw('fee_structers.* fee_structers.id as fid','student_records','student_records.id as sid','student_records.submissiondate', 'student_records.roll_no', 'student_records.canidate_name', 'class_session.class_name')
             ->get();
-        //        dd($student_records);
-        // die();
-        return $student_records;
+          
+        // return $student_records;
         //             return view('admin',[
         //     'student_records'=>$student_records,
         // ]);

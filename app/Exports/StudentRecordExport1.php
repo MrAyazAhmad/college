@@ -13,7 +13,7 @@ class StudentRecordExport1 implements FromView
           $student_records = DB::table('student_records')
             ->join('fee_structers', 'student_records.fee_id', '=', 'fee_structers.id')
             ->join('class_session', 'student_records.section_id', '=', 'class_session.id')
-            ->select('student_records.*', 'fee_structers.*','class_session.*')
+            ->select('student_records.*','student_records.id as sid', 'fee_structers.*','class_session.*')
             ->get();
         return view('test', [
             'student_records' => $student_records

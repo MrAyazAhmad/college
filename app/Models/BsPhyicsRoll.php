@@ -14,5 +14,10 @@ class BsPhyicsRoll extends Model
     {
         return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
     }
+      public function PhyicsFee()
+    {
+        return $this->belongsTo(StudentFeeRecord::class, 'std_feei', 'id');
+    }
+
 
 }

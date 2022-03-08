@@ -9,6 +9,13 @@ use App\Models\StudentTRoll;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentRecordExport1;
+use App\Exports\BsenglishExport;
+use App\Exports\BsChemistryExport;
+use App\Exports\BsComputerExport;
+use App\Exports\BsIslamicExport;
+use App\Exports\BsMathematicsExport;
+use App\Exports\BsPhyicsExport;
+use App\Exports\BsurduExport;
 use App\Exports\LibraryRecordExport;
 use App\Exports\StudentListExport;
 use App\Models\BsEnglishRoll;
@@ -592,6 +599,41 @@ class AdminController extends Controller
     {
         $name='Cashbook'.date('M-d-Y_hia').'.xlsx';  
         return Excel::download(new StudentRecordExport1, $name);
+    }
+       public function engexport() 
+    {
+        $name='BSEnglishCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsenglishExport, $name);
+    }
+       public function chemexport() 
+    {
+        $name='BSChemistryCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsChemistryExport, $name);
+    }
+       public function csexport() 
+    {
+        $name='BSCSCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsComputerExport, $name);
+    }
+      public function islamicexport() 
+    {
+        $name='IslamicStudiesCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsIslamicExport, $name);
+    }
+     public function mathematicsexport() 
+    {
+        $name='BsMathematicsCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsMathematicsExport, $name);
+    }
+     public function phyicssexport() 
+    {
+        $name='BsPhyicsCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsPhyicsExport, $name);
+    }
+     public function urduexport() 
+    {
+        $name='BsUrduCashbook'.date('M-d-Y_hia').'.xlsx';  
+        return Excel::download(new BsurduExport, $name);
     }
         public function studentexport() 
     {
