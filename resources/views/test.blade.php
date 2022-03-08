@@ -17,7 +17,6 @@
         <th scope="col">Affiliation Fund</th>
         <th scope="col">Bard/Universty Registration Fee</th>
         <th scope="col">Secience Fund</th>
-        <th scope="col">Absence Fine</th>
         <th scope="col">Fine Fund</th>
         <th scope="col">Parking Fee</th>
         <th scope="col">Sports Fund</th>
@@ -43,7 +42,6 @@
         <td scope="col">{{$student_records->affiliation_fund}}</td>
         <td scope="col">{{$student_records->board_universty_registration_fee}}</td>
         <td scope="col">{{$student_records->secience_fund}}</td>
-        <td scope="col">{{$student_records->absence_fine}}</td>
         <td scope="col">{{$student_records->fine_fund}}</td>
         <td scope="col">{{$student_records->parking_fee}}</td>
         <td scope="col">{{$student_records->sports_fund}}</td>
