@@ -15,5 +15,10 @@ class BsChemisteryRoll extends Model
     {
         return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
     }
+        public function ChemisteryFee()
+    {
+        return $this->belongsTo(StudentFeeRecord::class, 'std_feei', 'id');
+    }
+
 
 }

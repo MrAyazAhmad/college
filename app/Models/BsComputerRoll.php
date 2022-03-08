@@ -14,5 +14,9 @@ class BsComputerRoll extends Model
     {
         return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
     }
+        public function BscsFee()
+    {
+        return $this->belongsTo(StudentFeeRecord::class, 'std_feei', 'id');
+    }
 
 }

@@ -3,8 +3,10 @@
 
     <tr>
 
-        <th scope="col">Name</th>
+        <th scope="col">Sr No.</th>
+        <th scope="col">Date Of Submission Fee</th>
         <th scope="col">Roll No</th>
+        <th scope="col">Name</th>
         <th scope="col">Class</th>
         <th scope="col">Admission Fee</th>
         <th scope="col">Tution Fee</th>
@@ -27,8 +29,11 @@
     </thead>
     <tbody>
     @foreach($student_records as $student_records)
+    @if($student_records->Applied=='Intermediate' && $student_records->roll_no !='')
     <tr>
-        <td scope="col">{{$student_records->canidate_name}}</td>
+        <td scope="col">{{$student_records->sid}}</td>
+        <td scope="col">{{$student_records->submissiondate}}</td>
+        <td scope="col">{{$student_records->roll_no}}</td>
         <td scope="col">{{$student_records->canidate_name}}</td>
         <td scope="col">{{$student_records->class_name}}</td>
         <td scope="col">{{$student_records->admission_fee}}</td>
@@ -49,6 +54,7 @@
         <td scope="col">{{$student_records->computer_fee}}</td>
         <td scope="col">{{$student_records->exam_fund}}</td>
     </tr>
+    @endif
     @endforeach
     </tbody>
 </table>

@@ -9,5 +9,10 @@ class StudentFeeRecord extends Model
 {
     use HasFactory;
     protected $table = "studentfeerecords";
+
+      public function StudentRecord()
+    {
+        return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
+    }
     
 }

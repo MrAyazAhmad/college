@@ -14,5 +14,9 @@ class BsUrduRoll extends Model
     {
         return $this->belongsTo(StudentRecord::class, 'std_id', 'id');
     }
+     public function UrduFee()
+    {
+        return $this->belongsTo(StudentFeeRecord::class, 'std_feei', 'id');
+    }
 
 }
