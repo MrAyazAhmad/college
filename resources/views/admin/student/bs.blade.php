@@ -352,7 +352,8 @@
                                                  @if($inter)
                                                 <td>{{$inter->marks_obtian}}</td>
                                                 <td>{{$inter->subject_marks}}</td>
-                                                <td>{{$inter->marks_obtian+$inter->subject_marks}}</td>
+                                                <td>{{$inter->marks_obtian }}\{{ $inter->subject_marks}}</td>
+                                                
                                                  @else
                                                 <td>Not Found</td>
                                                 <td>Not Found</td>
