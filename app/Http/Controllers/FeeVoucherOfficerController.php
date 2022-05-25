@@ -26,7 +26,17 @@ class FeeVoucherOfficerController extends Controller
        public function studentrecord(Request $request)
     {
         $students = StudentRecord::where('id' , $request->stdid)->get()->first();
-        $feestructure = FeeStructer::find($students->fee_id);
+        if($students->Applied=="BS(hons)"){
+         $feestructure = FeeStructer::find($students->fee_id_2nd_sem);
+
+
+
+         }else{
+
+         $feestructure = FeeStructer::find($students->fee_id_2nd_year);
+            
+         }
+        // $feestructure = FeeStructer::find($students->fee_id);
         // dd($feestructure);
         return view('searchrecord',compact('students','feestructure'));
        

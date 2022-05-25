@@ -158,7 +158,19 @@ class AdminController extends Controller
 
         // dd($user);
         return view('admin.student.edit',compact('user','class_section','bacholer','inter','matric'));
-    }  
+    }
+       public function UpgradeStudent(Request $request)
+    {
+        // dd($request->all());
+        $user = StudentRecord::find($request->stdid);
+        $class_section = Class_session::all();
+        $bacholer=Bachelor_Academic::where('stu_id',$user->id)->first();
+        $inter=  Inter_Academic::where('stu_id',$user->id)->first();
+        $matric= Matric_Academic::where('stu_id',$user->id)->first();
+
+        // dd($user);
+        return view('admin.upgrade.upgrade',compact('user','class_section','bacholer','inter','matric'));
+    }   
       public function UpdateForm(Request $request)
     {
         $user = StudentRecord::find($request->id);
@@ -404,7 +416,52 @@ class AdminController extends Controller
         }
         return redirect()->route('generate-pdf', [$user->id]);
 
-        // dd($user);
+        // dd($user); 
+       
+    } 
+    public function Search(){
+
+        return view('admin.Upgrade.search');
+
+    }
+
+    public function Upgrade(Request $request)
+    {
+        $user = StudentRecord::find($request->id);
+         $user->section_id = $request->section_id;
+        $feestructer = FeeStructer::where('section_id', $request->section_id)->first();
+        $classsession = Class_session::where('id', $request->section_id)->first();
+           $request->validate([            
+            'Applied' =>'required',
+            'section_namenew' =>'required',
+            'class_year' =>'required',
+            'section_id' =>'required',
+            
+          
+        ]); 
+         if($request->Applied=="BS(hons)"){
+            $user->fee_id_2nd_sem =$feestructer->id;
+
+
+         }else{
+
+            $user->fee_id_2nd_year =$feestructer->id;
+         }
+        // $user->CNIC = $request->CNIC;
+        $user->Applied = $request->Applied;
+        $user->group = $request->section_namenew;
+        $user->class_year = $request->class_year;
+         $user->section_id = $request->section_id;
+
+
+         
+        $user->save();
+        return redirect('admin/search')->with('success','Student Upgrade successfully.');
+
+        
+        // return redirect()->route('generate-pdf', [$user->id]);
+
+        dd($user);
        
     } 
        public function EditFeestructure($id)

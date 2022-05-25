@@ -91,6 +91,7 @@ Route::post('session-store',  [App\Http\Controllers\AdminController::class, 'Sto
 Route::delete('deletesession/{id}',[AdminController::class,'DeleteSession']);
 Route::get('admin/edit_user/{id}',[AdminController::class,'EditUser']);
 Route::get('admin/edit_student/{id}',[AdminController::class,'EditStudent']);
+Route::post('admin/upgrade_student',[AdminController::class,'UpgradeStudent'])->name('upgrade_student');
 Route::get('admin/edit_session/{id}',[AdminController::class,'EditSession']);
 
 Route::get('admin/allstudents', [App\Http\Controllers\AdminController::class, 'allstudents'])->name('allstudents');
@@ -121,6 +122,8 @@ Route::post('feestructer', [App\Http\Controllers\FeeStructerController::class, '
 
 Route::post('admissionform', [App\Http\Controllers\StudentRecordController::class, 'store']);
 Route::post('admin/admissionformupdate/{id}', [App\Http\Controllers\AdminController::class, 'UpdateForm']);
+Route::post('admin/upgradestudent/{id}', [App\Http\Controllers\AdminController::class, 'Upgrade']);
+Route::get('admin/search', [App\Http\Controllers\AdminController::class, 'Search'])->name('Search');
 Route::get('admissionrespit/{id}', [App\Http\Controllers\StudentRecordController::class, 'wordExport']);
 Route::get('uploadrespit/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'uploadrespit']);
 Route::get('printaplication/{id}', [App\Http\Controllers\AdmissionOfficerController::class, 'printaplication']);

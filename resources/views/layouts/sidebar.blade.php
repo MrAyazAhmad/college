@@ -20,6 +20,8 @@
                                     <li class="item-name"><a href="{{route('libraryexport')}}"><i class="i-Circular-Point mr-2 text-muted"></i><span class="text-muted">Export Library Secuirity Book</span></a></li>
                                 </ul>
                             </li>
+                        <li class="Ul_li--hover"><a  href="{{route('Search')}}"><i class="i-Bar-Chart text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Upgrade Student</span></a>
+                        </li>
                             <li class="Ul_li--hover"><a class="has-arrow"><i class="i-Administrator text-20 mr-2 text-muted"></i><span class="item-name text-15 text-muted">Users</span></a>
                                 <ul class="mm-collapse">
                                     <li class="item-name"><a href="{{route('adduser')}}"><i class="nav-icon i-Checked-User"></i><span class="item-name">Add New</span></a></li>
