@@ -58,6 +58,7 @@
                                                 <option value="">Select </option>
                                                 <option value="Intermediate">Intermediate </option>
                                                 <option value="BS(hons)">BS(hons)</option>
+                                                <option value="Master">Master</option>
                                                
                                             </select>
                                         </div>

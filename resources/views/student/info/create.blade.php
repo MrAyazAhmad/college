@@ -285,6 +285,7 @@ input {
                                                 <option value="">Select </option>
                                                 <option value="Intermediate">Intermediate </option>
                                                 <option value="BS(hons)">BS(hons)</option>
+                                                <option value="Master">M.A</option>
                                                
                                             </select>
                                              <!-- Error -->
@@ -310,6 +311,9 @@ input {
                                                 @endif
                                                 @if($c_section->category=='BS(hons)')
                                                 <option class="BS" style="display: none;" value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
+                                                @endif
+                                                @if($c_section->category=='Master')
+                                                <option class="master" style="display: none;" value="{{$c_section->class_name}}">{{$c_section->class_name}} </option>
                                                 @endif
                                                 @endforeach
                                             </select>
@@ -376,6 +380,9 @@ input {
                                                 @endif
                                                 @if($c_section->category=='BS(hons)')
                                                 <option class="BS" style="display: none;" value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
+                                                @endif
+                                                @if($c_section->category=='Master')
+                                                <option class="master" style="display: none;" value="{{$c_section->id}}">{{$c_section->class_name}}({{$c_section->start_year}} To {{$c_section->end_year}})</option>
                                                 @endif
                                                 @endforeach
                                             </select>
@@ -1142,6 +1149,29 @@ $(document).ready(function(){
         $(".Interclass").hide();
         $(".master").hide();
         $(".bshons").show();
+
+
+      }
+      if ( this.value == 'Master')
+      {
+        $("#interdiv").hide();
+        $("#matricdiv").hide();
+        $("#Bachelordiv").show();
+        $("#admission").hide();
+        $("#optional_subject_one").hide();
+        $("#optional_subject_two").hide();
+        $("#optional_subject_three").hide();
+        $("#sbjectgroup").hide();
+         $(".inter").hide();
+         $(".one").hide();
+         $(".two").hide();
+         $(".three").hide();
+        $(".bch").hide();
+
+        $(".BS").hide();
+        $(".Interclass").hide();
+        $(".master").show();
+        $(".bshons").hide();
 
 
       }

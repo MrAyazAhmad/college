@@ -126,6 +126,12 @@ class StudentRecordController extends Controller
         $studentinfo->optional_subject_three = $request->section_name;
         $studentinfo->group = $request->section_name;
 
+        }elseif($request->Applied=="Master"){
+        $studentinfo->optional_subject_one = $request->section_name;
+        $studentinfo->optional_subject_two = $request->section_name;
+        $studentinfo->optional_subject_three = $request->section_name;
+        $studentinfo->group = $request->section_name;
+
         }else{
         $checkcnic=StudentRecord::where('CNIC',$request->CNIC)->get()->first();
         if(isset($checkcnic->id)){
@@ -178,13 +184,13 @@ class StudentRecordController extends Controller
         $matric_academic->insitute_name = $request->insitute_name;
         $matric_academic->grade = $request->grade;
         $matric_academic->save();
-    }else{
+    }
         
 
 
         
 
-         if($request->Inter_Roll_No || $request->Inter_insitute_name){
+         if($request->Applied=="BS('hons')"){
              $request->validate([
             'Inter_Roll_No' => 'required',
             'Inter_Year' => 'required',
@@ -211,8 +217,8 @@ class StudentRecordController extends Controller
         // die();
 
         }
-    }
-        //  if($request->Bachelor_Roll_No || $request->Bachelor_insitute_name){
+    
+         if($request->Applied=="Master"){
         //     $request->validate([
         //     'Bachelor_Roll_No' => 'required',
         //     'Bachelor_Year' => 'required',
@@ -223,20 +229,21 @@ class StudentRecordController extends Controller
         //     'Bachelor_percentage' => 'required',
         //     'Bachelor_insitute_name' => 'required',
         // ]); 
-        // $Bachelor_academic = New Bachelor_Academic();
-        // $Bachelor_academic->stu_id =$studentinfo->id;
-        // $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
-        // $Bachelor_academic->Passing_Year = $request->Bachelor_Year;
-        // $Bachelor_academic->exam_type = $request->Bachelor_Exam_Type;
-        // $Bachelor_academic->marks_obtian = $request->Bachelor_Marks_Obt;
-        // $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
-        // $Bachelor_academic->percentage = $request->Bachelor_percentage;
-        // $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
-        // $matric_academic->grade = $request->Bachelor_grade;
-        // $Bachelor_academic->save();
+        $Bachelor_academic = New Bachelor_Academic();
+        $Bachelor_academic->stu_id =$studentinfo->id;
+        $Bachelor_academic->roll_no =$request->Bachelor_Roll_No;
+        $Bachelor_academic->Passing_Year = $request->Bachelor_Year;
+        $Bachelor_academic->exam_type = $request->Bachelor_Exam_Type;
+        $Bachelor_academic->marks_obtian = $request->Bachelor_Marks_Obt;
+        $Bachelor_academic->total_marks = $request->Bachelor_totall_marks;
+        $Bachelor_academic->percentage = $request->Bachelor_percentage;
+        $Bachelor_academic->insitute_name = $request->Bachelor_insitute_name;
+        $Bachelor_academic->grade = $request->Bachelor_grade;
+        $Bachelor_academic->save();
    
 
-        // }
+        
+    }
 
         return Redirect()->route('generate-pdf', [$studentinfo->id])->with('success', 'student added successully.');
 
